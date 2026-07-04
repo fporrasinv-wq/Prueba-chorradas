@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chorradas Geniales 🤡💰 — Productos absurdos que triunfaron</title>
+<meta name="description" content="El museo de los productos más tontos, absurdos y random de internet que, contra todo pronóstico, se han vendido a lo bestia." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22 font-size=%2280%22><text y=%22.9em%22>🤡</text></svg>" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1><span class="wiggle">🤡</span> Chorradas Geniales <span class="wiggle" style="animation-delay:.3s">💰</span></h1>
+    <p class="subtitle">El santuario de los productos más absurdos, inútiles y random de internet que, por pura genialidad tonta, se han vendido a millones.</p>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="controls">
+      <input id="search" type="search" placeholder="🔍 Busca tu chorrada favorita (ej: piedra, calcetín, pepino...)" />
+      <select id="categoria">
+        <option value="">Todas las categorías</option>
+      </select>
+      <select id="orden">
+        <option value="chorrada-desc">🤪 Más chorra primero</option>
+        <option value="chorrada-asc">🧐 Menos chorra primero</option>
+        <option value="ventas-desc">💸 Más vendido</option>
+        <option value="año-desc">🆕 Más reciente</option>
+        <option value="año-asc">🕰️ Más antiguo</option>
+        <option value="az">🔤 A-Z</option>
+      </select>
+      <button id="randomBtn" class="btn-random" type="button">🎲 Sorpréndeme</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div id="empty" class="empty hidden">
+    😵 No hay ninguna chorrada que coincida... ¡y eso ya es raro!
+  </div>
+  <section id="grid" class="grid"></section>
+</main>
+
+<button id="addBtn" class="fab" type="button" title="Propón tu propia chorrada">➕</button>
+
+<div id="modal" class="modal hidden">
+  <div class="modal-content">
+    <button id="closeModal" class="close" type="button">✖</button>
+    <h2>Propón tu chorrada genial 💡</h2>
+    <p class="modal-hint">¿Conoces algún producto ridículo que triunfó? Añádelo a la colección (se guarda solo en tu navegador).</p>
+    <form id="addForm">
+      <label>Nombre del producto
+        <input name="nombre" required maxlength="60" placeholder="Ej: Calcetines para pepinos" />
+      </label>
+      <label>Descripción
+        <textarea name="descripcion" required maxlength="220" placeholder="¿Qué hace y por qué es una genialidad tonta?"></textarea>
+      </label>
+      <label>Categoría
+        <input name="categoria" required maxlength="30" placeholder="Ej: Hogar, Mascotas, Cocina..." />
+      </label>
+      <label>Nivel de chorrada (1-5)
+        <input name="chorrada" type="range" min="1" max="5" value="4" />
+      </label>
+      <label>Emoji representativo
+        <input name="emoji" maxlength="4" placeholder="🥒" />
+      </label>
+      <button type="submit" class="btn-random">🚀 Añadir a la colección</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <p>Hecho con 🧠 nivel bajo y 💖 nivel alto. Ninguna chorrada fue maltratada en la creación de esta web.</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
