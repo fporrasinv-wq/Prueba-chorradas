@@ -121,6 +121,8 @@ button {
 
 .subject-card .icon {
   font-size: 2.2rem;
+  display: inline-block;
+  animation: iconBob 2.4s ease-in-out infinite;
 }
 
 .subject-card .name {
@@ -162,6 +164,18 @@ button {
 }
 
 .mascot-box .emoji { font-size: 2rem; flex-shrink: 0; }
+.mascot-box .mascot-text { flex: 1; }
+.mascot-box .speak-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  padding: 2px;
+  opacity: .7;
+}
+.mascot-box .speak-btn:active { opacity: 1; }
+
+.sound-toggle { border: none; }
 
 /* ---------- Subject path (lesson map) ---------- */
 .path-header {
@@ -223,6 +237,21 @@ button {
   background: #cfcfcf !important;
   box-shadow: 0 6px 0 rgba(0,0,0,0.08);
   color: #9a9a9a;
+}
+
+.lesson-node.next {
+  animation: pulseRing 1.8s ease-out infinite;
+}
+
+.start-bubble {
+  background: #3c3c3c;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  white-space: nowrap;
 }
 
 .lesson-node .stars {
@@ -382,6 +411,92 @@ button {
 .fill-input.correct { border-color: var(--green); background: #d7ffb8; }
 .fill-input.incorrect { border-color: var(--red); background: #ffdfe0; }
 
+.hint-line {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--orange);
+  text-align: center;
+}
+
+/* ---------- Order (build the answer) ---------- */
+.order-answer {
+  min-height: 56px;
+  border: 2px dashed var(--border);
+  border-radius: 14px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.order-answer.correct { border-style: solid; border-color: var(--green); background: #d7ffb8; }
+.order-answer.incorrect { border-style: solid; border-color: var(--red); background: #ffdfe0; }
+
+.order-placeholder {
+  color: var(--ink-light);
+  font-size: 0.95rem;
+  padding: 8px 4px;
+}
+
+.order-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.order-chip {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--ink);
+  font-family: inherit;
+}
+.order-chip:active { transform: translateY(1px); }
+.order-chip.placed {
+  background: #ddf4ff;
+  border-color: var(--blue);
+  color: #0a6ea8;
+}
+
+/* ---------- Match (aparella parelles) ---------- */
+.match-hint {
+  text-align: center;
+  width: 100%;
+  font-weight: 700;
+  color: var(--ink-light);
+}
+
+.match-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.match-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.match-item {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 8px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-align: center;
+  font-family: inherit;
+}
+.match-item.selected { border-color: var(--blue); background: #ddf4ff; }
+.match-item.matched { border-color: var(--green); background: #d7ffb8; color: var(--green-dark); }
+.match-item.wrong-flash { border-color: var(--red); background: #ffdfe0; animation: shake .4s ease; }
+
 /* ---------- Bottom action bar ---------- */
 .bottom-bar {
   position: fixed;
@@ -434,11 +549,18 @@ button {
 .btn-primary { background: var(--green); }
 .btn-danger { background: var(--red); }
 .btn-full { width: 100%; }
+.bottom-bar-inner .btn-full { flex: 1 1 auto; width: auto; }
 .btn-outline {
   background: var(--card);
   color: var(--blue);
   border: 2px solid var(--border);
   box-shadow: none;
+}
+.btn-hint {
+  background: var(--yellow);
+  color: #7a5200;
+  flex: 0 0 auto;
+  padding: 14px 18px;
 }
 
 .bottom-bar.state-ok { background: #d7ffb8; border-top-color: #b2e878; }
@@ -553,7 +675,28 @@ button {
 }
 .shake { animation: shake .4s ease; }
 
+@keyframes iconBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes pulseRing {
+  0% { box-shadow: 0 6px 0 rgba(0,0,0,0.15), 0 0 0 0 rgba(88,204,2,0.5); }
+  70% { box-shadow: 0 6px 0 rgba(0,0,0,0.15), 0 0 0 14px rgba(88,204,2,0); }
+  100% { box-shadow: 0 6px 0 rgba(0,0,0,0.15), 0 0 0 0 rgba(88,204,2,0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .subject-card .icon,
+  .lesson-node.next,
+  .pop,
+  .shake {
+    animation: none !important;
+  }
+}
+
 @media (max-width: 380px) {
   .lesson-node { width: 68px; height: 68px; font-size: 1.6rem; }
   .q-text { font-size: 1.15rem; }
+  .match-item { font-size: 0.82rem; padding: 10px 6px; }
 }

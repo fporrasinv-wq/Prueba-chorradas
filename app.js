@@ -1,17 +1,110 @@
 /* Repassa'l! — app de repàs a l'estil Duolingo per a 4t de primària.
-   Vanilla JS, sense dependències. Estat persistit a localStorage. */
+   Vanilla JS, sense dependències. Estat persistit a localStorage.
+   Mascota: Robi, el robot ajudant. Sons generats amb Web Audio API. */
 
 const STORAGE_KEY = "repassal_state_v1";
+const SOUND_KEY = "repassal_sound_v1";
 const root = document.getElementById("app");
 
 const MASCOT_MESSAGES = [
-  "Avui toca repassar una mica! 💪",
-  "Cada lliçó et fa una mica més savi o sàvia! 🧠",
-  "Equivocar-se també és aprendre. Endavant! 🙌",
+  "Beep boop! Avui toca repassar una mica! 🤖",
+  "Cada lliçó carrega la teva bateria de coneixement! 🔋",
+  "Equivocar-se també és aprendre. Jo t'ajudo! 🙌",
   "Quants punts d'experiència aconseguiràs avui? ✨",
-  "Recorda: la pràctica fa el mestre! 📚",
-  "Tria una matèria i comencem a jugar! 🎮"
+  "La pràctica fa el mestre... i el robot mestre! 📚",
+  "Tria una matèria i comencem a jugar junts! 🎮",
+  "Sóc en Robi, el teu ajudant. Pica en una matèria! 🤖"
 ];
+
+/* ---------------- Sound engine (Web Audio, sense fitxers externs) ---------------- */
+
+let audioCtx = null;
+
+function loadSoundPref() {
+  try {
+    return localStorage.getItem(SOUND_KEY) !== "off";
+  } catch (e) {
+    return true;
+  }
+}
+
+let soundOn = loadSoundPref();
+
+function toggleSound() {
+  soundOn = !soundOn;
+  try {
+    localStorage.setItem(SOUND_KEY, soundOn ? "on" : "off");
+  } catch (e) {}
+  if (soundOn) playClick();
+  render();
+}
+
+function ensureAudio() {
+  if (!soundOn) return null;
+  if (!audioCtx) {
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if (!Ctx) return null;
+    audioCtx = new Ctx();
+  }
+  if (audioCtx.state === "suspended") audioCtx.resume();
+  return audioCtx;
+}
+
+function tone(freq, start, dur, type, gain) {
+  const ctx = ensureAudio();
+  if (!ctx) return;
+  const osc = ctx.createOscillator();
+  const g = ctx.createGain();
+  osc.type = type || "sine";
+  osc.frequency.value = freq;
+  g.gain.value = 0;
+  osc.connect(g);
+  g.connect(ctx.destination);
+  const t0 = ctx.currentTime + start;
+  g.gain.setValueAtTime(0, t0);
+  g.gain.linearRampToValueAtTime(gain || 0.15, t0 + 0.015);
+  g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+  osc.start(t0);
+  osc.stop(t0 + dur + 0.03);
+}
+
+function playClick() {
+  tone(600, 0, 0.05, "sine", 0.05);
+}
+function playCorrect() {
+  tone(880, 0, 0.12, "sine", 0.14);
+  tone(1175, 0.09, 0.18, "sine", 0.14);
+}
+function playWrong() {
+  tone(220, 0, 0.16, "square", 0.08);
+  tone(160, 0.11, 0.2, "square", 0.08);
+}
+function playHint() {
+  tone(700, 0, 0.1, "sine", 0.08);
+  tone(950, 0.08, 0.12, "sine", 0.08);
+}
+function playComplete(perfect) {
+  const notes = perfect ? [523, 659, 784, 1047, 1319] : [523, 659, 784];
+  notes.forEach((f, i) => tone(f, i * 0.11, 0.2, "triangle", 0.13));
+}
+
+/* ---------------- Speech (mascota) ---------------- */
+
+function hasSpeech() {
+  return typeof window !== "undefined" && "speechSynthesis" in window;
+}
+
+function speak(text) {
+  if (!hasSpeech()) return;
+  try {
+    window.speechSynthesis.cancel();
+    const clean = text.replace(/[\u{1F300}-\u{1FAFF}☀-➿]/gu, "").trim();
+    const u = new SpeechSynthesisUtterance(clean);
+    u.lang = "ca-ES";
+    u.rate = 0.95;
+    window.speechSynthesis.speak(u);
+  } catch (e) {}
+}
 
 /* ---------------- State ---------------- */
 
@@ -44,11 +137,13 @@ let mascotMsgIndex = Math.floor(Math.random() * MASCOT_MESSAGES.length);
 
 function goHome() {
   mascotMsgIndex = Math.floor(Math.random() * MASCOT_MESSAGES.length);
+  playClick();
   nav = { view: "home" };
   render();
 }
 
 function openSubject(subjectId) {
+  playClick();
   nav = { view: "path", subjectId };
   render();
 }
@@ -123,8 +218,16 @@ function updateStreakOnFinish() {
 function buildQueueItem(question) {
   if (question.type === "mcq") {
     const opts = question.options.map((text, i) => ({ text, isCorrect: i === question.correct }));
-    const shuffled = shuffle(opts);
-    return { ...question, shuffledOptions: shuffled };
+    return { ...question, shuffledOptions: shuffle(opts) };
+  }
+  if (question.type === "order") {
+    const bank = shuffle(question.tokens.map((text, i) => ({ text, origIndex: i })));
+    return { ...question, orderBank: bank };
+  }
+  if (question.type === "match") {
+    const leftItems = question.pairs.map((p, i) => ({ text: p[0], pairIdx: i }));
+    const rightItems = shuffle(question.pairs.map((p, i) => ({ text: p[1], pairIdx: i })));
+    return { ...question, leftItems, rightItems };
   }
   return { ...question };
 }
@@ -132,6 +235,7 @@ function buildQueueItem(question) {
 function startLesson(subjectId, lessonId) {
   const subject = getSubject(subjectId);
   const lesson = subject.lessons.find((l) => l.id === lessonId);
+  playClick();
   session = {
     subjectId,
     lessonId,
@@ -143,7 +247,12 @@ function startLesson(subjectId, lessonId) {
     xp: 0,
     selected: null,
     answered: false,
-    wasCorrect: null
+    wasCorrect: null,
+    fillValue: "",
+    hintUsed: false,
+    hintDisabled: [],
+    hintShown: false,
+    matchState: null
   };
   nav = { view: "lesson" };
   render();
@@ -157,21 +266,111 @@ function currentQuestion() {
   return session.queue[session.idx];
 }
 
+function ensureMatchState() {
+  if (!session.matchState) {
+    session.matchState = { selectedLeft: null, matched: new Set(), wrongFlash: null, mistakes: 0 };
+  }
+  return session.matchState;
+}
+
 function selectOption(index) {
   if (session.answered) return;
+  if ((session.hintDisabled || []).includes(index)) return;
   session.selected = index;
+  playClick();
   render();
 }
 
 function selectTF(value) {
   if (session.answered) return;
   session.selected = value;
+  playClick();
+  render();
+}
+
+function selectOrderToken(bankIdx) {
+  if (session.answered) return;
+  if (!session.selected) session.selected = [];
+  if (session.selected.includes(bankIdx)) return;
+  session.selected.push(bankIdx);
+  playClick();
+  render();
+}
+
+function removeOrderToken(posInSelected) {
+  if (session.answered) return;
+  session.selected.splice(posInSelected, 1);
+  playClick();
+  render();
+}
+
+function clickMatchLeft(pairIdx) {
+  const ms = ensureMatchState();
+  if (ms.matched.has(pairIdx)) return;
+  ms.selectedLeft = pairIdx;
+  playClick();
+  render();
+}
+
+function clickMatchRight(pairIdx) {
+  const q = currentQuestion();
+  const ms = ensureMatchState();
+  if (ms.matched.has(pairIdx) || ms.selectedLeft === null) return;
+
+  if (ms.selectedLeft === pairIdx) {
+    ms.matched.add(pairIdx);
+    ms.selectedLeft = null;
+    playCorrect();
+    if (ms.matched.size === q.pairs.length) {
+      session.answered = true;
+      session.wasCorrect = ms.mistakes === 0;
+      if (session.wasCorrect) {
+        session.correctCount += 1;
+        session.xp += 10;
+      } else {
+        session.mistakes.push({ question: q.q, correctText: correctAnswerText(q) });
+      }
+    }
+  } else {
+    ms.mistakes += 1;
+    ms.selectedLeft = null;
+    ms.wrongFlash = pairIdx;
+    playWrong();
+    setTimeout(() => {
+      if (session && session.matchState) {
+        session.matchState.wrongFlash = null;
+        render();
+      }
+    }, 450);
+  }
+  render();
+}
+
+function useHint() {
+  if (session.answered || session.hintUsed) return;
+  const q = currentQuestion();
+  session.hintUsed = true;
+  if (q.type === "mcq") {
+    const disabledSoFar = session.hintDisabled || [];
+    const wrongIndexes = q.shuffledOptions
+      .map((o, i) => i)
+      .filter((i) => !q.shuffledOptions[i].isCorrect && !disabledSoFar.includes(i));
+    if (wrongIndexes.length > 0) {
+      const pick = wrongIndexes[Math.floor(Math.random() * wrongIndexes.length)];
+      session.hintDisabled = [...disabledSoFar, pick];
+      if (session.selected === pick) session.selected = null;
+    }
+  } else if (q.type === "fill") {
+    session.hintShown = true;
+  }
+  playHint();
   render();
 }
 
 function checkAnswer() {
   if (session.answered) return;
   const q = currentQuestion();
+  if (q.type === "match") return;
   let correct = false;
 
   if (q.type === "mcq") {
@@ -185,6 +384,10 @@ function checkAnswer() {
     if (!val.trim()) return;
     session.fillValue = val;
     correct = q.answers.some((a) => normalizeAnswer(a) === normalizeAnswer(val));
+  } else if (q.type === "order") {
+    if (!session.selected || session.selected.length !== q.tokens.length) return;
+    const assembled = session.selected.map((i) => q.orderBank[i].text).join(" ");
+    correct = assembled === q.tokens.join(" ");
   }
 
   session.answered = true;
@@ -193,12 +396,14 @@ function checkAnswer() {
   if (correct) {
     session.correctCount += 1;
     session.xp += 10;
+    playCorrect();
   } else {
     session.hearts = Math.max(0, session.hearts - 1);
     session.mistakes.push({
       question: q.q,
       correctText: correctAnswerText(q)
     });
+    playWrong();
   }
   render();
 }
@@ -207,6 +412,8 @@ function correctAnswerText(q) {
   if (q.type === "mcq") return q.options[q.correct];
   if (q.type === "tf") return q.correct ? "Cert" : "Fals";
   if (q.type === "fill") return q.answers[0];
+  if (q.type === "order") return q.tokens.join(" ");
+  if (q.type === "match") return "Repassa totes les parelles correctes.";
   return "";
 }
 
@@ -216,6 +423,10 @@ function nextQuestion() {
   session.answered = false;
   session.wasCorrect = null;
   session.fillValue = "";
+  session.hintUsed = false;
+  session.hintDisabled = [];
+  session.hintShown = false;
+  session.matchState = null;
 
   if (session.idx >= session.queue.length) {
     finishLesson();
@@ -248,6 +459,8 @@ function finishLesson() {
   session.finalStars = stars;
   session.finalAccuracy = accuracy;
   session.xpEarned = xpEarned;
+
+  playComplete(stars === 3);
 
   nav = { view: "results" };
   render();
@@ -294,7 +507,8 @@ function el(tag, attrs = {}, children = []) {
 function renderTopStats() {
   return el("div", { class: "stats-row" }, [
     el("div", { class: "stat-pill" }, `🔥 ${state.streak}`),
-    el("div", { class: "stat-pill" }, `⭐ ${state.xp}`)
+    el("div", { class: "stat-pill" }, `⭐ ${state.xp}`),
+    el("button", { class: "stat-pill sound-toggle", onclick: toggleSound, title: "Activa o desactiva el so" }, soundOn ? "🔊" : "🔇")
   ]);
 }
 
@@ -302,7 +516,7 @@ function renderHome() {
   const wrap = el("div", {});
   wrap.appendChild(
     el("div", { class: "topbar" }, [
-      el("div", { class: "brand" }, [document.createTextNode("🦉 Repassa'l!")]),
+      el("div", { class: "brand" }, [document.createTextNode("🤖 Repassa'l!")]),
       renderTopStats()
     ])
   );
@@ -315,8 +529,11 @@ function renderHome() {
 
   wrap.appendChild(
     el("div", { class: "mascot-box" }, [
-      el("div", { class: "emoji" }, "🦉"),
-      el("div", {}, MASCOT_MESSAGES[mascotMsgIndex])
+      el("div", { class: "emoji" }, "🤖"),
+      el("div", { class: "mascot-text" }, MASCOT_MESSAGES[mascotMsgIndex]),
+      hasSpeech()
+        ? el("button", { class: "speak-btn", title: "Escolta en Robi", onclick: () => speak(MASCOT_MESSAGES[mascotMsgIndex]) }, "🔊")
+        : null
     ])
   );
 
@@ -365,19 +582,24 @@ function renderPath() {
     el("div", { class: "path-header" }, [
       el("button", { class: "back-btn", onclick: goHome }, "←"),
       el("div", { class: "path-title" }, `${subject.icon} ${subject.name}`),
+      el("div", { style: "flex:1" }),
+      el("button", { class: "back-btn", onclick: toggleSound, title: "Activa o desactiva el so" }, soundOn ? "🔊" : "🔇")
     ])
   );
 
   const path = el("div", { class: "path" });
+  let nextFound = false;
   subject.lessons.forEach((lesson, idx) => {
     const unlocked = isLessonUnlocked(subject, idx);
     const prog = lessonProgress(lesson.id);
+    const isNext = unlocked && prog.stars === 0 && !nextFound;
+    if (isNext) nextFound = true;
     const offset = idx % 2 === 0 ? "0" : idx % 4 === 1 ? "70px" : "-70px";
 
     const node = el(
       "button",
       {
-        class: `lesson-node ${unlocked ? "" : "locked"}`,
+        class: `lesson-node ${unlocked ? "" : "locked"} ${isNext ? "next" : ""}`,
         style: unlocked ? `background:${subject.color}` : "",
         onclick: () => (unlocked ? startLesson(subject.id, lesson.id) : null),
         disabled: unlocked ? undefined : "true"
@@ -389,6 +611,7 @@ function renderPath() {
     );
 
     const rowWrap = el("div", { class: "lesson-wrap", style: `transform: translateX(${offset})` }, [
+      isNext ? el("div", { class: "start-bubble" }, "Comença! 🤖") : null,
       node,
       el("div", { class: "lesson-label" }, lesson.title)
     ]);
@@ -421,15 +644,23 @@ function renderLesson() {
   if (q.type === "mcq") {
     const opts = el("div", { class: "options" });
     q.shuffledOptions.forEach((opt, i) => {
+      const isHintDisabled = (session.hintDisabled || []).includes(i);
       let cls = "option-btn";
       if (session.answered) {
         if (opt.isCorrect) cls += " correct";
         else if (i === session.selected) cls += " incorrect";
-      } else if (i === session.selected) cls += " selected";
+      } else {
+        if (i === session.selected) cls += " selected";
+        if (isHintDisabled) cls += " hint-disabled";
+      }
       opts.appendChild(
         el(
           "button",
-          { class: cls, disabled: session.answered ? "true" : undefined, onclick: () => selectOption(i) },
+          {
+            class: cls,
+            disabled: session.answered || isHintDisabled ? "true" : undefined,
+            onclick: () => selectOption(i)
+          },
           [el("span", { class: "option-letter" }, "ABCD"[i]), document.createTextNode(opt.text)]
         )
       );
@@ -468,6 +699,68 @@ function renderLesson() {
     });
     if (session.fillValue) input.value = session.fillValue;
     qArea.appendChild(input);
+    if (session.hintShown && !session.answered) {
+      qArea.appendChild(el("div", { class: "hint-line" }, `🤖 Pista: comença per «${q.answers[0][0].toUpperCase()}»`));
+    }
+  } else if (q.type === "order") {
+    const selected = session.selected || [];
+    let slotCls = "order-answer";
+    if (session.answered) slotCls += session.wasCorrect ? " correct" : " incorrect";
+    const answerSlot = el("div", { class: slotCls });
+    if (selected.length === 0) {
+      answerSlot.appendChild(el("div", { class: "order-placeholder" }, "Toca les paraules per formar la resposta..."));
+    } else {
+      selected.forEach((bankIdx, pos) => {
+        answerSlot.appendChild(
+          el(
+            "button",
+            { class: "order-chip placed", disabled: session.answered ? "true" : undefined, onclick: () => removeOrderToken(pos) },
+            q.orderBank[bankIdx].text
+          )
+        );
+      });
+    }
+    qArea.appendChild(answerSlot);
+
+    const bank = el("div", { class: "order-bank" });
+    q.orderBank.forEach((tok, bankIdx) => {
+      if (selected.includes(bankIdx)) return;
+      bank.appendChild(
+        el(
+          "button",
+          { class: "order-chip", disabled: session.answered ? "true" : undefined, onclick: () => selectOrderToken(bankIdx) },
+          tok.text
+        )
+      );
+    });
+    qArea.appendChild(bank);
+  } else if (q.type === "match") {
+    const ms = ensureMatchState();
+    const grid = el("div", { class: "match-grid" });
+    const leftCol = el("div", { class: "match-col" });
+    q.leftItems.forEach((item) => {
+      const isMatched = ms.matched.has(item.pairIdx);
+      const isSelected = ms.selectedLeft === item.pairIdx;
+      let cls = "match-item";
+      if (isMatched) cls += " matched";
+      else if (isSelected) cls += " selected";
+      leftCol.appendChild(
+        el("button", { class: cls, disabled: isMatched ? "true" : undefined, onclick: () => clickMatchLeft(item.pairIdx) }, item.text)
+      );
+    });
+    const rightCol = el("div", { class: "match-col" });
+    q.rightItems.forEach((item) => {
+      const isMatched = ms.matched.has(item.pairIdx);
+      let cls = "match-item";
+      if (isMatched) cls += " matched";
+      if (ms.wrongFlash === item.pairIdx) cls += " wrong-flash";
+      rightCol.appendChild(
+        el("button", { class: cls, disabled: isMatched ? "true" : undefined, onclick: () => clickMatchRight(item.pairIdx) }, item.text)
+      );
+    });
+    grid.appendChild(leftCol);
+    grid.appendChild(rightCol);
+    qArea.appendChild(grid);
   }
 
   wrap.appendChild(qArea);
@@ -476,21 +769,29 @@ function renderLesson() {
 }
 
 function renderBottomBar() {
-  if (!session.answered) {
-    const canCheck =
-      (currentQuestion().type !== "fill" && session.selected !== null) ||
-      (currentQuestion().type === "fill");
+  const q = currentQuestion();
+
+  if (q.type === "match" && !session.answered) {
+    const ms = ensureMatchState();
     return el("div", { class: "bottom-bar" }, [
       el("div", { class: "bottom-bar-inner" }, [
-        el(
-          "button",
-          {
-            class: "btn btn-primary btn-full",
-            disabled: canCheck ? undefined : "true",
-            onclick: checkAnswer
-          },
-          "Comprova"
-        )
+        el("div", { class: "match-hint" }, `🤖 Aparella totes les parelles (${ms.matched.size}/${q.pairs.length})`)
+      ])
+    ]);
+  }
+
+  if (!session.answered) {
+    let canCheck = false;
+    if (q.type === "mcq" || q.type === "tf") canCheck = session.selected !== null;
+    else if (q.type === "fill") canCheck = true;
+    else if (q.type === "order") canCheck = session.selected && session.selected.length === q.tokens.length;
+
+    const showHint = (q.type === "mcq" || q.type === "fill") && !session.hintUsed;
+
+    return el("div", { class: "bottom-bar" }, [
+      el("div", { class: "bottom-bar-inner" }, [
+        showHint ? el("button", { class: "btn btn-hint", onclick: useHint }, "💡 Pista") : null,
+        el("button", { class: "btn btn-primary btn-full", disabled: canCheck ? undefined : "true", onclick: checkAnswer }, "Comprova")
       ])
     ]);
   }
@@ -499,8 +800,8 @@ function renderBottomBar() {
   const bar = el("div", { class: `bottom-bar ${ok ? "state-ok" : "state-bad"}` });
   const inner = el("div", { class: "bottom-bar-inner" }, [
     el("div", { class: "feedback-text" }, [
-      el("div", { class: `feedback-title ${ok ? "ok" : "bad"}` }, ok ? "Molt bé! 🎉" : "Ui, no és correcte 😕"),
-      ok ? null : el("div", { class: "feedback-sub" }, `Resposta correcta: ${correctAnswerText(currentQuestion())}`)
+      el("div", { class: `feedback-title ${ok ? "ok" : "bad"}` }, ok ? "🤖 Molt bé! 🎉" : "🤖 Ui, gairebé! 😕"),
+      ok ? null : el("div", { class: "feedback-sub" }, `Resposta correcta: ${correctAnswerText(q)}`)
     ]),
     el("button", { class: `btn ${ok ? "btn-primary" : "btn-danger"}`, onclick: nextQuestion }, "Continua")
   ]);
@@ -513,7 +814,7 @@ function renderResults() {
   const accuracyPct = Math.round(session.finalAccuracy * 100);
   const loc = findLessonLocation(session.lessonId);
 
-  const emoji = stars === 3 ? "🏆" : stars >= 1 ? "🎉" : "💪";
+  const emoji = stars === 3 ? "🤖🏆" : stars >= 1 ? "🤖🎉" : "🤖💪";
   const title = stars === 3 ? "Perfecte!" : stars >= 1 ? "Molt bé!" : "Segueix practicant!";
 
   const wrap = el("div", { class: "results" });
@@ -533,7 +834,7 @@ function renderResults() {
   );
 
   if (session.mistakes.length > 0) {
-    const box = el("div", { class: "mistakes-box" }, [el("h3", {}, "Repassa els errors")]);
+    const box = el("div", { class: "mistakes-box" }, [el("h3", {}, "🤖 Repassa els errors")]);
     session.mistakes.forEach((m) => {
       box.appendChild(
         el("div", { class: "mistake-item" }, [
