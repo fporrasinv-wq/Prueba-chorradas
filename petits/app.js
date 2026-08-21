@@ -660,7 +660,7 @@ function renderLesson() {
             disabled: session.answered || isHintDisabled ? "true" : undefined,
             onclick: () => selectOption(i)
           },
-          [el("span", { class: "option-letter" }, "ABC"[i] || "•"), document.createTextNode(opt.text)]
+          [el("span", { class: "option-letter" }, "ABCD"[i] || "•"), document.createTextNode(opt.text)]
         )
       );
     });
