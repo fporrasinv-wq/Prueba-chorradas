@@ -219,6 +219,7 @@ let nav = { view: "profile-select" };
 let session = null;
 let mascotMsgIndex = Math.floor(Math.random() * MASCOT_MESSAGES.length);
 let newProfileDraft = { name: "", curs: CURSOS[0].id };
+let editingProfileId = null;
 
 function bootProfile() {
   const id = getCurrentProfileId();
@@ -260,6 +261,28 @@ function selectProfile(id) {
   if (!p) return;
   playClick();
   activateProfile(p);
+  render();
+}
+
+function toggleEditCurs(id) {
+  playClick();
+  editingProfileId = editingProfileId === id ? null : id;
+  render();
+}
+
+function changeProfileCurs(id, newCurs) {
+  const profiles = loadProfiles();
+  const p = profiles.find((x) => x.id === id);
+  if (!p || p.curs === newCurs) return;
+  p.curs = newCurs;
+  saveProfiles(profiles);
+  if (profile && profile.id === id) {
+    profile.curs = newCurs;
+    subjects = subjectsForCurs(newCurs);
+    applyCursVisual(newCurs);
+  }
+  editingProfileId = null;
+  playComplete(false);
   render();
 }
 
@@ -459,16 +482,7 @@ function clickMatchRight(pairIdx) {
     ms.matched.add(pairIdx);
     ms.selectedLeft = null;
     playCorrect();
-    if (ms.matched.size === q.parelles.length) {
-      session.answered = true;
-      session.wasCorrect = ms.mistakes === 0;
-      if (session.wasCorrect) {
-        session.correctCount += 1;
-        session.xp += 10;
-      } else {
-        session.mistakes.push({ question: q.pregunta, correctText: correctAnswerText(q) });
-      }
-    }
+    checkMatchCompletion(q, ms);
   } else {
     ms.mistakes += 1;
     ms.selectedLeft = null;
@@ -500,9 +514,40 @@ function useHint() {
     }
   } else if (q.tipus === "resposta_escrita") {
     session.hintShown = true;
+  } else if (q.tipus === "ordenar") {
+    const placedCount = (session.selected || []).length;
+    if (placedCount < q.elements_ordre_correcte.length) {
+      const bankIdx = q.orderBank.findIndex((tok) => tok.origIndex === placedCount);
+      if (bankIdx !== -1 && !(session.selected || []).includes(bankIdx)) {
+        if (!session.selected) session.selected = [];
+        session.selected.push(bankIdx);
+      }
+    }
+  } else if (q.tipus === "emparellar") {
+    const ms = ensureMatchState();
+    const remaining = q.parelles.map((p, i) => i).filter((i) => !ms.matched.has(i));
+    if (remaining.length > 0) {
+      const pick = remaining[Math.floor(Math.random() * remaining.length)];
+      ms.matched.add(pick);
+      ms.selectedLeft = null;
+      checkMatchCompletion(q, ms);
+    }
   }
   playHint();
   render();
+}
+
+function checkMatchCompletion(q, ms) {
+  if (ms.matched.size === q.parelles.length && !session.answered) {
+    session.answered = true;
+    session.wasCorrect = ms.mistakes === 0;
+    if (session.wasCorrect) {
+      session.correctCount += 1;
+      session.xp += 10;
+    } else {
+      session.mistakes.push({ question: q.pregunta, correctText: correctAnswerText(q) });
+    }
+  }
 }
 
 function checkAnswer() {
@@ -552,6 +597,15 @@ function correctAnswerText(q) {
   return "";
 }
 
+function hintForFillText(q) {
+  const ans = String(q.resposta_correcta);
+  const clean = ans.replace(/\s+/g, "");
+  if (clean.length <= 3) {
+    return `🤖 Pista: la resposta té ${clean.length} ${clean.length === 1 ? "caràcter" : "caràcters"}.`;
+  }
+  return `🤖 Pista: comença per «${ans[0].toUpperCase()}»`;
+}
+
 function nextQuestion() {
   session.idx += 1;
   session.selected = null;
@@ -563,14 +617,18 @@ function nextQuestion() {
   session.hintShown = false;
   session.matchState = null;
 
-  if (session.idx >= session.queue.length) {
+  if (session.hearts <= 0) {
+    finishLesson({ outOfHearts: true });
+  } else if (session.idx >= session.queue.length) {
     finishLesson();
   } else {
     render();
   }
 }
 
-function finishLesson() {
+function finishLesson(opts) {
+  const outOfHearts = !!(opts && opts.outOfHearts);
+  const answeredCount = outOfHearts ? session.idx : session.queue.length;
   const total = session.queue.length;
   const accuracy = session.correctCount / total;
   let stars = 0;
@@ -594,8 +652,10 @@ function finishLesson() {
   session.finalStars = stars;
   session.finalAccuracy = accuracy;
   session.xpEarned = xpEarned;
+  session.outOfHearts = outOfHearts;
+  session.answeredCount = answeredCount;
 
-  playComplete(stars === 3);
+  if (!outOfHearts) playComplete(stars === 3);
 
   nav = { view: "results" };
   render();
@@ -675,10 +735,11 @@ function renderProfileSelect() {
     profiles.forEach((p) => {
       const info = cursInfo(p.curs);
       const isCurrent = profile && profile.id === p.id;
-      list.appendChild(
+      const isEditing = editingProfileId === p.id;
+      const card = el("div", { class: `profile-card ${isCurrent ? "current" : ""}` }, [
         el(
           "button",
-          { class: `profile-card ${isCurrent ? "current" : ""}`, onclick: () => selectProfile(p.id) },
+          { class: "profile-card-main", onclick: () => selectProfile(p.id) },
           [
             el("div", { class: "profile-avatar" }, "🧒"),
             el("div", { class: "profile-info" }, [
@@ -687,8 +748,28 @@ function renderProfileSelect() {
             ]),
             isCurrent ? el("div", { class: "profile-badge" }, "Actiu") : null
           ]
-        )
-      );
+        ),
+        el("button", { class: "profile-edit-btn", title: "Canvia el curs", onclick: () => toggleEditCurs(p.id) }, "✏️")
+      ]);
+      list.appendChild(card);
+      if (isEditing) {
+        list.appendChild(
+          el("div", { class: "curs-edit-box" }, [
+            el("div", { class: "curs-edit-label" }, `Quin curs fa ${p.name} ara?`),
+            el(
+              "div",
+              { class: "curs-options" },
+              CURSOS.map((c) =>
+                el(
+                  "button",
+                  { class: `curs-btn ${p.curs === c.id ? "selected" : ""}`, onclick: () => changeProfileCurs(p.id, c.id) },
+                  [el("div", { class: "curs-btn-label" }, c.label), el("div", { class: "curs-btn-sub" }, c.edat)]
+                )
+              )
+            )
+          ])
+        );
+      }
     });
     wrap.appendChild(list);
   }
@@ -916,7 +997,7 @@ function renderLesson() {
     if (session.fillValue) input.value = session.fillValue;
     qArea.appendChild(input);
     if (session.hintShown && !session.answered) {
-      qArea.appendChild(el("div", { class: "hint-line" }, `🤖 Pista: comença per «${q.resposta_correcta[0].toUpperCase()}»`));
+      qArea.appendChild(el("div", { class: "hint-line" }, hintForFillText(q)));
     }
   } else if (q.tipus === "ordenar") {
     const selected = session.selected || [];
@@ -982,7 +1063,10 @@ function renderBottomBar() {
   if (q.tipus === "emparellar" && !session.answered) {
     const ms = ensureMatchState();
     return el("div", { class: "bottom-bar" }, [
-      el("div", { class: "bottom-bar-inner" }, [el("div", { class: "match-hint" }, `🤖 Aparella-ho tot (${ms.matched.size}/${q.parelles.length})`)])
+      el("div", { class: "bottom-bar-inner" }, [
+        !session.hintUsed ? el("button", { class: "btn btn-hint", onclick: useHint }, "💡 Pista") : null,
+        el("div", { class: "match-hint" }, `🤖 Aparella-ho tot (${ms.matched.size}/${q.parelles.length})`)
+      ])
     ]);
   }
 
@@ -992,7 +1076,7 @@ function renderBottomBar() {
     else if (q.tipus === "resposta_escrita") canCheck = true;
     else if (q.tipus === "ordenar") canCheck = session.selected && session.selected.length === q.elements_ordre_correcte.length;
 
-    const showHint = (q.tipus === "test" || q.tipus === "resposta_escrita") && !session.hintUsed;
+    const showHint = q.tipus !== "veritat_fals" && !session.hintUsed;
 
     return el("div", { class: "bottom-bar" }, [
       el("div", { class: "bottom-bar-inner" }, [
@@ -1021,14 +1105,20 @@ function renderResults() {
   const stars = session.finalStars;
   const accuracyPct = Math.round(session.finalAccuracy * 100);
   const loc = findLessonLocation(session.lessonKey);
+  const outOfHearts = session.outOfHearts;
 
-  const emoji = stars === 3 ? "🤖🏆" : stars >= 1 ? "🤖🎉" : "🤖💪";
-  const title = stars === 3 ? "Perfecte!" : stars >= 1 ? "Molt bé!" : "Segueix practicant!";
+  const emoji = outOfHearts ? "🤖💔" : stars === 3 ? "🤖🏆" : stars >= 1 ? "🤖🎉" : "🤖💪";
+  const title = outOfHearts ? "T'has quedat sense vides!" : stars === 3 ? "Perfecte!" : stars >= 1 ? "Molt bé!" : "Segueix practicant!";
 
   const wrap = el("div", { class: "results" });
   wrap.appendChild(el("div", { class: "big-emoji pop" }, emoji));
   wrap.appendChild(el("h2", {}, title));
   wrap.appendChild(el("div", {}, loc ? loc.lesson.title : ""));
+  if (outOfHearts) {
+    wrap.appendChild(
+      el("div", { class: "feedback-sub" }, `🤖 Has respost ${session.answeredCount} de ${session.queue.length} preguntes. Torna-ho a provar quan vulguis!`)
+    );
+  }
   wrap.appendChild(el("div", { class: "stars-row" }, "⭐".repeat(stars) + "☆".repeat(3 - stars)));
 
   wrap.appendChild(

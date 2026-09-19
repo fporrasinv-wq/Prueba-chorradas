@@ -162,15 +162,45 @@ button {
   background: var(--card);
   border: 2px solid var(--border);
   border-radius: var(--radius);
-  padding: 14px 16px;
+  padding: 8px 10px 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--shadow);
+}
+.profile-card.current { border-color: var(--green); background: #f2fff0; }
+
+.profile-card-main {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: none;
+  padding: 6px 0;
   display: flex;
   align-items: center;
   gap: 12px;
-  box-shadow: var(--shadow);
   text-align: left;
 }
-.profile-card:active { transform: translateY(2px); }
-.profile-card.current { border-color: var(--green); background: #f2fff0; }
+.profile-card-main:active { transform: translateY(2px); }
+
+.profile-edit-btn {
+  background: none;
+  border: none;
+  font-size: 1.15rem;
+  padding: 10px;
+  flex-shrink: 0;
+  opacity: .75;
+}
+.profile-edit-btn:active { opacity: 1; }
+
+.curs-edit-box {
+  background: #eef7ff;
+  border: 2px solid #d3ecff;
+  border-radius: var(--radius);
+  padding: 14px;
+}
+.curs-edit-label { font-weight: 700; font-size: 0.9rem; margin-bottom: 10px; }
+
 
 .profile-avatar {
   width: 44px;
@@ -342,6 +372,7 @@ button {
 .option-btn.selected { border-color: var(--blue); background: #ddf4ff; }
 .option-btn.correct { border-color: var(--green); background: #d7ffb8; color: var(--green-dark); }
 .option-btn.incorrect { border-color: var(--red); background: #ffdfe0; color: #c40000; }
+.option-btn.hint-disabled { opacity: 0.35; text-decoration: line-through; }
 .option-btn:disabled { cursor: default; }
 
 .option-letter {
@@ -409,7 +440,7 @@ button {
 .order-chip.placed { background: #ddf4ff; border-color: var(--blue); color: #0a6ea8; }
 
 /* ---------- Match (aparella parelles) ---------- */
-.match-hint { text-align: center; width: 100%; font-weight: 700; color: var(--ink-light); }
+.match-hint { text-align: center; flex: 1; font-weight: 700; color: var(--ink-light); }
 
 .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .match-col { display: flex; flex-direction: column; gap: 8px; }

@@ -17,3 +17,10 @@
 - Tutor con IA que explica el porqué del error al fallar una pregunta (se apoya en el campo explicacio ya poblado en cada pregunta)
 - Verticales adicionales (carnet de conducir, manipulador de alimentos, PER) — aparcadas explícitamente para evitar dispersión
 - Plataforma B2B multi-tenant para que otros centros/autoescoles suban su propio temario — aparcada, fase muy posterior
+
+## Resuelto — Sesión 4 (bugs detectados probando con usuarios reales)
+- [x] La pista revelaba la respuesta en varios casos (respuestas cortas en `resposta_escrita`; `ordenar`/`emparellar` no tenían pista) — corregido
+- [x] No se podía cambiar el curs de un perfil ya creado — corregido (botón ✏️ en la pantalla de perfiles, progreso preservado)
+- [x] Comportamiento indefinido al quedarse sin vides — corregido (la lección termina mostrando el resumen de lo respondido hasta ese punto)
+- [x] Sospecha de opción no clicable por apóstrofes catalanes — investigado a fondo (2.698 clics reales, 0 fallos reales); descartado con evidencia, ver avances.md para el detalle
+
