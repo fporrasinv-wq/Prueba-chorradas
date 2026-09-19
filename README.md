@@ -1,59 +1,95 @@
 # Repassa'l! 🤖
 
-Aplicacions web d'estil Duolingo per repassar el currículum d'Educació
-Primària de la Generalitat de Catalunya, jugant. Sense dependències,
-sense backend: HTML, CSS i JavaScript purs, amb el progrés desat al
-navegador (localStorage).
+Una única app web d'estil Duolingo per repassar el currículum
+d'Educació Primària de la Generalitat de Catalunya, jugant. Sense
+dependències, sense backend: HTML, CSS i JavaScript purs, amb el
+progrés desat al navegador (localStorage).
 
-## Apps disponibles
+Admet diversos perfils (per exemple, germans que comparteixen el
+mateix ordinador) i diversos cursos — actualment **1r de primària**
+(6 anys) i **4t de primària** (9-10 anys) — dins d'un sol motor de
+joc.
 
-### `/` — Repassa'l! (4t de primària, 9-10 anys)
+## Com funciona
 
-Repassa **Matemàtiques**, **Llengua catalana**, **Llengua castellana**,
-**Anglès**, **Ciències socials** i **Ciències naturals**. 31 lliçons amb
-preguntes de tipus test, veritat/fals, resposta escrita, ordenar
-paraules i aparellar conceptes.
-
-### `/petits/` — Juga i Aprèn! (1r de primària, 6 anys)
-
-Versió simplificada per a infants que just comencen a llegir: preguntes
-molt senzilles (matemàtica bàsica, vocals, colors...), poques opcions
-per pregunta i tot el text en **MAJÚSCULES** per facilitar-ne la
-lectura. Mateixes 6 matèries i mateix motor de joc.
-
-## Com funciona (les dues apps)
-
+- **Perfils**: en obrir l'app es demana un nom i un curs. Cada perfil
+  desa el seu propi progrés (XP, ratxa, estrelles per lliçó) sota una
+  clau de `localStorage` pròpia, de manera que dos perfils no es
+  trepitgen. Es pot canviar de perfil en qualsevol moment sense perdre
+  res ("Canvia de perfil" a la pantalla d'inici).
 - Cada matèria té un recorregut de lliçons que es va desbloquejant.
 - Mascota "Robi", un robot que dona ànims, reacciona a les respostes i
   pot llegir els missatges en veu alta (síntesi de veu del navegador).
 - Sons generats amb Web Audio API (encert, error, pista, lliçó
   completada), amb interruptor de so a la barra superior.
-- Sistema de punts d'experiència (XP), ratxa de dies, vides i estrelles
-  per lliçó, amb un botó de pista (💡) a algunes preguntes.
-- Progrés desat automàticament al navegador — no cal registrar-se.
+- Preguntes de tipus test, veritat/fals, resposta escrita, ordenar
+  elements i emparellar conceptes, amb un botó de pista (💡) en
+  algunes.
+- **Aparença per curs**: el curs del perfil actiu determina si el text
+  es mostra en majúscules i amb lletra/botons més grans (1r) o amb
+  l'aparença estàndard (4t). És un paràmetre de dades (`data/meta.js`
+  → `CURSOS[].visual`), no dos apps ni dos fulls d'estil diferents.
 
-## Com executar-les
+## Com executar-la
 
-Només cal obrir `index.html` (o `petits/index.html`) al navegador, o
-servir la carpeta amb qualsevol servidor estàtic, per exemple:
+Només cal obrir `index.html` al navegador, o servir la carpeta amb
+qualsevol servidor estàtic, per exemple:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-I després visitar `http://localhost:8000` (o `http://localhost:8000/petits/`).
+I després visitar `http://localhost:8000`.
 
 ## Estructura
 
-Cada app (`/` i `/petits/`) té els mateixos quatre fitxers:
-
 - `index.html` — punt d'entrada.
-- `style.css` — estils visuals (paleta i tipografia a l'estil Duolingo).
-- `content.js` — banc de preguntes per matèria i lliçó.
-- `app.js` — lògica de l'aplicació (navegació, joc, progrés, XP, so i mascota).
+- `style.css` — estils visuals. Les diferències entre cursos viuen com
+  a variants sota les classes `body.visual-uppercase` /
+  `body.visual-gran`, aplicades segons el curs del perfil actiu.
+- `app.js` — tot el motor: perfils, navegació, joc, progrés, so i
+  mascota.
+- `data/questions.js` — banc de preguntes unificat (vegeu més avall).
+- `data/meta.js` — metadades de presentació: nom/icona/color de cada
+  matèria (`SUBJECTS_META`), icona i ordre de cada lliçó
+  (`LESSON_META`) i els cursos disponibles amb els seus paràmetres
+  visuals (`CURSOS`).
+
+## El banc de preguntes (`data/questions.js`)
+
+Totes les preguntes, de tots els cursos, viuen en un únic array pla
+`QUESTIONS`. Es va triar un sol fitxer (en lloc d'un per curs) perquè
+`curs`, `cicle`, `materia`, etc. són simplement camps d'una mateixa
+"taula" de preguntes: mantenir-los junts fa trivial filtrar-los o
+consultar-los amb `Array.filter` (p. ex. "totes les preguntes de
+matemàtiques de dificultat 3, sigui quin sigui el curs") i afegir
+cursos nous en el futur és només afegir-hi objectes, sense haver de
+crear ni connectar cap fitxer nou. Amb ~400 preguntes el fitxer no és
+prou gran com perquè calgui partir-lo per rendiment.
+
+Cada pregunta té aquests camps comuns:
+
+```
+id, curs, cicle, materia, tema, dificultat (1-3), tipus, origen, explicacio
+```
+
+I, segons el `tipus`, aquests camps propis:
+
+| tipus               | camps propis                                              |
+|----------------------|-----------------------------------------------------------|
+| `test`               | `pregunta`, `opcions[]`, `resposta_correcta`               |
+| `veritat_fals`       | `pregunta`, `resposta_correcta` (true/false)                |
+| `resposta_escrita`   | `pregunta`, `resposta_correcta`, `respostes_acceptades[]`   |
+| `ordenar`            | `pregunta`, `elements_ordre_correcte[]`                     |
+| `emparellar`         | `pregunta`, `parelles[]` (`{a, b}`)                          |
+
+El camp `dificultat` es va assignar amb una heurística basada en la
+posició de la pregunta dins la lliçó i el seu tipus — no és una
+valoració pedagògica exacta, es pot afinar sense tocar el contingut.
 
 ## Ampliar continguts
 
-Per afegir o editar preguntes, edita el `content.js` corresponent. Cada
-lliçó és un objecte amb `id`, `title`, `icon` i una llista de
-`questions`, amb tipus `mcq`, `tf`, `fill`, `order` o `match`.
+Per afegir o editar preguntes, edita `data/questions.js` seguint
+l'esquema d'aquí sobre. Per afegir una lliçó nova cal, a més, afegir
+la seva entrada a `LESSON_META` a `data/meta.js` (icona i ordre). Per
+afegir un curs nou, cal afegir-lo a `CURSOS` a `data/meta.js`.
