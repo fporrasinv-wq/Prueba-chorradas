@@ -7,7 +7,8 @@ progrés desat al navegador (localStorage).
 
 Admet diversos perfils (per exemple, germans que comparteixen el
 mateix ordinador) i diversos cursos — actualment **1r de primària**
-(6 anys) i **4t de primària** (9-10 anys) — dins d'un sol motor de
+(6 anys), **4t de primària** (9-10 anys), **5è de primària** (10-11
+anys) i **6è de primària** (11-12 anys) — dins d'un sol motor de
 joc.
 
 ## Com funciona
@@ -86,6 +87,24 @@ I, segons el `tipus`, aquests camps propis:
 El camp `dificultat` es va assignar amb una heurística basada en la
 posició de la pregunta dins la lliçó i el seu tipus — no és una
 valoració pedagògica exacta, es pot afinar sense tocar el contingut.
+(Aquesta heurística només es va fer servir per a 1r i 4t; el contingut
+de 5è i 6è porta una dificultat assignada amb criteri pedagògic real,
+vegeu més avall.)
+
+### Contingut de cicle superior (5è i 6è)
+
+El banc de preguntes de 5è i 6è es va generar a partir del currículum
+oficial (Decret 175/2022, "sabers" de cicle superior), guardat a
+`docs/curriculum-cicle-superior.md` per a referència i traçabilitat.
+A diferència de 1r i 4t, aquí el camp `dificultat` es va assignar
+llegint la progressió que el propi document mostra dins 5è i 6è (què
+és un saber més bàsic i què és més avançat), no amb una heurística de
+posició.
+
+Ciències socials i Ciències naturals comparteixen font oficial
+("Coneixement del Medi Natural, Social i Cultural"): la part "Cultura
+científica" es va assignar a Ciències naturals i la part "Societats i
+territoris" a Ciències socials.
 
 ## Ampliar continguts
 

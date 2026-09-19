@@ -1,19 +1,15 @@
 /* Metadades de presentació — NO són contingut de preguntes.
 
-   SUBJECTS_META: nom, icona i color de cada matèria. És el mateix
-   per a tots els cursos (es va comprovar que "mat", "cat", etc. tenen
-   sempre el mateix nom/icona/color a totes dues apps originals), per
-   això no porta el camp "curs".
+   SUBJECTS_META: nom, icona i color de cada matèria. És el mateix per a
+   tots els cursos.
 
    LESSON_META: per a cada lliçó (identificada per curs+materia+tema)
-   guarda la icona i l'ordre dins la matèria, perquè el mapa de
-   lliçons pugui mostrar el mateix disseny que abans.
+   guarda la icona i l'ordre dins la matèria.
 
    CURSOS: cursos disponibles al selector de perfil, amb els paràmetres
-   visuals que abans vivien en dos style.css/app.js diferents (p. ex.
-   "1r" mostrava el text en majúscules i amb lletra més grossa). Ara
-   són només dades: el motor únic les llegeix per adaptar l'aparença
-   segons el curs del perfil actiu. */
+   visuals que el motor únic llegeix per adaptar l'aparença segons el
+   curs del perfil actiu (majúscules i mida a 1r; aparença estàndard a
+   4t, 5è i 6è). */
 
 const SUBJECTS_META = [
   {
@@ -500,6 +496,486 @@ const LESSON_META = [
     "icona": "💧",
     "ordre": 4,
     "lessonId": "nat-5"
+  },
+  {
+    "curs": "5è",
+    "materia": "mat",
+    "tema": "Nombres decimals",
+    "icona": "🔢",
+    "ordre": 0,
+    "lessonId": "mat-5-1"
+  },
+  {
+    "curs": "5è",
+    "materia": "mat",
+    "tema": "Fraccions, decimals i percentatges",
+    "icona": "🍰",
+    "ordre": 1,
+    "lessonId": "mat-5-2"
+  },
+  {
+    "curs": "5è",
+    "materia": "mat",
+    "tema": "Múltiples i divisors",
+    "icona": "➗",
+    "ordre": 2,
+    "lessonId": "mat-5-3"
+  },
+  {
+    "curs": "5è",
+    "materia": "mat",
+    "tema": "Perímetres i àrees",
+    "icona": "📐",
+    "ordre": 3,
+    "lessonId": "mat-5-4"
+  },
+  {
+    "curs": "5è",
+    "materia": "mat",
+    "tema": "Mitjana i moda",
+    "icona": "📊",
+    "ordre": 4,
+    "lessonId": "mat-5-5"
+  },
+  {
+    "curs": "6è",
+    "materia": "mat",
+    "tema": "Operacions amb decimals",
+    "icona": "🧮",
+    "ordre": 0,
+    "lessonId": "mat-6-1"
+  },
+  {
+    "curs": "6è",
+    "materia": "mat",
+    "tema": "Percentatges i proporcionalitat",
+    "icona": "💯",
+    "ordre": 1,
+    "lessonId": "mat-6-2"
+  },
+  {
+    "curs": "6è",
+    "materia": "mat",
+    "tema": "Educació financera",
+    "icona": "💶",
+    "ordre": 2,
+    "lessonId": "mat-6-3"
+  },
+  {
+    "curs": "6è",
+    "materia": "mat",
+    "tema": "Angles i figures geomètriques",
+    "icona": "📐",
+    "ordre": 3,
+    "lessonId": "mat-6-4"
+  },
+  {
+    "curs": "6è",
+    "materia": "mat",
+    "tema": "Estadística i probabilitat",
+    "icona": "🎲",
+    "ordre": 4,
+    "lessonId": "mat-6-5"
+  },
+  {
+    "curs": "5è",
+    "materia": "cat",
+    "tema": "Tipus de textos",
+    "icona": "📝",
+    "ordre": 0,
+    "lessonId": "cat-5-1"
+  },
+  {
+    "curs": "5è",
+    "materia": "cat",
+    "tema": "Gèneres literaris",
+    "icona": "📚",
+    "ordre": 1,
+    "lessonId": "cat-5-2"
+  },
+  {
+    "curs": "5è",
+    "materia": "cat",
+    "tema": "Ortografia i gramàtica bàsiques",
+    "icona": "✏️",
+    "ordre": 2,
+    "lessonId": "cat-5-3"
+  },
+  {
+    "curs": "5è",
+    "materia": "cat",
+    "tema": "Comprensió lectora",
+    "icona": "📖",
+    "ordre": 3,
+    "lessonId": "cat-5-4"
+  },
+  {
+    "curs": "5è",
+    "materia": "cat",
+    "tema": "Comunicació oral",
+    "icona": "🗣️",
+    "ordre": 4,
+    "lessonId": "cat-5-5"
+  },
+  {
+    "curs": "6è",
+    "materia": "cat",
+    "tema": "Modalitats oracionals",
+    "icona": "❓",
+    "ordre": 0,
+    "lessonId": "cat-6-1"
+  },
+  {
+    "curs": "6è",
+    "materia": "cat",
+    "tema": "Mecanismes de cohesió textual",
+    "icona": "🔗",
+    "ordre": 1,
+    "lessonId": "cat-6-2"
+  },
+  {
+    "curs": "6è",
+    "materia": "cat",
+    "tema": "Escriptura creativa",
+    "icona": "✒️",
+    "ordre": 2,
+    "lessonId": "cat-6-3"
+  },
+  {
+    "curs": "6è",
+    "materia": "cat",
+    "tema": "Cerca i tractament de la informació",
+    "icona": "🔍",
+    "ordre": 3,
+    "lessonId": "cat-6-4"
+  },
+  {
+    "curs": "6è",
+    "materia": "cat",
+    "tema": "Comprensió lectora avançada",
+    "icona": "📗",
+    "ordre": 4,
+    "lessonId": "cat-6-5"
+  },
+  {
+    "curs": "5è",
+    "materia": "cas",
+    "tema": "Tipos de textos",
+    "icona": "📝",
+    "ordre": 0,
+    "lessonId": "cas-5-1"
+  },
+  {
+    "curs": "5è",
+    "materia": "cas",
+    "tema": "Géneros literarios",
+    "icona": "📚",
+    "ordre": 1,
+    "lessonId": "cas-5-2"
+  },
+  {
+    "curs": "5è",
+    "materia": "cas",
+    "tema": "Ortografía y gramática básicas",
+    "icona": "✏️",
+    "ordre": 2,
+    "lessonId": "cas-5-3"
+  },
+  {
+    "curs": "5è",
+    "materia": "cas",
+    "tema": "Comprensión lectora",
+    "icona": "📖",
+    "ordre": 3,
+    "lessonId": "cas-5-4"
+  },
+  {
+    "curs": "5è",
+    "materia": "cas",
+    "tema": "Comunicación oral",
+    "icona": "🗣️",
+    "ordre": 4,
+    "lessonId": "cas-5-5"
+  },
+  {
+    "curs": "6è",
+    "materia": "cas",
+    "tema": "Modalidades oracionales",
+    "icona": "❓",
+    "ordre": 0,
+    "lessonId": "cas-6-1"
+  },
+  {
+    "curs": "6è",
+    "materia": "cas",
+    "tema": "Mecanismos de cohesión textual",
+    "icona": "🔗",
+    "ordre": 1,
+    "lessonId": "cas-6-2"
+  },
+  {
+    "curs": "6è",
+    "materia": "cas",
+    "tema": "Escritura creativa",
+    "icona": "✒️",
+    "ordre": 2,
+    "lessonId": "cas-6-3"
+  },
+  {
+    "curs": "6è",
+    "materia": "cas",
+    "tema": "Búsqueda y tratamiento de la información",
+    "icona": "🔍",
+    "ordre": 3,
+    "lessonId": "cas-6-4"
+  },
+  {
+    "curs": "6è",
+    "materia": "cas",
+    "tema": "Comprensión lectora avanzada",
+    "icona": "📗",
+    "ordre": 4,
+    "lessonId": "cas-6-5"
+  },
+  {
+    "curs": "5è",
+    "materia": "eng",
+    "tema": "Personal identification & free time",
+    "icona": "🙋",
+    "ordre": 0,
+    "lessonId": "eng-5-1"
+  },
+  {
+    "curs": "5è",
+    "materia": "eng",
+    "tema": "Places and everyday life",
+    "icona": "🏙️",
+    "ordre": 1,
+    "lessonId": "eng-5-2"
+  },
+  {
+    "curs": "5è",
+    "materia": "eng",
+    "tema": "Present simple",
+    "icona": "⏳",
+    "ordre": 2,
+    "lessonId": "eng-5-3"
+  },
+  {
+    "curs": "5è",
+    "materia": "eng",
+    "tema": "Reading short texts",
+    "icona": "📖",
+    "ordre": 3,
+    "lessonId": "eng-5-4"
+  },
+  {
+    "curs": "5è",
+    "materia": "eng",
+    "tema": "Basic writing",
+    "icona": "✍️",
+    "ordre": 4,
+    "lessonId": "eng-5-5"
+  },
+  {
+    "curs": "6è",
+    "materia": "eng",
+    "tema": "Interpersonal relationships",
+    "icona": "🤝",
+    "ordre": 0,
+    "lessonId": "eng-6-1"
+  },
+  {
+    "curs": "6è",
+    "materia": "eng",
+    "tema": "Past simple",
+    "icona": "⏰",
+    "ordre": 1,
+    "lessonId": "eng-6-2"
+  },
+  {
+    "curs": "6è",
+    "materia": "eng",
+    "tema": "Sociocultural aspects",
+    "icona": "🌍",
+    "ordre": 2,
+    "lessonId": "eng-6-3"
+  },
+  {
+    "curs": "6è",
+    "materia": "eng",
+    "tema": "Reading comprehension",
+    "icona": "📗",
+    "ordre": 3,
+    "lessonId": "eng-6-4"
+  },
+  {
+    "curs": "6è",
+    "materia": "eng",
+    "tema": "Structured writing",
+    "icona": "📝",
+    "ordre": 4,
+    "lessonId": "eng-6-5"
+  },
+  {
+    "curs": "5è",
+    "materia": "nat",
+    "tema": "El mètode científic",
+    "icona": "🔬",
+    "ordre": 0,
+    "lessonId": "nat-5-1"
+  },
+  {
+    "curs": "5è",
+    "materia": "nat",
+    "tema": "Ecosistemes i cadenes alimentàries",
+    "icona": "🌿",
+    "ordre": 1,
+    "lessonId": "nat-5-2"
+  },
+  {
+    "curs": "5è",
+    "materia": "nat",
+    "tema": "Classificació d'animals i plantes",
+    "icona": "🦎",
+    "ordre": 2,
+    "lessonId": "nat-5-3"
+  },
+  {
+    "curs": "5è",
+    "materia": "nat",
+    "tema": "El cos humà: funcions vitals",
+    "icona": "🫀",
+    "ordre": 3,
+    "lessonId": "nat-5-4"
+  },
+  {
+    "curs": "5è",
+    "materia": "nat",
+    "tema": "La matèria: canvis d'estat i mescles",
+    "icona": "💧",
+    "ordre": 4,
+    "lessonId": "nat-5-5"
+  },
+  {
+    "curs": "6è",
+    "materia": "nat",
+    "tema": "Energia elèctrica i circuits",
+    "icona": "🔌",
+    "ordre": 0,
+    "lessonId": "nat-6-1"
+  },
+  {
+    "curs": "6è",
+    "materia": "nat",
+    "tema": "Forces, màquines simples i aerodinàmica",
+    "icona": "⚙️",
+    "ordre": 1,
+    "lessonId": "nat-6-2"
+  },
+  {
+    "curs": "6è",
+    "materia": "nat",
+    "tema": "Alimentació saludable i benestar",
+    "icona": "🥗",
+    "ordre": 2,
+    "lessonId": "nat-6-3"
+  },
+  {
+    "curs": "6è",
+    "materia": "nat",
+    "tema": "Tecnologia i pensament computacional",
+    "icona": "💻",
+    "ordre": 3,
+    "lessonId": "nat-6-4"
+  },
+  {
+    "curs": "6è",
+    "materia": "nat",
+    "tema": "Fonts d'energia i sostenibilitat",
+    "icona": "♻️",
+    "ordre": 4,
+    "lessonId": "nat-6-5"
+  },
+  {
+    "curs": "5è",
+    "materia": "soc",
+    "tema": "La Terra com a sistema",
+    "icona": "🌍",
+    "ordre": 0,
+    "lessonId": "soc-5-1"
+  },
+  {
+    "curs": "5è",
+    "materia": "soc",
+    "tema": "El clima i les dades meteorològiques",
+    "icona": "🌦️",
+    "ordre": 1,
+    "lessonId": "soc-5-2"
+  },
+  {
+    "curs": "5è",
+    "materia": "soc",
+    "tema": "L'organització política de l'Estat espanyol",
+    "icona": "🏛️",
+    "ordre": 2,
+    "lessonId": "soc-5-3"
+  },
+  {
+    "curs": "5è",
+    "materia": "soc",
+    "tema": "Grans etapes de la Història",
+    "icona": "🏺",
+    "ordre": 3,
+    "lessonId": "soc-5-4"
+  },
+  {
+    "curs": "5è",
+    "materia": "soc",
+    "tema": "Institucions i alfabetització cívica",
+    "icona": "⚖️",
+    "ordre": 4,
+    "lessonId": "soc-5-5"
+  },
+  {
+    "curs": "6è",
+    "materia": "soc",
+    "tema": "Objectius de Desenvolupament Sostenible",
+    "icona": "🌱",
+    "ordre": 0,
+    "lessonId": "soc-6-1"
+  },
+  {
+    "curs": "6è",
+    "materia": "soc",
+    "tema": "La democràcia a Espanya",
+    "icona": "🗳️",
+    "ordre": 1,
+    "lessonId": "soc-6-2"
+  },
+  {
+    "curs": "6è",
+    "materia": "soc",
+    "tema": "El canvi climàtic",
+    "icona": "🌡️",
+    "ordre": 2,
+    "lessonId": "soc-6-3"
+  },
+  {
+    "curs": "6è",
+    "materia": "soc",
+    "tema": "La Unió Europea i les institucions",
+    "icona": "🇪🇺",
+    "ordre": 3,
+    "lessonId": "soc-6-4"
+  },
+  {
+    "curs": "6è",
+    "materia": "soc",
+    "tema": "Consum responsable i impostos",
+    "icona": "💰",
+    "ordre": 4,
+    "lessonId": "soc-6-5"
   }
 ];
 
@@ -520,6 +996,28 @@ const CURSOS = [
     "label": "4t de primària",
     "cicle": "mitjà",
     "edat": "9-10 anys",
+    "visual": {
+      "uppercase": false,
+      "mida": "normal",
+      "maxOpcionsPerPregunta": 4
+    }
+  },
+  {
+    "id": "5è",
+    "label": "5è de primària",
+    "cicle": "superior",
+    "edat": "10-11 anys",
+    "visual": {
+      "uppercase": false,
+      "mida": "normal",
+      "maxOpcionsPerPregunta": 4
+    }
+  },
+  {
+    "id": "6è",
+    "label": "6è de primària",
+    "cicle": "superior",
+    "edat": "11-12 anys",
     "visual": {
       "uppercase": false,
       "mida": "normal",
