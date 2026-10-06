@@ -95,7 +95,7 @@ vegeu més avall.)
 
 El banc de preguntes de 5è i 6è es va generar a partir del currículum
 oficial (Decret 175/2022, "sabers" de cicle superior), guardat a
-`docs/curriculum-cicle-superior.md` per a referència i traçabilitat.
+`documentos/curriculum-cicle-superior.md` per a referència i traçabilitat.
 A diferència de 1r i 4t, aquí el camp `dificultat` es va assignar
 llegint la progressió que el propi document mostra dins 5è i 6è (què
 és un saber més bàsic i què és més avançat), no amb una heurística de

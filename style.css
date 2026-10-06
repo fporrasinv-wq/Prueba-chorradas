@@ -350,6 +350,20 @@ button {
 .question-area { flex: 1; padding: 12px 20px 140px; }
 
 .q-kicker { font-weight: 700; color: var(--ink-light); font-size: 0.85rem; text-transform: uppercase; letter-spacing: .03em; margin-bottom: 6px; }
+
+.text-card {
+  background: #fff8e1;
+  border: 2px solid #ffe4a3;
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.text-card-small { font-size: 0.88rem; padding: 10px 12px; margin-bottom: 8px; }
+
 .q-text { font-size: 1.35rem; font-weight: 700; line-height: 1.35; margin-bottom: 22px; }
 
 .options { display: flex; flex-direction: column; gap: 10px; }
@@ -478,6 +492,7 @@ button {
 .feedback-title.ok { color: var(--green-dark); }
 .feedback-title.bad { color: #c40000; }
 .feedback-sub { font-size: 0.85rem; color: var(--ink-light); }
+.feedback-explain { font-size: 0.85rem; color: var(--ink-light); margin-top: 4px; font-style: italic; }
 
 .btn {
   border: none;
@@ -599,6 +614,7 @@ body.visual-gran .hearts { font-size: 1.15rem; }
 body.visual-gran .question-area { padding: 12px 20px 150px; }
 body.visual-gran .q-kicker { font-size: 0.9rem; }
 body.visual-gran .q-text { font-size: 1.5rem; margin-bottom: 24px; }
+body.visual-gran .text-card { font-size: 1.1rem; padding: 16px 18px; }
 body.visual-gran .options { gap: 12px; }
 body.visual-gran .option-btn { padding: 18px 16px; font-size: 1.15rem; border-width: 3px; gap: 12px; }
 body.visual-gran .option-letter { width: 30px; height: 30px; font-size: 0.9rem; border-width: 3px; }
@@ -614,6 +630,7 @@ body.visual-gran .btn { padding: 17px 26px; font-size: 1.1rem; border-radius: 16
 body.visual-gran .btn-hint { padding: 17px 20px; }
 body.visual-gran .feedback-title { font-size: 1.15rem; }
 body.visual-gran .feedback-sub { font-size: 0.9rem; }
+body.visual-gran .feedback-explain { font-size: 0.9rem; }
 body.visual-gran .results h2 { font-size: 1.5rem; }
 body.visual-gran .results .big-emoji { font-size: 4.4rem; }
 body.visual-gran .results .stars-row { font-size: 2.8rem; }

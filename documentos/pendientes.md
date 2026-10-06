@@ -24,3 +24,13 @@
 - [x] Comportamiento indefinido al quedarse sin vides — corregido (la lección termina mostrando el resumen de lo respondido hasta ese punto)
 - [x] Sospecha de opción no clicable por apóstrofes catalanes — investigado a fondo (2.698 clics reales, 0 fallos reales); descartado con evidencia, ver avances.md para el detalle
 
+## Resuelto — Sesión 5 (corrección de contenido tras auditoría)
+- [x] 18 correcciones puntuales de contenido por id (respuestas incorrectas, opciones duplicadas con otra lección, distractores confusos, respuestas numéricas sin variante con punto de miles) — ver avances.md para el detalle
+- [x] Desequilibrio verdadero/falso (94% verdadero) — rebalanceado a ~50/50 por curso y materia, cada pregunta V/F (falsa o verdadera) lleva ahora una `explicacio` corta con el hecho correcto, y el motor la muestra en pantalla al responder
+- [x] Textos de comprensión lectora repetidos/referenciados con "amb el mateix text" — extraídos a un campo `text` propio por pregunta; el motor los muestra en una tarjeta encima del enunciado y también en el repaso de preguntas falladas
+- [x] Carpeta `docs/` renombrada a `documentos/` (no existía ninguna carpeta `documentos` previa en el repo; `docs/` se había creado por error de nomenclatura en la Sesión 3)
+
+## Pendiente de aplicar la misma auditoría/criterio al resto
+- `explicacio` solo está poblado para las preguntas tipo `veritat_fals` (147/147); el resto de tipos (test, resposta_escrita, ordenar, emparellar) sigue con el campo vacío
+- El campo `dificultat` de 1r/4t sigue siendo posicional, no pedagógico (ver más arriba) — no se ha tocado en esta sesión
+

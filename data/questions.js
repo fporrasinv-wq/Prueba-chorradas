@@ -10,6 +10,14 @@
      - ordenar:           pregunta, elements_ordre_correcte[]
      - emparellar:        pregunta, parelles[] ({a, b})
 
+   Camp opcional "text": només present a les lliçons de comprensió
+   lectora (1r_cat-3, 1r_cas-3, i les lliçons de lectura de 5è/6è en
+   català, castellà i anglès). Conté el text de lectura complet, igual
+   per a totes les preguntes d'una mateixa lliçó — el motor el mostra
+   en una targeta diferenciada damunt de l'enunciat (també al repàs
+   d'errors). Les preguntes NO repeteixen el text ni frases com "amb
+   el mateix text"; quan cal, fan servir "Segons el text" directament.
+
    Cursos coberts: 1r (cicle inicial), 4t (cicle mitjà), 5è i 6è (cicle
    superior), per a les 6 matèries (mat, cat, cas, eng, soc, nat).
 
@@ -18,7 +26,9 @@
    5è i 6è es va generar a partir del currículum oficial (Decret
    175/2022, "sabers" de cicle superior), amb la dificultat assignada
    per criteri pedagògic (progressió de sabers dins 5è i 6è), no per
-   heurística posicional. */
+   heurística posicional. Els camps veritat_fals porten sempre
+   "explicacio" omplerta amb el fet correcte, tant si la pregunta és
+   certa com falsa. */
 
 const QUESTIONS = [
   {
@@ -50,7 +60,7 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quin número és més gran?",
+    "pregunta": "Quin número és més gran: el 17 o el 12?",
     "opcions": [
       "17",
       "12",
@@ -68,9 +78,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "El número 20 té dues xifres.",
-    "resposta_correcta": true
+    "explicacio": "El número 20 té dues xifres: el 2 i el 0.",
+    "pregunta": "El número 20 té tres xifres.",
+    "resposta_correcta": false
   },
   {
     "id": "1r_mat-1_q4",
@@ -208,7 +218,7 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "10 + 10 = 20, sumant les desenes.",
     "pregunta": "10 + 10 = 20",
     "resposta_correcta": true
   },
@@ -275,9 +285,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "El doble de 3 és 6.",
-    "resposta_correcta": true
+    "explicacio": "El doble de 3 és 6, perquè 3 + 3 = 6.",
+    "pregunta": "El doble de 3 és 5.",
+    "resposta_correcta": false
   },
   {
     "id": "1r_mat-3_q4",
@@ -399,7 +409,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Una setmana té 7 dies: de dilluns a diumenge.",
     "pregunta": "Una setmana té 7 dies.",
     "resposta_correcta": true
   },
@@ -487,7 +497,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "«Cotxe» té dues síl·labes: cot-xe.",
     "pregunta": "La paraula «Cotxe» té dues síl·labes.",
     "resposta_correcta": true
   },
@@ -520,7 +530,7 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quantes síl·labes té «Mariposa»?",
+    "pregunta": "Quantes síl·labes té «Papallona»?",
     "opcions": [
       "4",
       "3",
@@ -593,9 +603,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "El plural de «Llibre» és «Llibres».",
-    "resposta_correcta": true
+    "explicacio": "El plural de «Llibre» és «Llibres», amb -s al final.",
+    "pregunta": "El plural de «Llibre» és «Llibris».",
+    "resposta_correcta": false
   },
   {
     "id": "1r_cat-2_q4",
@@ -675,14 +685,15 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Llegeix: «En Pol té un gos petit que es diu Bolet. Cada tarda van al parc a jugar amb la pilota.» Com es diu el gos d'en Pol?",
+    "pregunta": "Com es diu el gos d'en Pol?",
     "opcions": [
       "Bolet",
       "Pol",
       "Pilota",
       "Parc"
     ],
-    "resposta_correcta": "Bolet"
+    "resposta_correcta": "Bolet",
+    "text": "En Pol té un gos petit que es diu Bolet. Cada tarda van al parc a jugar amb la pilota."
   },
   {
     "id": "1r_cat-3_q2",
@@ -694,14 +705,15 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Amb el mateix text d'abans: on van cada tarda en Pol i el seu gos?",
+    "pregunta": "On van cada tarda en Pol i el seu gos?",
     "opcions": [
       "Al parc",
       "A l'escola",
       "A la platja",
       "Al riu"
     ],
-    "resposta_correcta": "Al parc"
+    "resposta_correcta": "Al parc",
+    "text": "En Pol té un gos petit que es diu Bolet. Cada tarda van al parc a jugar amb la pilota."
   },
   {
     "id": "1r_cat-3_q3",
@@ -712,9 +724,10 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Segons el text, en Pol té un gos que es diu Bolet, no un gat.",
     "pregunta": "Segons el text, en Pol té un gat.",
-    "resposta_correcta": false
+    "resposta_correcta": false,
+    "text": "En Pol té un gos petit que es diu Bolet. Cada tarda van al parc a jugar amb la pilota."
   },
   {
     "id": "1r_cat-3_q4",
@@ -733,7 +746,8 @@ const QUESTIONS = [
       "Amb un llibre",
       "Amb un ordinador"
     ],
-    "resposta_correcta": "Amb la pilota"
+    "resposta_correcta": "Amb la pilota",
+    "text": "En Pol té un gos petit que es diu Bolet. Cada tarda van al parc a jugar amb la pilota."
   },
   {
     "id": "1r_cat-3_q5",
@@ -752,7 +766,8 @@ const QUESTIONS = [
       "Gegant",
       "No se sap"
     ],
-    "resposta_correcta": "Petit"
+    "resposta_correcta": "Petit",
+    "text": "En Pol té un gos petit que es diu Bolet. Cada tarda van al parc a jugar amb la pilota."
   },
   {
     "id": "1r_cat-3_q6",
@@ -763,9 +778,10 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "El text diu que hi van cada tarda a jugar amb la pilota.",
     "pregunta": "En Pol i el seu gos van al parc cada tarda.",
-    "resposta_correcta": true
+    "resposta_correcta": true,
+    "text": "En Pol té un gos petit que es diu Bolet. Cada tarda van al parc a jugar amb la pilota."
   },
   {
     "id": "1r_cat-4_q1",
@@ -814,9 +830,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "«Gos» i «Ós» rimen.",
-    "resposta_correcta": true
+    "explicacio": "«Gos» i «Ós» rimen perquè acaben amb un so semblant; «Pa» no hi rima.",
+    "pregunta": "«Gos» i «Pa» rimen.",
+    "resposta_correcta": false
   },
   {
     "id": "1r_cat-4_q4",
@@ -922,7 +938,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "«Coche» tiene dos sílabas: co-che.",
     "pregunta": "La palabra «Coche» tiene dos sílabas.",
     "resposta_correcta": true
   },
@@ -1028,9 +1044,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "El plural de «Libro» es «Libros».",
-    "resposta_correcta": true
+    "explicacio": "El plural de «Libro» es «Libros», añadiendo una -s.",
+    "pregunta": "El plural de «Libro» es «Libres».",
+    "resposta_correcta": false
   },
   {
     "id": "1r_cas-2_q4",
@@ -1110,14 +1126,15 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Lee: «Ana tiene un pez de color naranja que se llama Nemo. Cada mañana le da de comer antes de ir al colegio.» ¿Cómo se llama el pez de Ana?",
+    "pregunta": "¿Cómo se llama el pez de Ana?",
     "opcions": [
       "Nemo",
       "Ana",
       "Colegio",
       "Naranja"
     ],
-    "resposta_correcta": "Nemo"
+    "resposta_correcta": "Nemo",
+    "text": "Ana tiene un pez de color naranja que se llama Nemo. Cada mañana le da de comer antes de ir al colegio."
   },
   {
     "id": "1r_cas-3_q2",
@@ -1129,14 +1146,15 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Con el mismo texto de antes: ¿de qué color es el pez?",
+    "pregunta": "¿De qué color es el pez?",
     "opcions": [
       "Naranja",
       "Azul",
       "Verde",
       "Rojo"
     ],
-    "resposta_correcta": "Naranja"
+    "resposta_correcta": "Naranja",
+    "text": "Ana tiene un pez de color naranja que se llama Nemo. Cada mañana le da de comer antes de ir al colegio."
   },
   {
     "id": "1r_cas-3_q3",
@@ -1147,9 +1165,10 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "El texto dice que Ana le da de comer cada mañana antes de ir al colegio.",
     "pregunta": "Según el texto, Ana le da de comer al pez cada mañana.",
-    "resposta_correcta": true
+    "resposta_correcta": true,
+    "text": "Ana tiene un pez de color naranja que se llama Nemo. Cada mañana le da de comer antes de ir al colegio."
   },
   {
     "id": "1r_cas-3_q4",
@@ -1168,7 +1187,8 @@ const QUESTIONS = [
       "Nunca",
       "Los domingos"
     ],
-    "resposta_correcta": "Antes de ir al colegio"
+    "resposta_correcta": "Antes de ir al colegio",
+    "text": "Ana tiene un pez de color naranja que se llama Nemo. Cada mañana le da de comer antes de ir al colegio."
   },
   {
     "id": "1r_cas-3_q5",
@@ -1187,7 +1207,8 @@ const QUESTIONS = [
       "Un gato",
       "Un pájaro"
     ],
-    "resposta_correcta": "Un pez"
+    "resposta_correcta": "Un pez",
+    "text": "Ana tiene un pez de color naranja que se llama Nemo. Cada mañana le da de comer antes de ir al colegio."
   },
   {
     "id": "1r_cas-3_q6",
@@ -1198,9 +1219,10 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Según el texto, el pez de Ana es de color naranja.",
     "pregunta": "Según el texto, el pez de Ana es azul.",
-    "resposta_correcta": false
+    "resposta_correcta": false,
+    "text": "Ana tiene un pez de color naranja que se llama Nemo. Cada mañana le da de comer antes de ir al colegio."
   },
   {
     "id": "1r_cas-4_q1",
@@ -1249,9 +1271,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "«Gato» y «Pato» riman.",
-    "resposta_correcta": true
+    "explicacio": "«Gato» y «Pato» riman porque acaban igual; «Mesa» no.",
+    "pregunta": "«Gato» y «Mesa» riman.",
+    "resposta_correcta": false
   },
   {
     "id": "1r_cas-4_q4",
@@ -1357,9 +1379,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "«Ten» is number 10.",
-    "resposta_correcta": true
+    "explicacio": "«Ten» is number 10; number 9 is «nine».",
+    "pregunta": "«Ten» is number 9.",
+    "resposta_correcta": false
   },
   {
     "id": "1r_eng-1_q4",
@@ -1461,7 +1483,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "«Head» means «cap» in Catalan.",
     "pregunta": "«Head» means «cap».",
     "resposta_correcta": true
   },
@@ -1528,8 +1550,8 @@ const QUESTIONS = [
         "b": "Brother"
       },
       {
-        "a": "Ull",
-        "b": "Eye"
+        "a": "Germana",
+        "b": "Sister"
       }
     ]
   },
@@ -1580,9 +1602,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "«Milk» means «llet».",
-    "resposta_correcta": true
+    "explicacio": "«Milk» means «llet»; «cheese» means «formatge».",
+    "pregunta": "«Milk» means «formatge».",
+    "resposta_correcta": false
   },
   {
     "id": "1r_eng-3_q4",
@@ -1686,7 +1708,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "«This is a book» follows the correct word order: subject + verb + object.",
     "pregunta": "«This is a book» is correct English.",
     "resposta_correcta": true
   },
@@ -1791,9 +1813,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Els cosins són fills dels teus oncles i ties.",
-    "resposta_correcta": true
+    "explicacio": "Els cosins són fills dels teus oncles i ties; els fills dels teus avis són els teus pares, oncles i ties.",
+    "pregunta": "Els cosins són fills dels teus avis.",
+    "resposta_correcta": false
   },
   {
     "id": "1r_soc-1_q4",
@@ -1899,7 +1921,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Compartir les joguines ens ajuda a conviure bé amb els companys.",
     "pregunta": "Hem de compartir les joguines amb els companys.",
     "resposta_correcta": true
   },
@@ -2007,9 +2029,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Els semàfors ens ajuden a creuar el carrer amb seguretat.",
-    "resposta_correcta": true
+    "explicacio": "Els semàfors ens ajuden a creuar el carrer amb seguretat, regulant el pas de vehicles i vianants.",
+    "pregunta": "Els semàfors serveixen per aparcar el cotxe.",
+    "resposta_correcta": false
   },
   {
     "id": "1r_soc-3_q4",
@@ -2115,7 +2137,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "El metge o la metgessa ens cuida i ens ajuda a recuperar la salut.",
     "pregunta": "El metge o la metgessa ens cuida quan estem malalts.",
     "resposta_correcta": true
   },
@@ -2167,14 +2189,14 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Qui apaga els incendis?",
+    "pregunta": "Qui cuina els plats en un restaurant?",
     "opcions": [
-      "Els bombers",
-      "Els dentistes",
-      "Els forners",
-      "Els conductors"
+      "El cuiner o la cuinera",
+      "El dentista",
+      "El bomber",
+      "El jardiner"
     ],
-    "resposta_correcta": "Els bombers"
+    "resposta_correcta": "El cuiner o la cuinera"
   },
   {
     "id": "1r_nat-1_q1",
@@ -2223,7 +2245,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "La cria de la vaca es diu vedell.",
     "pregunta": "La cria de la vaca es diu vedell.",
     "resposta_correcta": true
   },
@@ -2326,12 +2348,12 @@ const QUESTIONS = [
     "explicacio": "",
     "pregunta": "On viu el conill?",
     "opcions": [
-      "En una cova sota terra",
+      "En un cau sota terra",
       "A l'aigua",
       "A l'arbre",
       "Al núvol"
     ],
-    "resposta_correcta": "En una cova sota terra"
+    "resposta_correcta": "En un cau sota terra"
   },
   {
     "id": "1r_nat-2_q3",
@@ -2342,9 +2364,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "L'ocell fa el niu als arbres.",
-    "resposta_correcta": true
+    "explicacio": "Molts ocells fan el niu als arbres, no sota l'aigua.",
+    "pregunta": "L'ocell fa el niu sota l'aigua.",
+    "resposta_correcta": false
   },
   {
     "id": "1r_nat-2_q4",
@@ -2450,7 +2472,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Les granotes comencen la seva vida com a capgrossos abans de transformar-se.",
     "pregunta": "Una granota comença sent capgròs.",
     "resposta_correcta": true
   },
@@ -2501,7 +2523,7 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Aquest és el cicle de vida dels éssers humans.",
     "pregunta": "Els humans neixen, creixen, es fan grans i envelleixen.",
     "resposta_correcta": true
   },
@@ -2552,7 +2574,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "A l'hivern les temperatures són més baixes que a l'estiu.",
     "pregunta": "A l'hivern sol fer més fred que a l'estiu.",
     "resposta_correcta": true
   },
@@ -2660,7 +2682,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "12.435 és més gran que 12.345.",
     "pregunta": "El nombre 12.345 és més gran que 12.435.",
     "resposta_correcta": false
   },
@@ -2696,7 +2718,8 @@ const QUESTIONS = [
     "pregunta": "Escriu amb xifres el nombre «vuit mil noranta».",
     "resposta_correcta": "8090",
     "respostes_acceptades": [
-      "8090"
+      "8090",
+      "8.090"
     ]
   },
   {
@@ -2780,7 +2803,8 @@ const QUESTIONS = [
     "pregunta": "4.325 + 1.876 = ?",
     "resposta_correcta": "6201",
     "respostes_acceptades": [
-      "6201"
+      "6201",
+      "6.201"
     ]
   },
   {
@@ -2796,7 +2820,8 @@ const QUESTIONS = [
     "pregunta": "9.004 − 2.568 = ?",
     "resposta_correcta": "6436",
     "respostes_acceptades": [
-      "6436"
+      "6436",
+      "6.436"
     ]
   },
   {
@@ -2827,15 +2852,15 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "test",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Una botiga tenia 600 € i ven productes per 235 € i gasta 90 € en lloguer. Quants diners li queden?",
+    "explicacio": "Vendre suma diners (600 + 235) i el lloguer en resta (− 90).",
+    "pregunta": "Una botiga tenia 600 € a la caixa. Ven productes per 235 € i gasta 90 € en lloguer. Quants diners hi ha ara a la caixa?",
     "opcions": [
+      "745 €",
       "275 €",
-      "365 €",
-      "245 €",
-      "315 €"
+      "925 €",
+      "455 €"
     ],
-    "resposta_correcta": "275 €"
+    "resposta_correcta": "745 €"
   },
   {
     "id": "4t_mat-2_q5",
@@ -2846,7 +2871,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Si sumem i després restem la mateixa quantitat, tornem al nombre inicial.",
     "pregunta": "La resta és l'operació inversa de la suma.",
     "resposta_correcta": true
   },
@@ -2882,7 +2907,8 @@ const QUESTIONS = [
     "pregunta": "7.200 − 3.450 = ?",
     "resposta_correcta": "3750",
     "respostes_acceptades": [
-      "3750"
+      "3750",
+      "3.750"
     ]
   },
   {
@@ -2985,8 +3011,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Multiplicar per 10 és afegir un zero al final del nombre.",
+    "explicacio": "Per exemple, 23 × 10 = 230.",
+    "pregunta": "Multiplicar un nombre enter per 10 és afegir un zero al final del nombre.",
     "resposta_correcta": true
   },
   {
@@ -3117,9 +3143,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "En una divisió, el residu ha de ser sempre més petit que el divisor.",
-    "resposta_correcta": true
+    "explicacio": "El residu sempre ha de ser més petit que el divisor; si no, encara es podria dividir més.",
+    "pregunta": "En una divisió, el residu ha de ser sempre més gran que el divisor.",
+    "resposta_correcta": false
   },
   {
     "id": "4t_mat-4_q5",
@@ -3252,7 +3278,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Una unitat partida en dues parts iguals, 0,5 i 1/2, representa la meitat.",
     "pregunta": "0,5 és el mateix que 1/2.",
     "resposta_correcta": true
   },
@@ -3285,7 +3311,7 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quina fracció és més gran?",
+    "pregunta": "Quina fracció és més gran: 1/3 o 1/5?",
     "opcions": [
       "1/3",
       "1/5",
@@ -3442,9 +3468,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Un angle recte mesura 90°.",
-    "resposta_correcta": true
+    "explicacio": "Un angle recte mesura 90°; un angle de 180° és un angle pla.",
+    "pregunta": "Un angle recte mesura 180°.",
+    "resposta_correcta": false
   },
   {
     "id": "4t_mat-6_q6",
@@ -3546,7 +3572,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "«Any» s'escriu amb el dígraf ny.",
     "pregunta": "La paraula «any» s'escriu amb ny.",
     "resposta_correcta": true
   },
@@ -3660,7 +3686,7 @@ const QUESTIONS = [
     "opcions": [
       "cafè",
       "més",
-      "això",
+      "també",
       "número"
     ],
     "resposta_correcta": "cafè"
@@ -3693,7 +3719,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Només porten accent gràfic les paraules que ho necessiten segons les regles d'accentuació.",
     "pregunta": "Totes les paraules catalanes porten accent gràfic.",
     "resposta_correcta": false
   },
@@ -3887,9 +3913,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "L'adjectiu concorda en gènere i nombre amb el nom.",
-    "resposta_correcta": true
+    "explicacio": "L'adjectiu concorda en gènere i nombre amb el nom que acompanya, no amb el verb.",
+    "pregunta": "L'adjectiu concorda en gènere i nombre amb el verb.",
+    "resposta_correcta": false
   },
   {
     "id": "4t_cat-3_q6",
@@ -4052,7 +4078,7 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "«Fosc» i «clar» tenen significats oposats.",
     "pregunta": "«Fosc» i «clar» són antònims.",
     "resposta_correcta": true
   },
@@ -4152,9 +4178,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Un punt i final (.) indica que la frase ha acabat.",
-    "resposta_correcta": true
+    "explicacio": "El punt (.) indica el final de la frase; la coma (,) separa elements dins la frase.",
+    "pregunta": "Una coma (,) indica que la frase ha acabat.",
+    "resposta_correcta": false
   },
   {
     "id": "4t_cat-5_q4",
@@ -4299,7 +4325,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "«Jirafa» se escribe con j, no con g.",
     "pregunta": "La palabra «jirafa» se escribe con g.",
     "resposta_correcta": false
   },
@@ -4335,7 +4361,8 @@ const QUESTIONS = [
     "pregunta": "Completa: «El pájaro vuela por el ___.»",
     "resposta_correcta": "cielo",
     "respostes_acceptades": [
-      "cielo"
+      "cielo",
+      "aire"
     ]
   },
   {
@@ -4471,7 +4498,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "El adjetivo debe concordar en género y número con el sustantivo al que acompaña.",
     "pregunta": "El adjetivo concuerda en género y número con el sustantivo.",
     "resposta_correcta": true
   },
@@ -4605,9 +4632,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "La palabra «árbol» es llana (grave).",
-    "resposta_correcta": true
+    "explicacio": "«Árbol» es llana (grave) porque el acento cae en la penúltima sílaba (ár-bol).",
+    "pregunta": "La palabra «árbol» es aguda.",
+    "resposta_correcta": false
   },
   {
     "id": "4t_cas-3_q4",
@@ -4773,7 +4800,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "«Oscuro» y «claro» tienen significados opuestos.",
     "pregunta": "«Oscuro» y «claro» son antónimos.",
     "resposta_correcta": true
   },
@@ -4873,7 +4900,7 @@ const QUESTIONS = [
     "pregunta": "¿Qué signo se usa al final de una pregunta?",
     "opcions": [
       "?",
-      "·",
+      ".",
       ",",
       ";"
     ],
@@ -4907,9 +4934,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "En español, las preguntas llevan signo de interrogación al principio y al final.",
-    "resposta_correcta": true
+    "explicacio": "En español se usan los signos de interrogación al principio (¿) y al final (?) de la pregunta.",
+    "pregunta": "En español, las preguntas llevan signo de interrogación solo al final.",
+    "resposta_correcta": false
   },
   {
     "id": "4t_cas-5_q4",
@@ -5062,9 +5089,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "«Goodbye» means «adéu».",
-    "resposta_correcta": true
+    "explicacio": "«Goodbye» means «adéu»; «hola» means «hello».",
+    "pregunta": "«Goodbye» means «hola».",
+    "resposta_correcta": false
   },
   {
     "id": "4t_eng-1_q4",
@@ -5215,7 +5242,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "«Ten» is the English word for the number 10.",
     "pregunta": "«Ten» is number 10.",
     "resposta_correcta": true
   },
@@ -5368,7 +5395,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "«Cat» means «gat» in Catalan.",
     "pregunta": "«Cat» means «gat».",
     "resposta_correcta": true
   },
@@ -5522,9 +5549,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "«Sunday» is a day of the week.",
-    "resposta_correcta": true
+    "explicacio": "«Sunday» is a day of the week, not a month.",
+    "pregunta": "«Sunday» is a month of the year.",
+    "resposta_correcta": false
   },
   {
     "id": "4t_eng-4_q4",
@@ -5675,7 +5702,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "«They are» is used with plural subjects in the verb «to be».",
     "pregunta": "«They are» is correct for a plural subject.",
     "resposta_correcta": true
   },
@@ -5843,9 +5870,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Catalunya té costa al mar Mediterrani.",
-    "resposta_correcta": true
+    "explicacio": "Catalunya té costa al mar Mediterrani, no a l'oceà Atlàntic.",
+    "pregunta": "Catalunya té costa a l'oceà Atlàntic.",
+    "resposta_correcta": false
   },
   {
     "id": "4t_soc-1_q5",
@@ -5981,7 +6008,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Als Pirineus, per l'altitud, és habitual que nevi a l'hivern.",
     "pregunta": "Als Pirineus, a l'hivern, sol nevar.",
     "resposta_correcta": true
   },
@@ -6138,7 +6165,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "L'ajuntament, dirigit per l'alcalde o alcaldessa, governa el municipi.",
     "pregunta": "Un municipi el governa l'ajuntament, dirigit per l'alcalde o alcaldessa.",
     "resposta_correcta": true
   },
@@ -6295,9 +6322,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Catalunya està dividida en comarques i aquestes, en municipis.",
-    "resposta_correcta": true
+    "explicacio": "Catalunya es divideix en comarques i aquestes, al seu torn, en municipis.",
+    "pregunta": "Catalunya està dividida en municipis i aquests, en comarques.",
+    "resposta_correcta": false
   },
   {
     "id": "4t_soc-4_q4",
@@ -6471,7 +6498,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "La pesca, com l'agricultura i la ramaderia, pertany al sector primari.",
     "pregunta": "La pesca forma part del sector primari.",
     "resposta_correcta": true
   },
@@ -6628,9 +6655,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Els insectes són animals invertebrats.",
-    "resposta_correcta": true
+    "explicacio": "Els insectes no tenen columna vertebral, per això són invertebrats.",
+    "pregunta": "Els insectes són animals vertebrats.",
+    "resposta_correcta": false
   },
   {
     "id": "4t_nat-1_q5",
@@ -6785,7 +6812,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Les arrels, la tija i les fulles són alguns dels òrgans principals de la planta.",
     "pregunta": "Les arrels, la tija i les fulles són òrgans de la planta.",
     "resposta_correcta": true
   },
@@ -6930,7 +6957,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Els descomponedors, com els bolets i alguns bacteris, reciclen la matèria orgànica morta.",
     "pregunta": "Els bolets i alguns bacteris són descomponedors que reciclen la matèria orgànica.",
     "resposta_correcta": true
   },
@@ -7087,9 +7114,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "L'aparell locomotor està format pels ossos i els músculs.",
-    "resposta_correcta": true
+    "explicacio": "L'aparell locomotor està format pels ossos i els músculs; el cor i els pulmons formen part d'altres aparells.",
+    "pregunta": "L'aparell locomotor està format pel cor i els pulmons.",
+    "resposta_correcta": false
   },
   {
     "id": "4t_nat-4_q5",
@@ -7244,7 +7271,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "El gel és aigua que s'ha solidificat per efecte del fred.",
     "pregunta": "El gel és aigua en estat sòlid.",
     "resposta_correcta": true
   },
@@ -7370,9 +7397,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "0,5 és més gran que 0,45.",
-    "resposta_correcta": true
+    "explicacio": "0,5 (=0,50) és més gran que 0,45.",
+    "pregunta": "0,5 és més petit que 0,45.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_mat-5-1_q4",
@@ -7475,7 +7502,7 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "3/4 equival a 75%, ja que 3 ÷ 4 = 0,75.",
     "pregunta": "3/4 i 75% representen la mateixa quantitat.",
     "resposta_correcta": true
   },
@@ -7592,7 +7619,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Tots els nombres parells es poden dividir exactament per 2.",
     "pregunta": "El 2 és divisor de tots els nombres parells.",
     "resposta_correcta": true
   },
@@ -7729,9 +7756,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Un quadrat és un rectangle amb tots els costats iguals.",
-    "resposta_correcta": true
+    "explicacio": "Un quadrat és un rectangle especial amb els quatre costats iguals; un triangle té tres costats.",
+    "pregunta": "Un quadrat és un triangle amb tots els costats iguals.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_mat-5-4_q6",
@@ -7815,7 +7842,7 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "El 2 és la dada que es repeteix més vegades, per tant és la moda.",
     "pregunta": "En les dades 2, 2, 3, 5, la moda és 2.",
     "resposta_correcta": true
   },
@@ -7933,9 +7960,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Per sumar decimals cal alinear la coma.",
-    "resposta_correcta": true
+    "explicacio": "Per sumar decimals correctament cal alinear la coma de cada nombre.",
+    "pregunta": "Per sumar decimals cal alinear sempre la primera xifra per l'esquerra, ignorant la coma.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_mat-6-1_q6",
@@ -8019,7 +8046,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "El 50% equival a la meitat d'una quantitat.",
     "pregunta": "El 50% d'una quantitat és la meitat.",
     "resposta_correcta": true
   },
@@ -8105,7 +8132,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "El consum responsable implica valorar preu i qualitat abans de comprar.",
     "pregunta": "Comparar preu i qualitat abans de comprar és consum responsable.",
     "resposta_correcta": true
   },
@@ -8210,9 +8237,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Un angle agut mesura menys de 90°.",
-    "resposta_correcta": true
+    "explicacio": "Un angle agut mesura menys de 90°; un angle obtús mesura més de 90°.",
+    "pregunta": "Un angle agut mesura més de 90°.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_mat-6-4_q4",
@@ -8334,7 +8361,7 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "La probabilitat de cara és 1/2, mentre que la de treure un 6 és només 1/6.",
     "pregunta": "És més probable que surti cara que un 6 en llançar un dau normal.",
     "resposta_correcta": true
   },
@@ -8423,9 +8450,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Un diàleg és una conversa entre dues o més persones.",
-    "resposta_correcta": true
+    "explicacio": "Un diàleg és una conversa entre dues o més persones que es diuen coses l'una a l'altra.",
+    "pregunta": "Un diàleg és un text escrit per una sola persona sense interlocutor.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_cat-5-1_q4",
@@ -8542,7 +8569,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Els poemes solen estructurar-se en versos agrupats en estrofes.",
     "pregunta": "La poesia sol organitzar-se en versos i estrofes.",
     "resposta_correcta": true
   },
@@ -8650,9 +8677,9 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Un adverbi pot modificar un verb.",
-    "resposta_correcta": true
+    "explicacio": "Un adverbi pot modificar un verb (p. ex. «corre ràpidament»), un adjectiu o un altre adverbi.",
+    "pregunta": "Un adverbi pot modificar només un altre adverbi, mai un verb.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_cat-5-3_q4",
@@ -8721,14 +8748,15 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Llegeix: «La Marta va anar a la biblioteca del poble per buscar un llibre sobre volcans. La bibliotecària li va recomanar un llibre amb moltes fotografies i li va explicar que els volcans expulsen lava molt calenta.» Sobre quin tema busca informació la Marta?",
+    "pregunta": "Sobre quin tema busca informació la Marta?",
     "opcions": [
       "Volcans",
       "Biblioteques",
       "Fotografies",
       "Poble"
     ],
-    "resposta_correcta": "Volcans"
+    "resposta_correcta": "Volcans",
+    "text": "La Marta va anar a la biblioteca del poble per buscar un llibre sobre volcans. La bibliotecària li va recomanar un llibre amb moltes fotografies i li va explicar que els volcans expulsen lava molt calenta."
   },
   {
     "id": "5è_cat-5-4_q2",
@@ -8740,14 +8768,15 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Amb el mateix text: qui li recomana un llibre a la Marta?",
+    "pregunta": "Qui li recomana un llibre a la Marta?",
     "opcions": [
       "La bibliotecària",
       "Un volcà",
       "La seva mare",
       "Un amic"
     ],
-    "resposta_correcta": "La bibliotecària"
+    "resposta_correcta": "La bibliotecària",
+    "text": "La Marta va anar a la biblioteca del poble per buscar un llibre sobre volcans. La bibliotecària li va recomanar un llibre amb moltes fotografies i li va explicar que els volcans expulsen lava molt calenta."
   },
   {
     "id": "5è_cat-5-4_q3",
@@ -8758,9 +8787,10 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Segons el text, el llibre recomanat té moltes fotografies.",
     "pregunta": "Segons el text, el llibre recomanat no té cap fotografia.",
-    "resposta_correcta": false
+    "resposta_correcta": false,
+    "text": "La Marta va anar a la biblioteca del poble per buscar un llibre sobre volcans. La bibliotecària li va recomanar un llibre amb moltes fotografies i li va explicar que els volcans expulsen lava molt calenta."
   },
   {
     "id": "5è_cat-5-4_q4",
@@ -8779,7 +8809,8 @@ const QUESTIONS = [
       "Neu",
       "Fum de color blau"
     ],
-    "resposta_correcta": "Lava molt calenta"
+    "resposta_correcta": "Lava molt calenta",
+    "text": "La Marta va anar a la biblioteca del poble per buscar un llibre sobre volcans. La bibliotecària li va recomanar un llibre amb moltes fotografies i li va explicar que els volcans expulsen lava molt calenta."
   },
   {
     "id": "5è_cat-5-4_q5",
@@ -8798,7 +8829,8 @@ const QUESTIONS = [
       "A l'escola",
       "A casa d'una amiga"
     ],
-    "resposta_correcta": "A la biblioteca del poble"
+    "resposta_correcta": "A la biblioteca del poble",
+    "text": "La Marta va anar a la biblioteca del poble per buscar un llibre sobre volcans. La bibliotecària li va recomanar un llibre amb moltes fotografies i li va explicar que els volcans expulsen lava molt calenta."
   },
   {
     "id": "5è_cat-5-4_q6",
@@ -8809,9 +8841,10 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Com que busca un llibre sobre volcans, es pot deduir aquest interès.",
     "pregunta": "Es pot deduir del text que la Marta té interès per la natura o la ciència.",
-    "resposta_correcta": true
+    "resposta_correcta": true,
+    "text": "La Marta va anar a la biblioteca del poble per buscar un llibre sobre volcans. La bibliotecària li va recomanar un llibre amb moltes fotografies i li va explicar que els volcans expulsen lava molt calenta."
   },
   {
     "id": "5è_cat-5-5_q1",
@@ -8841,7 +8874,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Escoltar activament implica centrar-se de veritat en el que diu l'altra persona.",
     "pregunta": "Escoltar activament vol dir prestar atenció real al que diu l'altra persona.",
     "resposta_correcta": true
   },
@@ -8911,9 +8944,9 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "El to de veu i els gestos també comuniquen informació, no només les paraules.",
-    "resposta_correcta": true
+    "explicacio": "El to de veu i els gestos també comuniquen informació, a més de les paraules.",
+    "pregunta": "Només les paraules comuniquen informació; el to de veu i els gestos no hi afegeixen res.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_cat-6-1_q1",
@@ -8962,9 +8995,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Una frase declarativa simplement informa d'alguna cosa.",
-    "resposta_correcta": true
+    "explicacio": "Una frase declarativa informa d'alguna cosa; una frase interrogativa fa una pregunta.",
+    "pregunta": "Una frase declarativa sempre fa una pregunta.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_cat-6-1_q4",
@@ -9069,7 +9102,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Els sinònims permeten variar el vocabulari sense repetir paraules.",
     "pregunta": "Fer servir sinònims ajuda a no repetir sempre la mateixa paraula.",
     "resposta_correcta": true
   },
@@ -9188,7 +9221,7 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "A diferència de la comparació, la metàfora no fa servir «com».",
     "pregunta": "Una metàfora diu que una cosa ÉS una altra, sense fer servir «com».",
     "resposta_correcta": true
   },
@@ -9239,9 +9272,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Fer servir un vocabulari ric i variat millora un text narratiu.",
-    "resposta_correcta": true
+    "explicacio": "Un vocabulari ric i variat millora la qualitat d'un text narratiu.",
+    "pregunta": "Repetir sempre les mateixes paraules millora un text narratiu.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_cat-6-4_q1",
@@ -9271,9 +9304,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "No totes les pàgines web tenen informació fiable.",
-    "resposta_correcta": true
+    "explicacio": "No totes les pàgines web tenen informació fiable; cal comprovar-ne l'autoria.",
+    "pregunta": "Totes les pàgines web tenen sempre informació fiable.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_cat-6-4_q3",
@@ -9341,7 +9374,7 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Contrastar diverses fonts permet comprovar la fiabilitat d'una informació.",
     "pregunta": "Comparar diverses fonts ajuda a saber si una informació és certa.",
     "resposta_correcta": true
   },
@@ -9355,14 +9388,15 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Llegeix: «Fa uns anys, molts pobles de muntanya es van quedar sense escola perquè hi havia pocs infants. Ara, algunes famílies que treballen des de casa s'hi han instal·lat, i algunes escoles rurals han tornat a obrir les portes.» Per què es van tancar moltes escoles de poble?",
+    "pregunta": "Per què es van tancar moltes escoles de poble?",
     "opcions": [
       "Perquè hi havia pocs infants",
       "Perquè no hi havia mestres",
       "Perquè els pobles van desaparèixer",
       "Perquè no hi havia llibres"
     ],
-    "resposta_correcta": "Perquè hi havia pocs infants"
+    "resposta_correcta": "Perquè hi havia pocs infants",
+    "text": "Fa uns anys, molts pobles de muntanya es van quedar sense escola perquè hi havia pocs infants. Ara, algunes famílies que treballen des de casa s'hi han instal·lat, i algunes escoles rurals han tornat a obrir les portes."
   },
   {
     "id": "6è_cat-6-5_q2",
@@ -9374,14 +9408,15 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Amb el mateix text: per què hi tornen ara algunes famílies?",
+    "pregunta": "Per què hi tornen ara algunes famílies?",
     "opcions": [
       "Perquè poden treballar des de casa",
       "Perquè no hi ha ciutats",
       "Perquè els agraden més les escoles rurals sense motiu",
       "Perquè és obligatori"
     ],
-    "resposta_correcta": "Perquè poden treballar des de casa"
+    "resposta_correcta": "Perquè poden treballar des de casa",
+    "text": "Fa uns anys, molts pobles de muntanya es van quedar sense escola perquè hi havia pocs infants. Ara, algunes famílies que treballen des de casa s'hi han instal·lat, i algunes escoles rurals han tornat a obrir les portes."
   },
   {
     "id": "6è_cat-6-5_q3",
@@ -9392,9 +9427,10 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Segons el text, algunes escoles rurals han tornat a obrir les portes.",
     "pregunta": "Segons el text, totes les escoles rurals han tancat definitivament.",
-    "resposta_correcta": false
+    "resposta_correcta": false,
+    "text": "Fa uns anys, molts pobles de muntanya es van quedar sense escola perquè hi havia pocs infants. Ara, algunes famílies que treballen des de casa s'hi han instal·lat, i algunes escoles rurals han tornat a obrir les portes."
   },
   {
     "id": "6è_cat-6-5_q4",
@@ -9413,7 +9449,8 @@ const QUESTIONS = [
       "Pobles",
       "Escoles"
     ],
-    "resposta_correcta": "Infants"
+    "resposta_correcta": "Infants",
+    "text": "Fa uns anys, molts pobles de muntanya es van quedar sense escola perquè hi havia pocs infants. Ara, algunes famílies que treballen des de casa s'hi han instal·lat, i algunes escoles rurals han tornat a obrir les portes."
   },
   {
     "id": "6è_cat-6-5_q5",
@@ -9432,7 +9469,8 @@ const QUESTIONS = [
       "Com viatjar a la muntanya",
       "La història de l'escola"
     ],
-    "resposta_correcta": "El retorn de vida als pobles de muntanya"
+    "resposta_correcta": "El retorn de vida als pobles de muntanya",
+    "text": "Fa uns anys, molts pobles de muntanya es van quedar sense escola perquè hi havia pocs infants. Ara, algunes famílies que treballen des de casa s'hi han instal·lat, i algunes escoles rurals han tornat a obrir les portes."
   },
   {
     "id": "6è_cat-6-5_q6",
@@ -9443,9 +9481,10 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "El text relaciona el teletreball amb el retorn de famílies als pobles rurals.",
     "pregunta": "Es pot deduir que el teletreball ha influït en la vida d'alguns pobles rurals.",
-    "resposta_correcta": true
+    "resposta_correcta": true,
+    "text": "Fa uns anys, molts pobles de muntanya es van quedar sense escola perquè hi havia pocs infants. Ara, algunes famílies que treballen des de casa s'hi han instal·lat, i algunes escoles rurals han tornat a obrir les portes."
   },
   {
     "id": "5è_cas-5-1_q1",
@@ -9494,9 +9533,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Un diálogo es una conversación entre dos o más personas.",
-    "resposta_correcta": true
+    "explicacio": "Un diálogo es una conversación entre dos o más personas que se hablan entre sí.",
+    "pregunta": "Un diálogo es un texto escrito por una sola persona sin interlocutor.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_cas-5-1_q4",
@@ -9613,7 +9652,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Los poemas suelen estructurarse en versos agrupados en estrofas.",
     "pregunta": "La poesía suele organizarse en versos y estrofas.",
     "resposta_correcta": true
   },
@@ -9721,9 +9760,9 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Un adverbio puede modificar a un verbo.",
-    "resposta_correcta": true
+    "explicacio": "Un adverbio puede modificar a un verbo (p. ej. «corre rápidamente»), a un adjetivo o a otro adverbio.",
+    "pregunta": "Un adverbio solo puede modificar a otro adverbio, nunca a un verbo.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_cas-5-3_q4",
@@ -9793,14 +9832,15 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Lee: «Marta fue a la biblioteca del pueblo para buscar un libro sobre volcanes. La bibliotecaria le recomendó un libro con muchas fotografías y le explicó que los volcanes expulsan lava muy caliente.» ¿Sobre qué tema busca información Marta?",
+    "pregunta": "¿Sobre qué tema busca información Marta?",
     "opcions": [
       "Volcanes",
       "Bibliotecas",
       "Fotografías",
       "Pueblo"
     ],
-    "resposta_correcta": "Volcanes"
+    "resposta_correcta": "Volcanes",
+    "text": "Marta fue a la biblioteca del pueblo para buscar un libro sobre volcanes. La bibliotecaria le recomendó un libro con muchas fotografías y le explicó que los volcanes expulsan lava muy caliente."
   },
   {
     "id": "5è_cas-5-4_q2",
@@ -9812,14 +9852,15 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Con el mismo texto: ¿quién le recomienda un libro a Marta?",
+    "pregunta": "¿Quién le recomienda un libro a Marta?",
     "opcions": [
       "La bibliotecaria",
       "Un volcán",
       "Su madre",
       "Un amigo"
     ],
-    "resposta_correcta": "La bibliotecaria"
+    "resposta_correcta": "La bibliotecaria",
+    "text": "Marta fue a la biblioteca del pueblo para buscar un libro sobre volcanes. La bibliotecaria le recomendó un libro con muchas fotografías y le explicó que los volcanes expulsan lava muy caliente."
   },
   {
     "id": "5è_cas-5-4_q3",
@@ -9830,9 +9871,10 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Según el texto, el libro recomendado tiene muchas fotografías.",
     "pregunta": "Según el texto, el libro recomendado no tiene ninguna fotografía.",
-    "resposta_correcta": false
+    "resposta_correcta": false,
+    "text": "Marta fue a la biblioteca del pueblo para buscar un libro sobre volcanes. La bibliotecaria le recomendó un libro con muchas fotografías y le explicó que los volcanes expulsan lava muy caliente."
   },
   {
     "id": "5è_cas-5-4_q4",
@@ -9851,7 +9893,8 @@ const QUESTIONS = [
       "Nieve",
       "Humo azul"
     ],
-    "resposta_correcta": "Lava muy caliente"
+    "resposta_correcta": "Lava muy caliente",
+    "text": "Marta fue a la biblioteca del pueblo para buscar un libro sobre volcanes. La bibliotecaria le recomendó un libro con muchas fotografías y le explicó que los volcanes expulsan lava muy caliente."
   },
   {
     "id": "5è_cas-5-4_q5",
@@ -9870,7 +9913,8 @@ const QUESTIONS = [
       "Al colegio",
       "A casa de una amiga"
     ],
-    "resposta_correcta": "A la biblioteca del pueblo"
+    "resposta_correcta": "A la biblioteca del pueblo",
+    "text": "Marta fue a la biblioteca del pueblo para buscar un libro sobre volcanes. La bibliotecaria le recomendó un libro con muchas fotografías y le explicó que los volcanes expulsan lava muy caliente."
   },
   {
     "id": "5è_cas-5-4_q6",
@@ -9881,9 +9925,10 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Como busca un libro sobre volcanes, se puede deducir ese interés.",
     "pregunta": "Se puede deducir del texto que Marta tiene interés por la naturaleza o la ciencia.",
-    "resposta_correcta": true
+    "resposta_correcta": true,
+    "text": "Marta fue a la biblioteca del pueblo para buscar un libro sobre volcanes. La bibliotecaria le recomendó un libro con muchas fotografías y le explicó que los volcanes expulsan lava muy caliente."
   },
   {
     "id": "5è_cas-5-5_q1",
@@ -9913,7 +9958,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Escuchar activamente implica centrarse de verdad en lo que dice la otra persona.",
     "pregunta": "Escuchar activamente significa prestar atención real a lo que dice la otra persona.",
     "resposta_correcta": true
   },
@@ -9983,9 +10028,9 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "El tono de voz y los gestos también comunican información, no solo las palabras.",
-    "resposta_correcta": true
+    "explicacio": "El tono de voz y los gestos también comunican información, además de las palabras.",
+    "pregunta": "Solo las palabras comunican información; el tono de voz y los gestos no añaden nada.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_cas-6-1_q1",
@@ -10034,9 +10079,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Una frase declarativa simplemente informa de algo.",
-    "resposta_correcta": true
+    "explicacio": "Una frase declarativa informa de algo; una frase interrogativa hace una pregunta.",
+    "pregunta": "Una frase declarativa siempre hace una pregunta.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_cas-6-1_q4",
@@ -10141,7 +10186,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Los sinónimos permiten variar el vocabulario sin repetir palabras.",
     "pregunta": "Usar sinónimos ayuda a no repetir siempre la misma palabra.",
     "resposta_correcta": true
   },
@@ -10260,7 +10305,7 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "A diferencia de la comparación, la metáfora no usa «como».",
     "pregunta": "Una metáfora dice que algo ES otra cosa, sin usar «como».",
     "resposta_correcta": true
   },
@@ -10311,9 +10356,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Usar un vocabulario rico y variado mejora un texto narrativo.",
-    "resposta_correcta": true
+    "explicacio": "Un vocabulario rico y variado mejora la calidad de un texto narrativo.",
+    "pregunta": "Repetir siempre las mismas palabras mejora un texto narrativo.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_cas-6-4_q1",
@@ -10343,9 +10388,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "No todas las páginas web tienen información fiable.",
-    "resposta_correcta": true
+    "explicacio": "No todas las páginas web tienen información fiable; hay que comprobar su autoría.",
+    "pregunta": "Todas las páginas web tienen siempre información fiable.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_cas-6-4_q3",
@@ -10413,7 +10458,7 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Contrastar varias fuentes permite comprobar la fiabilidad de una información.",
     "pregunta": "Comparar varias fuentes ayuda a saber si una información es cierta.",
     "resposta_correcta": true
   },
@@ -10427,14 +10472,15 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Lee: «Hace unos años, muchos pueblos de montaña se quedaron sin escuela porque había pocos niños. Ahora, algunas familias que trabajan desde casa se han instalado allí, y algunas escuelas rurales han vuelto a abrir sus puertas.» ¿Por qué se cerraron muchas escuelas de pueblo?",
+    "pregunta": "¿Por qué se cerraron muchas escuelas de pueblo?",
     "opcions": [
       "Porque había pocos niños",
       "Porque no había maestros",
       "Porque los pueblos desaparecieron",
       "Porque no había libros"
     ],
-    "resposta_correcta": "Porque había pocos niños"
+    "resposta_correcta": "Porque había pocos niños",
+    "text": "Hace unos años, muchos pueblos de montaña se quedaron sin escuela porque había pocos niños. Ahora, algunas familias que trabajan desde casa se han instalado allí, y algunas escuelas rurales han vuelto a abrir sus puertas."
   },
   {
     "id": "6è_cas-6-5_q2",
@@ -10446,14 +10492,15 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Con el mismo texto: ¿por qué vuelven ahora algunas familias?",
+    "pregunta": "¿Por qué vuelven ahora algunas familias?",
     "opcions": [
       "Porque pueden trabajar desde casa",
       "Porque no hay ciudades",
       "Porque les gustan más las escuelas rurales sin motivo",
       "Porque es obligatorio"
     ],
-    "resposta_correcta": "Porque pueden trabajar desde casa"
+    "resposta_correcta": "Porque pueden trabajar desde casa",
+    "text": "Hace unos años, muchos pueblos de montaña se quedaron sin escuela porque había pocos niños. Ahora, algunas familias que trabajan desde casa se han instalado allí, y algunas escuelas rurales han vuelto a abrir sus puertas."
   },
   {
     "id": "6è_cas-6-5_q3",
@@ -10464,9 +10511,10 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Según el texto, algunas escuelas rurales han vuelto a abrir sus puertas.",
     "pregunta": "Según el texto, todas las escuelas rurales han cerrado definitivamente.",
-    "resposta_correcta": false
+    "resposta_correcta": false,
+    "text": "Hace unos años, muchos pueblos de montaña se quedaron sin escuela porque había pocos niños. Ahora, algunas familias que trabajan desde casa se han instalado allí, y algunas escuelas rurales han vuelto a abrir sus puertas."
   },
   {
     "id": "6è_cas-6-5_q4",
@@ -10485,7 +10533,8 @@ const QUESTIONS = [
       "Pueblos",
       "Escuelas"
     ],
-    "resposta_correcta": "Niños"
+    "resposta_correcta": "Niños",
+    "text": "Hace unos años, muchos pueblos de montaña se quedaron sin escuela porque había pocos niños. Ahora, algunas familias que trabajan desde casa se han instalado allí, y algunas escuelas rurales han vuelto a abrir sus puertas."
   },
   {
     "id": "6è_cas-6-5_q5",
@@ -10504,7 +10553,8 @@ const QUESTIONS = [
       "Cómo viajar a la montaña",
       "La historia de la escuela"
     ],
-    "resposta_correcta": "El regreso de la vida a los pueblos de montaña"
+    "resposta_correcta": "El regreso de la vida a los pueblos de montaña",
+    "text": "Hace unos años, muchos pueblos de montaña se quedaron sin escuela porque había pocos niños. Ahora, algunas familias que trabajan desde casa se han instalado allí, y algunas escuelas rurales han vuelto a abrir sus puertas."
   },
   {
     "id": "6è_cas-6-5_q6",
@@ -10515,9 +10565,10 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "El texto relaciona el teletrabajo con el regreso de familias a los pueblos rurales.",
     "pregunta": "Se puede deducir que el teletrabajo ha influido en la vida de algunos pueblos rurales.",
-    "resposta_correcta": true
+    "resposta_correcta": true,
+    "text": "Hace unos años, muchos pueblos de montaña se quedaron sin escuela porque había pocos niños. Ahora, algunas familias que trabajan desde casa se han instalado allí, y algunas escuelas rurales han vuelto a abrir sus puertas."
   },
   {
     "id": "5è_eng-5-1_q1",
@@ -10566,9 +10617,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "«Where do you live?» is a question about a place.",
-    "resposta_correcta": true
+    "explicacio": "«Where» asks about a place; «when» asks about time.",
+    "pregunta": "«Where do you live?» is a question about time.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_eng-5-1_q4",
@@ -10674,7 +10725,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "A park is an outdoor place where children can play.",
     "pregunta": "A «park» is a good place to play outdoors.",
     "resposta_correcta": true
   },
@@ -10793,9 +10844,9 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "We add «-s» to the verb with he/she/it in present simple.",
-    "resposta_correcta": true
+    "explicacio": "We add «-s» with he/she/it, not with I/you.",
+    "pregunta": "We add «-s» to the verb with I/you in present simple.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_eng-5-3_q4",
@@ -10861,14 +10912,15 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Read: «Tom lives in a small village with his family. Every morning he walks to school with his sister. After school, he likes to play with his dog in the garden.» Where does Tom live?",
+    "pregunta": "Where does Tom live?",
     "opcions": [
       "In a small village",
       "In a big city",
       "At school",
       "In the garden"
     ],
-    "resposta_correcta": "In a small village"
+    "resposta_correcta": "In a small village",
+    "text": "Tom lives in a small village with his family. Every morning he walks to school with his sister. After school, he likes to play with his dog in the garden."
   },
   {
     "id": "5è_eng-5-4_q2",
@@ -10880,14 +10932,15 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "With the same text: who does Tom walk to school with?",
+    "pregunta": "Who does Tom walk to school with?",
     "opcions": [
       "His sister",
       "His dog",
       "His teacher",
       "His grandfather"
     ],
-    "resposta_correcta": "His sister"
+    "resposta_correcta": "His sister",
+    "text": "Tom lives in a small village with his family. Every morning he walks to school with his sister. After school, he likes to play with his dog in the garden."
   },
   {
     "id": "5è_eng-5-4_q3",
@@ -10898,9 +10951,10 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "The text says Tom plays with his dog in the garden after school.",
     "pregunta": "According to the text, Tom plays with his dog after school.",
-    "resposta_correcta": true
+    "resposta_correcta": true,
+    "text": "Tom lives in a small village with his family. Every morning he walks to school with his sister. After school, he likes to play with his dog in the garden."
   },
   {
     "id": "5è_eng-5-4_q4",
@@ -10919,7 +10973,8 @@ const QUESTIONS = [
       "He goes by bus",
       "He goes by bike"
     ],
-    "resposta_correcta": "He walks"
+    "resposta_correcta": "He walks",
+    "text": "Tom lives in a small village with his family. Every morning he walks to school with his sister. After school, he likes to play with his dog in the garden."
   },
   {
     "id": "5è_eng-5-4_q5",
@@ -10938,7 +10993,8 @@ const QUESTIONS = [
       "In the village square",
       "At the library"
     ],
-    "resposta_correcta": "In the garden"
+    "resposta_correcta": "In the garden",
+    "text": "Tom lives in a small village with his family. Every morning he walks to school with his sister. After school, he likes to play with his dog in the garden."
   },
   {
     "id": "5è_eng-5-4_q6",
@@ -10949,9 +11005,10 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "We can guess that Tom likes animals.",
-    "resposta_correcta": true
+    "explicacio": "Tom plays with his dog every day, so he likes animals.",
+    "pregunta": "We can guess that Tom is afraid of animals.",
+    "resposta_correcta": false,
+    "text": "Tom lives in a small village with his family. Every morning he walks to school with his sister. After school, he likes to play with his dog in the garden."
   },
   {
     "id": "5è_eng-5-5_q1",
@@ -11000,7 +11057,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "English sentences always begin with a capital letter.",
     "pregunta": "Every sentence in English starts with a capital letter.",
     "resposta_correcta": true
   },
@@ -11108,9 +11165,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "«Cousin» means «cosí/cosina» in English.",
-    "resposta_correcta": true
+    "explicacio": "«Cousin» means «cosí/cosina»; «germà/germana» is «brother/sister».",
+    "pregunta": "«Cousin» means «germà/germana» in English.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_eng-6-1_q4",
@@ -11227,7 +11284,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Regular verbs form the past simple by adding «-ed», e.g. «played».",
     "pregunta": "Regular verbs usually add «-ed» in the past simple.",
     "resposta_correcta": true
   },
@@ -11332,7 +11389,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Using «please» and «thank you» is considered polite in English-speaking countries.",
     "pregunta": "Saying «please» and «thank you» is a sign of politeness in English-speaking countries.",
     "resposta_correcta": true
   },
@@ -11383,9 +11440,9 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Different countries can have different customs even if they speak the same language.",
-    "resposta_correcta": true
+    "explicacio": "Countries sharing a language can still have very different customs and traditions.",
+    "pregunta": "All countries that speak the same language always have exactly the same customs.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_eng-6-4_q1",
@@ -11397,14 +11454,15 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Read: «Last summer, Emma and her family travelled to a small island. They stayed in a wooden house near the beach. Every day, Emma swam in the sea and collected shells with her little brother. On the last day, she was sad to leave.» Where did Emma's family stay?",
+    "pregunta": "Where did Emma's family stay?",
     "opcions": [
       "In a wooden house near the beach",
       "In a big hotel",
       "At school",
       "In a city apartment"
     ],
-    "resposta_correcta": "In a wooden house near the beach"
+    "resposta_correcta": "In a wooden house near the beach",
+    "text": "Last summer, Emma and her family travelled to a small island. They stayed in a wooden house near the beach. Every day, Emma swam in the sea and collected shells with her little brother. On the last day, she was sad to leave."
   },
   {
     "id": "6è_eng-6-4_q2",
@@ -11416,14 +11474,15 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "With the same text: what did Emma do every day?",
+    "pregunta": "What did Emma do every day?",
     "opcions": [
       "She swam and collected shells",
       "She went to school",
       "She cooked dinner",
       "She read books all day"
     ],
-    "resposta_correcta": "She swam and collected shells"
+    "resposta_correcta": "She swam and collected shells",
+    "text": "Last summer, Emma and her family travelled to a small island. They stayed in a wooden house near the beach. Every day, Emma swam in the sea and collected shells with her little brother. On the last day, she was sad to leave."
   },
   {
     "id": "6è_eng-6-4_q3",
@@ -11434,9 +11493,10 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "The text says Emma collected shells with her little brother.",
     "pregunta": "According to the text, Emma travelled with her little brother.",
-    "resposta_correcta": true
+    "resposta_correcta": true,
+    "text": "Last summer, Emma and her family travelled to a small island. They stayed in a wooden house near the beach. Every day, Emma swam in the sea and collected shells with her little brother. On the last day, she was sad to leave."
   },
   {
     "id": "6è_eng-6-4_q4",
@@ -11455,7 +11515,8 @@ const QUESTIONS = [
       "Angry",
       "Bored"
     ],
-    "resposta_correcta": "Sad"
+    "resposta_correcta": "Sad",
+    "text": "Last summer, Emma and her family travelled to a small island. They stayed in a wooden house near the beach. Every day, Emma swam in the sea and collected shells with her little brother. On the last day, she was sad to leave."
   },
   {
     "id": "6è_eng-6-4_q5",
@@ -11474,7 +11535,8 @@ const QUESTIONS = [
       "She stayed at home",
       "She was alone"
     ],
-    "resposta_correcta": "She enjoyed it a lot"
+    "resposta_correcta": "She enjoyed it a lot",
+    "text": "Last summer, Emma and her family travelled to a small island. They stayed in a wooden house near the beach. Every day, Emma swam in the sea and collected shells with her little brother. On the last day, she was sad to leave."
   },
   {
     "id": "6è_eng-6-4_q6",
@@ -11485,9 +11547,10 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "The text takes place near the sea.",
-    "resposta_correcta": true
+    "explicacio": "Emma's family stayed in a wooden house near the beach, by the sea.",
+    "pregunta": "The text takes place in the mountains.",
+    "resposta_correcta": false,
+    "text": "Last summer, Emma and her family travelled to a small island. They stayed in a wooden house near the beach. Every day, Emma swam in the sea and collected shells with her little brother. On the last day, she was sad to leave."
   },
   {
     "id": "6è_eng-6-5_q1",
@@ -11536,7 +11599,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "A well-written paragraph usually focuses on a single main idea.",
     "pregunta": "A good paragraph usually talks about one main idea.",
     "resposta_correcta": true
   },
@@ -11647,9 +11710,9 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Un experiment amb control de variables canvia només una cosa cada vegada per veure el seu efecte.",
-    "resposta_correcta": true
+    "explicacio": "En un experiment amb control de variables, només es canvia una cosa cada vegada per saber quin n'és l'efecte.",
+    "pregunta": "Un experiment amb control de variables canvia totes les coses alhora per veure el seu efecte.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_nat-5-1_q4",
@@ -11698,7 +11761,7 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Comunicar els resultats permet compartir el coneixement obtingut en una investigació.",
     "pregunta": "Comunicar els resultats d'una investigació forma part del mètode científic.",
     "resposta_correcta": true
   },
@@ -11749,9 +11812,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Els descomponedors reciclen la matèria orgànica morta.",
-    "resposta_correcta": true
+    "explicacio": "Els descomponedors reciclen la matèria orgànica morta; els productors fabriquen el seu propi aliment.",
+    "pregunta": "Els descomponedors fabriquen el seu propi aliment mitjançant la fotosíntesi.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_nat-5-2_q4",
@@ -11868,7 +11931,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Les adaptacions permeten als éssers vius sobreviure millor al seu entorn.",
     "pregunta": "L'adaptació al medi ajuda els éssers vius a sobreviure al seu entorn.",
     "resposta_correcta": true
   },
@@ -11976,7 +12039,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "L'aparell excretor s'encarrega d'eliminar les substàncies de rebuig.",
     "pregunta": "L'aparell excretor elimina les substàncies de rebuig del cos.",
     "resposta_correcta": true
   },
@@ -12027,9 +12090,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Una alimentació saludable ha de ser variada i equilibrada.",
-    "resposta_correcta": true
+    "explicacio": "Una alimentació saludable ha de ser variada i equilibrada, amb aliments de tots els grups.",
+    "pregunta": "Una alimentació saludable ha de basar-se en un sol tipus d'aliment.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_nat-5-5_q1",
@@ -12078,7 +12141,7 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "En una mescla homogènia no es poden distingir a simple vista els seus components.",
     "pregunta": "Una mescla homogènia té els seus components barrejats de manera uniforme, sense distingir-los.",
     "resposta_correcta": true
   },
@@ -12186,7 +12249,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Un interruptor serveix per obrir o tancar el pas del corrent elèctric en un circuit.",
     "pregunta": "Un interruptor permet obrir o tancar un circuit elèctric.",
     "resposta_correcta": true
   },
@@ -12237,9 +12300,9 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "L'electricitat es pot transformar en llum, en moviment o en calor.",
-    "resposta_correcta": true
+    "explicacio": "L'electricitat es pot transformar en llum, moviment o calor, entre altres formes d'energia.",
+    "pregunta": "L'electricitat només es pot transformar en so, mai en llum ni calor.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_nat-6-2_q1",
@@ -12288,9 +12351,9 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Una força de contacte necessita que dos objectes es toquin, com un cop d'empènyer.",
-    "resposta_correcta": true
+    "explicacio": "Una força de contacte, com una empenta, necessita que els objectes es toquin.",
+    "pregunta": "Una força de contacte actua sense que els objectes es toquin mai.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_nat-6-2_q4",
@@ -12396,7 +12459,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "L'exercici físic regular contribueix a una vida saludable.",
     "pregunta": "Fer exercici físic regularment és un hàbit saludable.",
     "resposta_correcta": true
   },
@@ -12447,7 +12510,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Una dieta saludable combina aliments variats de tots els grups alimentaris.",
     "pregunta": "Una alimentació saludable inclou aliments variats de tots els grups.",
     "resposta_correcta": true
   },
@@ -12498,9 +12561,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "L'etiqueta digital inclou tractar les altres persones amb respecte a internet.",
-    "resposta_correcta": true
+    "explicacio": "L'etiqueta digital inclou tractar les altres persones amb respecte també a internet.",
+    "pregunta": "L'etiqueta digital permet insultar altres persones sense cap problema a internet.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_nat-6-4_q4",
@@ -12549,7 +12612,7 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "El procés de disseny inclou provar i millorar el prototip tantes vegades com calgui.",
     "pregunta": "Provar i millorar un prototip diverses vegades forma part del procés de disseny.",
     "resposta_correcta": true
   },
@@ -12600,7 +12663,7 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Les energies no renovables, com el petroli o el carbó, triguen milions d'anys a formar-se.",
     "pregunta": "Les energies no renovables es poden esgotar perquè triguen milions d'anys a formar-se.",
     "resposta_correcta": true
   },
@@ -12651,9 +12714,9 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Estalviar energia a casa contribueix a un desenvolupament més sostenible.",
-    "resposta_correcta": true
+    "explicacio": "Estalviar energia a casa ajuda a reduir l'impacte ambiental i contribueix a la sostenibilitat.",
+    "pregunta": "Malgastar energia a casa no té cap efecte sobre el medi ambient.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_soc-5-1_q1",
@@ -12702,9 +12765,9 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "L'erosió és un procés pel qual l'aigua, el vent o el gel desgasten el relleu.",
-    "resposta_correcta": true
+    "explicacio": "L'erosió desgasta el relleu per l'acció de l'aigua, el vent o el gel.",
+    "pregunta": "L'erosió és un procés pel qual el relleu creix cada vegada més sense cap desgast.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_soc-5-1_q4",
@@ -12753,7 +12816,7 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Agents com l'aigua, el vent i els éssers vius transformen els paisatges amb el temps.",
     "pregunta": "Els paisatges canvien amb el temps per l'acció combinada de diversos agents naturals.",
     "resposta_correcta": true
   },
@@ -12804,7 +12867,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Avui dia es fan servir eines digitals per representar gràficament dades meteorològiques.",
     "pregunta": "Les eines digitals també permeten representar dades meteorològiques.",
     "resposta_correcta": true
   },
@@ -12855,9 +12918,9 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Analitzar dades meteorològiques ajuda a entendre millor el canvi climàtic.",
-    "resposta_correcta": true
+    "explicacio": "Analitzar dades meteorològiques al llarg del temps ajuda a detectar canvis en el clima.",
+    "pregunta": "Analitzar dades meteorològiques no té cap relació amb el canvi climàtic.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_soc-5-3_q1",
@@ -12888,7 +12951,7 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quantes comunitats autònomes formen l'Estat espanyol aproximadament?",
+    "pregunta": "Quantes comunitats autònomes formen l'Estat espanyol?",
     "opcions": [
       "17",
       "5",
@@ -12906,9 +12969,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Catalunya és una comunitat autònoma de l'Estat espanyol.",
-    "resposta_correcta": true
+    "explicacio": "Catalunya és una comunitat autònoma dins l'Estat espanyol.",
+    "pregunta": "Catalunya és un país independent fora de l'Estat espanyol.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_soc-5-3_q4",
@@ -12957,7 +13020,7 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "L'organització política estableix qui i com es prenen les decisions que afecten tothom.",
     "pregunta": "L'organització política d'un territori determina com es prenen les decisions col·lectives.",
     "resposta_correcta": true
   },
@@ -13008,7 +13071,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Un eix cronològic representa gràficament l'ordre temporal dels fets històrics.",
     "pregunta": "Un eix cronològic serveix per ordenar fets històrics en el temps.",
     "resposta_correcta": true
   },
@@ -13059,9 +13122,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "El patrimoni natural i cultural mereix ser conservat i valorat.",
-    "resposta_correcta": true
+    "explicacio": "El patrimoni natural i cultural mereix ser conservat i valorat per a les generacions futures.",
+    "pregunta": "El patrimoni natural i cultural no té cap valor i es pot destruir sense problema.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_soc-5-5_q1",
@@ -13110,9 +13173,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Respectar els senyals i les normes de circulació ajuda a la seguretat de tothom.",
-    "resposta_correcta": true
+    "explicacio": "Respectar les normes de circulació ajuda a la seguretat de conductors i vianants per igual.",
+    "pregunta": "Respectar els senyals i les normes de circulació només beneficia els conductors, no els vianants.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_soc-5-5_q4",
@@ -13161,7 +13224,7 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "A Catalunya i a l'Estat espanyol hi conviuen diverses llengües i cultures.",
     "pregunta": "A Catalunya i a l'Estat espanyol conviuen diverses llengües i cultures.",
     "resposta_correcta": true
   },
@@ -13212,9 +13275,9 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Els ODS busquen un equilibri entre desenvolupament econòmic, social i ambiental.",
-    "resposta_correcta": true
+    "explicacio": "Els ODS busquen un equilibri entre desenvolupament econòmic, social i ambiental.",
+    "pregunta": "Els ODS busquen únicament el creixement econòmic, sense tenir en compte el medi ambient.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_soc-6-1_q4",
@@ -13263,7 +13326,7 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Cada persona, amb petites accions, pot contribuir a assolir els ODS.",
     "pregunta": "Cada persona pot contribuir, encara que sigui a petita escala, a assolir els ODS.",
     "resposta_correcta": true
   },
@@ -13314,7 +13377,7 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "La instauració de la democràcia a Espanya el 1978 va respondre a diverses causes i factors.",
     "pregunta": "La instauració de la democràcia a Espanya va ser un procés amb diverses causes.",
     "resposta_correcta": true
   },
@@ -13365,9 +13428,9 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Analitzar les causes d'un procés històric implica considerar diversos factors, no només un.",
-    "resposta_correcta": true
+    "explicacio": "Analitzar un procés històric implica considerar diversos factors i causes, no només un.",
+    "pregunta": "Analitzar un procés històric només requereix tenir en compte una única causa.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_soc-6-3_q1",
@@ -13416,9 +13479,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Reduir el consum d'energia i reciclar són mesures per mitigar el canvi climàtic.",
-    "resposta_correcta": true
+    "explicacio": "Reduir el consum d'energia i reciclar són mesures que ajuden a mitigar el canvi climàtic.",
+    "pregunta": "Augmentar el consum d'energia i no reciclar són mesures per mitigar el canvi climàtic.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_soc-6-3_q4",
@@ -13467,9 +13530,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "El canvi climàtic té efectes tant a escala local com global.",
-    "resposta_correcta": true
+    "explicacio": "El canvi climàtic té efectes tant a escala local com global.",
+    "pregunta": "El canvi climàtic només té efectes a escala local, mai global.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_soc-6-4_q1",
@@ -13518,9 +13581,9 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Les institucions de la Unió Europea prenen decisions que afecten diversos països.",
-    "resposta_correcta": true
+    "explicacio": "Les institucions de la Unió Europea prenen decisions que afecten el conjunt de països membres.",
+    "pregunta": "Les institucions de la Unió Europea només prenen decisions que afecten un sol país.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_soc-6-4_q4",
@@ -13569,7 +13632,7 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Formar part d'institucions internacionals pot afavorir la cohesió i la col·laboració entre països.",
     "pregunta": "Formar part d'institucions internacionals pot afavorir la cohesió social.",
     "resposta_correcta": true
   },
@@ -13620,9 +13683,9 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Les empreses també poden tenir responsabilitat ambiental i social.",
-    "resposta_correcta": true
+    "explicacio": "Les empreses també poden i han de tenir responsabilitat ambiental i social.",
+    "pregunta": "Les empreses no tenen cap responsabilitat ambiental ni social.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_soc-6-5_q4",
@@ -13671,7 +13734,7 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Els impostos financen serveis públics com escoles, hospitals o carreteres.",
     "pregunta": "Pagar impostos contribueix al manteniment de serveis que beneficien tota la societat.",
     "resposta_correcta": true
   }

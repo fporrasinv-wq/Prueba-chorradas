@@ -545,7 +545,7 @@ function checkMatchCompletion(q, ms) {
       session.correctCount += 1;
       session.xp += 10;
     } else {
-      session.mistakes.push({ question: q.pregunta, correctText: correctAnswerText(q) });
+      session.mistakes.push({ question: q.pregunta, correctText: correctAnswerText(q), text: q.text });
     }
   }
 }
@@ -582,7 +582,7 @@ function checkAnswer() {
     playCorrect();
   } else {
     session.hearts = Math.max(0, session.hearts - 1);
-    session.mistakes.push({ question: q.pregunta, correctText: correctAnswerText(q) });
+    session.mistakes.push({ question: q.pregunta, correctText: correctAnswerText(q), text: q.text });
     playWrong();
   }
   render();
@@ -942,6 +942,7 @@ function renderLesson() {
 
   const qArea = el("div", { class: "question-area" });
   qArea.appendChild(el("div", { class: "q-kicker" }, `Pregunta ${session.idx + 1} de ${total}`));
+  if (q.text) qArea.appendChild(el("div", { class: "text-card" }, q.text));
   qArea.appendChild(el("div", { class: "q-text pop" }, q.pregunta));
 
   if (q.tipus === "test") {
@@ -1091,7 +1092,8 @@ function renderBottomBar() {
   const inner = el("div", { class: "bottom-bar-inner" }, [
     el("div", { class: "feedback-text" }, [
       el("div", { class: `feedback-title ${ok ? "ok" : "bad"}` }, ok ? "🤖 Molt bé! 🎉" : "🤖 Ui, no és correcte 😕"),
-      ok ? null : el("div", { class: "feedback-sub" }, `Resposta correcta: ${correctAnswerText(q)}`)
+      ok ? null : el("div", { class: "feedback-sub" }, `Resposta correcta: ${correctAnswerText(q)}`),
+      q.explicacio ? el("div", { class: "feedback-explain" }, `💡 ${q.explicacio}`) : null
     ]),
     el("button", { class: `btn ${ok ? "btn-primary" : "btn-danger"}`, onclick: nextQuestion }, "Continua")
   ]);
@@ -1132,7 +1134,13 @@ function renderResults() {
   if (session.mistakes.length > 0) {
     const box = el("div", { class: "mistakes-box" }, [el("h3", {}, "🤖 Repassa els errors")]);
     session.mistakes.forEach((m) => {
-      box.appendChild(el("div", { class: "mistake-item" }, [el("div", { class: "mq" }, m.question), el("div", { class: "ma" }, `✔ ${m.correctText}`)]));
+      box.appendChild(
+        el("div", { class: "mistake-item" }, [
+          m.text ? el("div", { class: "text-card text-card-small" }, m.text) : null,
+          el("div", { class: "mq" }, m.question),
+          el("div", { class: "ma" }, `✔ ${m.correctText}`)
+        ])
+      );
     });
     wrap.appendChild(box);
   }
