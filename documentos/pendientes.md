@@ -30,6 +30,13 @@
 - [x] Textos de comprensión lectora repetidos/referenciados con "amb el mateix text" — extraídos a un campo `text` propio por pregunta; el motor los muestra en una tarjeta encima del enunciado y también en el repaso de preguntas falladas
 - [x] Carpeta `docs/` renombrada a `documentos/` (no existía ninguna carpeta `documentos` previa en el repo; `docs/` se había creado por error de nomenclatura en la Sesión 3)
 
+## Resuelto — Sesión 6 (segunda ronda de auditoría de contenido)
+- [x] 29 preguntas `veritat_fals` falsas se delataban por palabras absolutas (sempre, mai, només, cap, totes, solo, nunca, only, never...) — reescritas con un dato concreto y plausible en vez de la palabra absoluta; además se encontraron y corrigieron 4 casos más con el mismo problema que no estaban en la lista original. Verificado con script: 0/72 V/F falsas contienen palabras absolutas
+- [x] `6è_mat-6-5_q4` comparaba dos objetos distintos (moneda y dado) en la misma V/F — reescrita para comparar dos caras del mismo dado
+- [x] `6è_eng-6-1_q4`/`q2`, `4t_nat-3_q3`, `4t_soc-5` (q1 y q8): correcciones puntuales de enunciado/opciones/parelles, incluyendo eliminar toda mención al inexistente "sector quaternari" en 4t
+- [x] 23 preguntas test con distractores "absurdos" (p. ex. "perquè no serveix de res", "sense cap motiu") sustituidos por errores típicos de alumno (concretos y plausibles pero claramente falsos); 3 de las 23 ya tenían distractores plausibles y se dejaron sin cambios
+- [x] Al cambiar la pareja de `4t_soc-5_q8` se detectó un bug real de diseño: dos parelles con el mismo texto a la derecha ("Sector terciari" repetido) hacían el ejercicio ambiguo para el jugador y rompían el test de regresión (bucle infinito de emparellament) — resuelto diferenciando el texto de las parelles de "Sector primari" (pesca / agricultura) en vez de duplicar "Sector terciari". Auditados los otros 35 ejercicios `emparellar` del banco: ninguno más tiene este problema
+
 ## Pendiente de aplicar la misma auditoría/criterio al resto
 - `explicacio` solo está poblado para las preguntas tipo `veritat_fals` (147/147); el resto de tipos (test, resposta_escrita, ordenar, emparellar) sigue con el campo vacío
 - El campo `dificultat` de 1r/4t sigue siendo posicional, no pedagógico (ver más arriba) — no se ha tocado en esta sesión

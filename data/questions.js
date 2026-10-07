@@ -6447,7 +6447,7 @@ const QUESTIONS = [
       "el sector primari",
       "el sector secundari",
       "el sector terciari",
-      "el sector quaternari"
+      "el sector agrari"
     ],
     "resposta_correcta": "el sector primari"
   },
@@ -6573,7 +6573,7 @@ const QUESTIONS = [
     "parelles": [
       {
         "a": "Pescar",
-        "b": "Sector primari"
+        "b": "Sector primari (pesca)"
       },
       {
         "a": "Fabricar cotxes",
@@ -6584,8 +6584,8 @@ const QUESTIONS = [
         "b": "Sector terciari"
       },
       {
-        "a": "Investigar noves tecnologies",
-        "b": "Sector quaternari"
+        "a": "Conrear la terra",
+        "b": "Sector primari (agricultura)"
       }
     ]
   },
@@ -6941,12 +6941,12 @@ const QUESTIONS = [
     "explicacio": "",
     "pregunta": "Com s'anomenen els animals que es mengen altres animals?",
     "opcions": [
-      "consumidors",
+      "carnívors",
+      "herbívors",
       "productors",
-      "descomponedors",
-      "cap dels anteriors"
+      "descomponedors"
     ],
-    "resposta_correcta": "consumidors"
+    "resposta_correcta": "carnívors"
   },
   {
     "id": "4t_nat-3_q4",
@@ -7012,9 +7012,9 @@ const QUESTIONS = [
     "pregunta": "Per què és important protegir la biodiversitat?",
     "opcions": [
       "perquè manté l'equilibri dels ecosistemes",
-      "perquè no serveix de res",
+      "perquè així hi ha més espai per construir cases",
       "només per motius estètics",
-      "perquè així hi ha més contaminació"
+      "perquè així es poden caçar més animals"
     ],
     "resposta_correcta": "perquè manté l'equilibri dels ecosistemes"
   },
@@ -8361,9 +8361,9 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "La probabilitat de cara és 1/2, mentre que la de treure un 6 és només 1/6.",
-    "pregunta": "És més probable que surti cara que un 6 en llançar un dau normal.",
-    "resposta_correcta": true
+    "explicacio": "Tots els nombres del dau tenen la mateixa probabilitat, 1 entre 6.",
+    "pregunta": "En llançar un dau normal, és més probable que surti un 6 que un 3.",
+    "resposta_correcta": false
   },
   {
     "id": "6è_mat-6-5_q5",
@@ -9322,7 +9322,7 @@ const QUESTIONS = [
     "opcions": [
       "Buscar informació en diverses fonts fiables",
       "Copiar el primer resultat que trobis",
-      "No buscar cap informació",
+      "Preguntar-ho directament al professor sense buscar per tu mateix",
       "Inventar-te les dades"
     ],
     "resposta_correcta": "Buscar informació en diverses fonts fiables"
@@ -9359,9 +9359,9 @@ const QUESTIONS = [
     "pregunta": "On pots buscar informació fiable per a un treball escolar, a part d'internet?",
     "opcions": [
       "A la biblioteca",
-      "Enlloc més",
+      "Només als llibres de text de l'escola",
       "Només preguntant a amics",
-      "Inventant-la"
+      "Preguntant-ho als germans grans"
     ],
     "resposta_correcta": "A la biblioteca"
   },
@@ -9411,9 +9411,9 @@ const QUESTIONS = [
     "pregunta": "Per què hi tornen ara algunes famílies?",
     "opcions": [
       "Perquè poden treballar des de casa",
-      "Perquè no hi ha ciutats",
-      "Perquè els agraden més les escoles rurals sense motiu",
-      "Perquè és obligatori"
+      "Perquè els pisos de ciutat s'han fet molt cars",
+      "Perquè volen allunyar-se dels amics de la ciutat",
+      "Perquè el poble els obliga a viure-hi"
     ],
     "resposta_correcta": "Perquè poden treballar des de casa",
     "text": "Fa uns anys, molts pobles de muntanya es van quedar sense escola perquè hi havia pocs infants. Ara, algunes famílies que treballen des de casa s'hi han instal·lat, i algunes escoles rurals han tornat a obrir les portes."
@@ -10406,7 +10406,7 @@ const QUESTIONS = [
     "opcions": [
       "Buscar información en varias fuentes fiables",
       "Copiar el primer resultado que encuentres",
-      "No buscar ninguna información",
+      "Preguntárselo directamente al profesor sin buscar por tu cuenta",
       "Inventarte los datos"
     ],
     "resposta_correcta": "Buscar información en varias fuentes fiables"
@@ -11152,7 +11152,7 @@ const QUESTIONS = [
       "friend",
       "enemy",
       "stranger",
-      "teacher"
+      "neighbour"
     ],
     "resposta_correcta": "friend"
   },
@@ -11179,14 +11179,14 @@ const QUESTIONS = [
     "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Complete: «We ___ friends since we were five.»",
+    "pregunta": "Complete: «We ___ friends at school.»",
     "opcions": [
-      "have been",
-      "are being",
-      "was",
+      "are",
+      "is",
+      "am",
       "be"
     ],
-    "resposta_correcta": "have been"
+    "resposta_correcta": "are"
   },
   {
     "id": "6è_eng-6-1_q5",
@@ -11986,9 +11986,9 @@ const QUESTIONS = [
     "pregunta": "Per què els éssers vius es classifiquen en subgrups?",
     "opcions": [
       "Per entendre millor les seves semblances i diferències",
-      "Perquè sí, sense cap motiu",
-      "Per fer-los més bonics",
-      "Per canviar-los de lloc"
+      "Per ordenar-los alfabèticament pel seu nom",
+      "Per saber on viuen exactament cada dia",
+      "Per saber quants n'hi ha de cada espècie"
     ],
     "resposta_correcta": "Per entendre millor les seves semblances i diferències"
   },
@@ -12444,9 +12444,9 @@ const QUESTIONS = [
     "pregunta": "Per què és important beure aigua cada dia?",
     "opcions": [
       "Per mantenir el cos hidratat",
-      "Perquè sí, sense motiu",
+      "Per tenir més gana",
       "Per engreixar",
-      "No cal beure aigua"
+      "Només cal beure aigua quan fa molta calor"
     ],
     "resposta_correcta": "Per mantenir el cos hidratat"
   },
@@ -12497,7 +12497,7 @@ const QUESTIONS = [
       "Entre 9 i 11 hores",
       "Entre 2 i 3 hores",
       "Entre 15 i 18 hores",
-      "No cal dormir"
+      "Entre 5 i 6 hores"
     ],
     "resposta_correcta": "Entre 9 i 11 hores"
   },
@@ -12529,7 +12529,7 @@ const QUESTIONS = [
       "Una sèrie de passos ordenats per resoldre un problema",
       "Un tipus de virus informàtic",
       "Un aparell electrònic",
-      "Un joc d'ordinador"
+      "Un llenguatge de programació"
     ],
     "resposta_correcta": "Una sèrie de passos ordenats per resoldre un problema"
   },
@@ -12680,9 +12680,9 @@ const QUESTIONS = [
     "pregunta": "Per què és important utilitzar fonts d'energia renovables?",
     "opcions": [
       "Perquè contaminen menys i no s'esgoten",
-      "Perquè són més cares sempre",
-      "Perquè no serveixen per a res",
-      "Perquè són il·legals"
+      "Perquè són més barates de construir que les centrals de carbó",
+      "Perquè generen més electricitat que qualsevol altra font",
+      "Perquè no necessiten manteniment"
     ],
     "resposta_correcta": "Perquè contaminen menys i no s'esgoten"
   },
@@ -12903,9 +12903,9 @@ const QUESTIONS = [
     "pregunta": "Per què és útil registrar dades meteorològiques al llarg del temps?",
     "opcions": [
       "Per identificar patrons i canvis del clima",
-      "Per decorar la classe",
-      "Perquè no serveix de res",
-      "Per jugar únicament"
+      "Per saber si demà plourà o no",
+      "Per decidir la roba que cal portar aquell dia",
+      "Per comparar quin país té el clima més bonic"
     ],
     "resposta_correcta": "Per identificar patrons i canvis del clima"
   },
@@ -13396,7 +13396,7 @@ const QUESTIONS = [
       "Perquè també van formar part dels canvis històrics, encara que se'ls citi menys",
       "Perquè no van fer res important",
       "Perquè només els reis importen",
-      "No té cap interès"
+      "Perquè així resulta més fàcil memoritzar dates i noms"
     ],
     "resposta_correcta": "Perquè també van formar part dels canvis històrics, encara que se'ls citi menys"
   },
@@ -13446,8 +13446,8 @@ const QUESTIONS = [
     "opcions": [
       "L'emissió de gasos d'efecte hivernacle per activitats humanes",
       "Els volcans extingits",
-      "La lluna",
-      "La música"
+      "Les erupcions solars d'aquest segle",
+      "La posició del Sol respecte la Terra"
     ],
     "resposta_correcta": "L'emissió de gasos d'efecte hivernacle per activitats humanes"
   },
@@ -13466,7 +13466,7 @@ const QUESTIONS = [
       "L'augment de fenòmens meteorològics extrems",
       "Menys contaminació automàticament",
       "Més glaceres cada any",
-      "Cap conseqüència"
+      "Un clima més estable i previsible"
     ],
     "resposta_correcta": "L'augment de fenòmens meteorològics extrems"
   },
@@ -13498,7 +13498,7 @@ const QUESTIONS = [
       "Una mesura de l'impacte ambiental que genera una persona o activitat",
       "Una empremta física a la sorra",
       "Un tipus de sabata",
-      "Un joc infantil"
+      "Un tipus de mapa que mostra onades de calor"
     ],
     "resposta_correcta": "Una mesura de l'impacte ambiental que genera una persona o activitat"
   },
@@ -13600,7 +13600,7 @@ const QUESTIONS = [
       "Per afavorir la cooperació entre països en temes comuns",
       "Per eliminar tots els països membres",
       "Per impedir el comerç",
-      "Sense cap motiu"
+      "Per cobrar impostos més alts a cada país"
     ],
     "resposta_correcta": "Per afavorir la cooperació entre països en temes comuns"
   },
@@ -13649,9 +13649,9 @@ const QUESTIONS = [
     "pregunta": "Què és el consum responsable?",
     "opcions": [
       "Comprar tenint en compte l'impacte social i ambiental de les nostres decisions",
-      "Comprar sempre el més car",
+      "Comprar el producte més car pensant que és millor",
       "Comprar sense pensar-hi",
-      "No comprar mai res"
+      "Triar els productes més barats, sense mirar-ne l'origen"
     ],
     "resposta_correcta": "Comprar tenint en compte l'impacte social i ambiental de les nostres decisions"
   },
@@ -13669,7 +13669,7 @@ const QUESTIONS = [
     "opcions": [
       "Per finançar serveis públics com escoles, hospitals o carreteres",
       "Només per enriquir alguns pocs",
-      "No serveixen per a res",
+      "Per pagar la publicitat de les empreses privades",
       "Per pagar vacances privades"
     ],
     "resposta_correcta": "Per finançar serveis públics com escoles, hospitals o carreteres"
@@ -13700,9 +13700,9 @@ const QUESTIONS = [
     "pregunta": "Què estudia el funcionament del mercat laboral?",
     "opcions": [
       "Com es genera i es distribueix la feina i els salaris",
-      "Només els preus de la fruita",
-      "Només els cotxes",
-      "Res relacionat amb l'economia"
+      "Com es fixen els preus dels aliments al mercat",
+      "Com es fabriquen els cotxes a les fàbriques",
+      "Quins productes es venen als mercats municipals"
     ],
     "resposta_correcta": "Com es genera i es distribueix la feina i els salaris"
   },
@@ -13719,9 +13719,9 @@ const QUESTIONS = [
     "pregunta": "Quina és una conseqüència d'una distribució molt desigual de la riquesa?",
     "opcions": [
       "Més desigualtats socials",
-      "Menys desigualtats automàticament",
-      "Cap conseqüència",
-      "Més igualtat sempre"
+      "Menys desigualtats amb el temps",
+      "Un augment del PIB general del país",
+      "Una disminució de la pobresa extrema"
     ],
     "resposta_correcta": "Més desigualtats socials"
   },
