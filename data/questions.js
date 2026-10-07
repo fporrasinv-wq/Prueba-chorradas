@@ -3143,8 +3143,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "El residu sempre ha de ser més petit que el divisor; si no, encara es podria dividir més.",
-    "pregunta": "En una divisió, el residu ha de ser sempre més gran que el divisor.",
+    "explicacio": "El residu ha de ser més petit que el divisor, no el doble ni més gran.",
+    "pregunta": "En una divisió, el residu ha de ser el doble del divisor.",
     "resposta_correcta": false
   },
   {
@@ -3719,8 +3719,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Només porten accent gràfic les paraules que ho necessiten segons les regles d'accentuació.",
-    "pregunta": "Totes les paraules catalanes porten accent gràfic.",
+    "explicacio": "Només porten accent gràfic les paraules que ho necessiten segons les regles d'accentuació, no segons el nombre de síl·labes.",
+    "pregunta": "Les paraules catalanes porten accent gràfic quan tenen més de cinc síl·labes.",
     "resposta_correcta": false
   },
   {
@@ -4934,8 +4934,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "En español se usan los signos de interrogación al principio (¿) y al final (?) de la pregunta.",
-    "pregunta": "En español, las preguntas llevan signo de interrogación solo al final.",
+    "explicacio": "En español se escribe «¿» al principio de la pregunta y «?» al final, no al revés.",
+    "pregunta": "En español, las preguntas llevan el signo «?» al principio y el signo «¿» al final.",
     "resposta_correcta": false
   },
   {
@@ -7756,8 +7756,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Un quadrat és un rectangle especial amb els quatre costats iguals; un triangle té tres costats.",
-    "pregunta": "Un quadrat és un triangle amb tots els costats iguals.",
+    "explicacio": "Un quadrat té quatre costats iguals, no cinc.",
+    "pregunta": "Un quadrat té cinc costats iguals.",
     "resposta_correcta": false
   },
   {
@@ -7960,8 +7960,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Per sumar decimals correctament cal alinear la coma de cada nombre.",
-    "pregunta": "Per sumar decimals cal alinear sempre la primera xifra per l'esquerra, ignorant la coma.",
+    "explicacio": "Per sumar decimals cal alinear la coma de cada número exactament, sense moure-la.",
+    "pregunta": "Per sumar decimals cal moure la coma dues posicions a la dreta.",
     "resposta_correcta": false
   },
   {
@@ -8677,8 +8677,8 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Un adverbi pot modificar un verb (p. ex. «corre ràpidament»), un adjectiu o un altre adverbi.",
-    "pregunta": "Un adverbi pot modificar només un altre adverbi, mai un verb.",
+    "explicacio": "Un adverbi és invariable: no canvia de gènere ni nombre, a diferència de l'adjectiu.",
+    "pregunta": "Un adverbi concorda en gènere i nombre amb el nom que acompanya.",
     "resposta_correcta": false
   },
   {
@@ -8787,8 +8787,8 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Segons el text, el llibre recomanat té moltes fotografies.",
-    "pregunta": "Segons el text, el llibre recomanat no té cap fotografia.",
+    "explicacio": "Segons el text, la bibliotecària li va recomanar un llibre sobre volcans, no sobre dinosaures.",
+    "pregunta": "Segons el text, la bibliotecària li va recomanar un llibre sobre dinosaures.",
     "resposta_correcta": false,
     "text": "La Marta va anar a la biblioteca del poble per buscar un llibre sobre volcans. La bibliotecària li va recomanar un llibre amb moltes fotografies i li va explicar que els volcans expulsen lava molt calenta."
   },
@@ -8944,8 +8944,8 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "El to de veu i els gestos també comuniquen informació, a més de les paraules.",
-    "pregunta": "Només les paraules comuniquen informació; el to de veu i els gestos no hi afegeixen res.",
+    "explicacio": "El to de veu i els gestos són comunicació no verbal, no comunicació escrita.",
+    "pregunta": "El to de veu i els gestos són un tipus de comunicació escrita.",
     "resposta_correcta": false
   },
   {
@@ -8995,8 +8995,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Una frase declarativa informa d'alguna cosa; una frase interrogativa fa una pregunta.",
-    "pregunta": "Una frase declarativa sempre fa una pregunta.",
+    "explicacio": "Una frase declarativa informa d'alguna cosa i acaba amb un punt; la interrogativa porta signe d'interrogació.",
+    "pregunta": "Una frase declarativa porta un signe d'interrogació al final.",
     "resposta_correcta": false
   },
   {
@@ -9272,8 +9272,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Un vocabulari ric i variat millora la qualitat d'un text narratiu.",
-    "pregunta": "Repetir sempre les mateixes paraules millora un text narratiu.",
+    "explicacio": "Un vocabulari ric i variat millora la qualitat d'un text narratiu, no la longitud de les paraules.",
+    "pregunta": "Fer servir paraules més curtes millora un text narratiu.",
     "resposta_correcta": false
   },
   {
@@ -9304,8 +9304,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "No totes les pàgines web tenen informació fiable; cal comprovar-ne l'autoria.",
-    "pregunta": "Totes les pàgines web tenen sempre informació fiable.",
+    "explicacio": "La fiabilitat d'una pàgina web depèn de l'autoria i les fonts, no de l'extensió del domini.",
+    "pregunta": "Les pàgines que acaben en «.com» són més fiables que les que acaben en «.org».",
     "resposta_correcta": false
   },
   {
@@ -9427,8 +9427,8 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Segons el text, algunes escoles rurals han tornat a obrir les portes.",
-    "pregunta": "Segons el text, totes les escoles rurals han tancat definitivament.",
+    "explicacio": "Segons el text, les famílies que s'hi han instal·lat treballen des de casa, no hi van de vacances.",
+    "pregunta": "Segons el text, les famílies que s'han instal·lat als pobles de muntanya hi van a passar les vacances d'estiu.",
     "resposta_correcta": false,
     "text": "Fa uns anys, molts pobles de muntanya es van quedar sense escola perquè hi havia pocs infants. Ara, algunes famílies que treballen des de casa s'hi han instal·lat, i algunes escoles rurals han tornat a obrir les portes."
   },
@@ -9760,8 +9760,8 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Un adverbio puede modificar a un verbo (p. ej. «corre rápidamente»), a un adjetivo o a otro adverbio.",
-    "pregunta": "Un adverbio solo puede modificar a otro adverbio, nunca a un verbo.",
+    "explicacio": "Un adverbio es invariable: no cambia de género ni número, a diferencia del adjetivo.",
+    "pregunta": "Un adverbio concuerda en género y número con el nombre que acompaña.",
     "resposta_correcta": false
   },
   {
@@ -10028,8 +10028,8 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "El tono de voz y los gestos también comunican información, además de las palabras.",
-    "pregunta": "Solo las palabras comunican información; el tono de voz y los gestos no añaden nada.",
+    "explicacio": "El tono de voz y los gestos son comunicación no verbal, no comunicación escrita.",
+    "pregunta": "El tono de voz y los gestos son un tipo de comunicación escrita.",
     "resposta_correcta": false
   },
   {
@@ -10079,8 +10079,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Una frase declarativa informa de algo; una frase interrogativa hace una pregunta.",
-    "pregunta": "Una frase declarativa siempre hace una pregunta.",
+    "explicacio": "Una frase declarativa informa de algo y termina con un punto; la interrogativa lleva signo de interrogación.",
+    "pregunta": "Una frase declarativa lleva signo de interrogación al final.",
     "resposta_correcta": false
   },
   {
@@ -10356,8 +10356,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Un vocabulario rico y variado mejora la calidad de un texto narrativo.",
-    "pregunta": "Repetir siempre las mismas palabras mejora un texto narrativo.",
+    "explicacio": "Un vocabulario rico y variado mejora la calidad de un texto narrativo, no la longitud de las palabras.",
+    "pregunta": "Usar palabras más cortas mejora un texto narrativo.",
     "resposta_correcta": false
   },
   {
@@ -10388,8 +10388,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "No todas las páginas web tienen información fiable; hay que comprobar su autoría.",
-    "pregunta": "Todas las páginas web tienen siempre información fiable.",
+    "explicacio": "La fiabilidad de una página web depende de la autoría y las fuentes, no de la extensión del dominio.",
+    "pregunta": "Las páginas que terminan en «.com» son más fiables que las que terminan en «.org».",
     "resposta_correcta": false
   },
   {
@@ -10511,8 +10511,8 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Según el texto, algunas escuelas rurales han vuelto a abrir sus puertas.",
-    "pregunta": "Según el texto, todas las escuelas rurales han cerrado definitivamente.",
+    "explicacio": "Según el texto, las familias que se han instalado allí trabajan desde casa, no van de vacaciones.",
+    "pregunta": "Según el texto, las familias que se han instalado en los pueblos de montaña van a pasar las vacaciones de verano.",
     "resposta_correcta": false,
     "text": "Hace unos años, muchos pueblos de montaña se quedaron sin escuela porque había pocos niños. Ahora, algunas familias que trabajan desde casa se han instalado allí, y algunas escuelas rurales han vuelto a abrir sus puertas."
   },
@@ -11440,8 +11440,8 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Countries sharing a language can still have very different customs and traditions.",
-    "pregunta": "All countries that speak the same language always have exactly the same customs.",
+    "explicacio": "Countries sharing a language can still use different currencies (e.g. the UK and the USA).",
+    "pregunta": "Countries that share the same language use the same currency.",
     "resposta_correcta": false
   },
   {
@@ -11710,8 +11710,8 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "En un experiment amb control de variables, només es canvia una cosa cada vegada per saber quin n'és l'efecte.",
-    "pregunta": "Un experiment amb control de variables canvia totes les coses alhora per veure el seu efecte.",
+    "explicacio": "En un experiment amb control de variables es canvia una sola cosa cada vegada, per saber quin n'és l'efecte.",
+    "pregunta": "Un experiment amb control de variables canvia dues coses alhora per veure quin efecte té cada una.",
     "resposta_correcta": false
   },
   {
@@ -12300,8 +12300,8 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "L'electricitat es pot transformar en llum, moviment o calor, entre altres formes d'energia.",
-    "pregunta": "L'electricitat només es pot transformar en so, mai en llum ni calor.",
+    "explicacio": "L'electricitat també es pot transformar en calor, a més de llum i moviment.",
+    "pregunta": "L'electricitat es pot transformar en llum i moviment, però no en calor.",
     "resposta_correcta": false
   },
   {
@@ -12351,8 +12351,8 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Una força de contacte, com una empenta, necessita que els objectes es toquin.",
-    "pregunta": "Una força de contacte actua sense que els objectes es toquin mai.",
+    "explicacio": "Una força de contacte, com una empenta, necessita que els objectes es toquin; la força magnètica actua a distància.",
+    "pregunta": "Una força de contacte és el mateix que la força magnètica.",
     "resposta_correcta": false
   },
   {
@@ -12561,8 +12561,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "L'etiqueta digital inclou tractar les altres persones amb respecte també a internet.",
-    "pregunta": "L'etiqueta digital permet insultar altres persones sense cap problema a internet.",
+    "explicacio": "L'etiqueta digital inclou tractar les altres persones amb respecte a internet, no l'ús tècnic del teclat.",
+    "pregunta": "L'etiqueta digital es refereix a saber utilitzar correctament el teclat de l'ordinador.",
     "resposta_correcta": false
   },
   {
@@ -12714,8 +12714,8 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Estalviar energia a casa ajuda a reduir l'impacte ambiental i contribueix a la sostenibilitat.",
-    "pregunta": "Malgastar energia a casa no té cap efecte sobre el medi ambient.",
+    "explicacio": "Estalviar energia a casa redueix la factura elèctrica i ajuda a un desenvolupament més sostenible.",
+    "pregunta": "Estalviar energia a casa augmenta la factura elèctrica.",
     "resposta_correcta": false
   },
   {
@@ -12765,8 +12765,8 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "L'erosió desgasta el relleu per l'acció de l'aigua, el vent o el gel.",
-    "pregunta": "L'erosió és un procés pel qual el relleu creix cada vegada més sense cap desgast.",
+    "explicacio": "L'erosió desgasta el relleu per l'acció de l'aigua, el vent o el gel; l'acumulació de sediments es diu sedimentació.",
+    "pregunta": "L'erosió és un procés pel qual el relleu es forma per l'acumulació de sediments.",
     "resposta_correcta": false
   },
   {
@@ -12918,8 +12918,8 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Analitzar dades meteorològiques al llarg del temps ajuda a detectar canvis en el clima.",
-    "pregunta": "Analitzar dades meteorològiques no té cap relació amb el canvi climàtic.",
+    "explicacio": "Analitzar dades meteorològiques al llarg del temps també ajuda a detectar canvis en el clima, no només a predir el temps a curt termini.",
+    "pregunta": "Analitzar dades meteorològiques serveix per predir el temps de demà, però no per estudiar el clima a llarg termini.",
     "resposta_correcta": false
   },
   {
@@ -12969,8 +12969,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Catalunya és una comunitat autònoma dins l'Estat espanyol.",
-    "pregunta": "Catalunya és un país independent fora de l'Estat espanyol.",
+    "explicacio": "Catalunya és una comunitat autònoma de l'Estat espanyol, no de França.",
+    "pregunta": "Catalunya és una comunitat autònoma de França.",
     "resposta_correcta": false
   },
   {
@@ -13122,8 +13122,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "El patrimoni natural i cultural mereix ser conservat i valorat per a les generacions futures.",
-    "pregunta": "El patrimoni natural i cultural no té cap valor i es pot destruir sense problema.",
+    "explicacio": "El patrimoni natural i cultural inclou tant paisatges i espècies com monuments i tradicions, i mereix ser conservat.",
+    "pregunta": "El patrimoni natural i cultural inclou monuments històrics, però no paisatges naturals.",
     "resposta_correcta": false
   },
   {
@@ -13173,8 +13173,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Respectar les normes de circulació ajuda a la seguretat de conductors i vianants per igual.",
-    "pregunta": "Respectar els senyals i les normes de circulació només beneficia els conductors, no els vianants.",
+    "explicacio": "Respectar les normes de circulació és responsabilitat tant dels conductors com dels vianants, per a la seguretat de tots.",
+    "pregunta": "Respectar els senyals i les normes de circulació és responsabilitat dels conductors, no dels vianants.",
     "resposta_correcta": false
   },
   {
@@ -13428,8 +13428,8 @@ const QUESTIONS = [
     "dificultat": 3,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Analitzar un procés històric implica considerar diversos factors i causes, no només un.",
-    "pregunta": "Analitzar un procés històric només requereix tenir en compte una única causa.",
+    "explicacio": "Analitzar un procés històric implica considerar diversos factors i causes, sense un límit fix.",
+    "pregunta": "Analitzar un procés històric requereix tenir en compte dues causes, com a màxim.",
     "resposta_correcta": false
   },
   {
@@ -13530,8 +13530,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "El canvi climàtic té efectes tant a escala local com global.",
-    "pregunta": "El canvi climàtic només té efectes a escala local, mai global.",
+    "explicacio": "El canvi climàtic té efectes tant a escala local (sequeres, onades de calor) com global (pujada del nivell del mar).",
+    "pregunta": "El canvi climàtic té efectes a escala local, però no afecta el nivell del mar a escala global.",
     "resposta_correcta": false
   },
   {
@@ -13581,8 +13581,8 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Les institucions de la Unió Europea prenen decisions que afecten el conjunt de països membres.",
-    "pregunta": "Les institucions de la Unió Europea només prenen decisions que afecten un sol país.",
+    "explicacio": "El Parlament Europeu té la seu a Estrasburg (amb seus també a Brussel·les i Luxemburg).",
+    "pregunta": "El Parlament Europeu té la seu a Madrid.",
     "resposta_correcta": false
   },
   {
@@ -13683,8 +13683,8 @@ const QUESTIONS = [
     "dificultat": 1,
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "Les empreses també poden i han de tenir responsabilitat ambiental i social.",
-    "pregunta": "Les empreses no tenen cap responsabilitat ambiental ni social.",
+    "explicacio": "Les empreses poden ser rendibles econòmicament i, alhora, tenir responsabilitat ambiental i social.",
+    "pregunta": "Les empreses han de triar entre tenir beneficis econòmics o ser responsables amb el medi ambient.",
     "resposta_correcta": false
   },
   {
