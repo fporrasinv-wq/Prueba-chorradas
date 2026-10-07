@@ -37,6 +37,11 @@
 - [x] 23 preguntas test con distractores "absurdos" (p. ex. "perquè no serveix de res", "sense cap motiu") sustituidos por errores típicos de alumno (concretos y plausibles pero claramente falsos); 3 de las 23 ya tenían distractores plausibles y se dejaron sin cambios
 - [x] Al cambiar la pareja de `4t_soc-5_q8` se detectó un bug real de diseño: dos parelles con el mismo texto a la derecha ("Sector terciari" repetido) hacían el ejercicio ambiguo para el jugador y rompían el test de regresión (bucle infinito de emparellament) — resuelto diferenciando el texto de las parelles de "Sector primari" (pesca / agricultura) en vez de duplicar "Sector terciari". Auditados los otros 35 ejercicios `emparellar` del banco: ninguno más tiene este problema
 
+## Resuelto — Sesión 7 (revisión fina tras Sesión 6)
+- [x] `4t_soc-5_q8`: en vez del parche de la Sesión 6 (diferenciar "Sector primari" con "(pesca)"/"(agricultura)"), se simplificó a 3 parelles, una por sector (Pescar=primari, Fabricar cotxes=secundari, Ensenyar=terciari), sin repetir sector ni usar paréntesis
+- [x] Revisados de nuevo `6è_soc-6-1_q1`, `6è_soc-6-3_q5` y `6è_soc-6-4_q1` (dejados sin cambios en la Sesión 6 por considerarlos "ya plausibles") — con una segunda mirada, varias de sus opciones sí eran poco creíbles (p. ex. "Un esport olímpic", "Un equip esportiu", "Ignorar el problema") y se sustituyeron por errores típicos más concretos
+- [x] 3 distractores de la Sesión 6 considerados discutibles se sustituyeron por otros inequívocamente falsos: `5è_soc-5-2_q5`, `6è_nat-6-5_q4`, `6è_soc-6-5_q5`
+
 ## Pendiente de aplicar la misma auditoría/criterio al resto
 - `explicacio` solo está poblado para las preguntas tipo `veritat_fals` (147/147); el resto de tipos (test, resposta_escrita, ordenar, emparellar) sigue con el campo vacío
 - El campo `dificultat` de 1r/4t sigue siendo posicional, no pedagógico (ver más arriba) — no se ha tocado en esta sesión

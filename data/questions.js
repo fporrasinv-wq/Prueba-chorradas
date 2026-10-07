@@ -6573,7 +6573,7 @@ const QUESTIONS = [
     "parelles": [
       {
         "a": "Pescar",
-        "b": "Sector primari (pesca)"
+        "b": "Sector primari"
       },
       {
         "a": "Fabricar cotxes",
@@ -6582,10 +6582,6 @@ const QUESTIONS = [
       {
         "a": "Ensenyar",
         "b": "Sector terciari"
-      },
-      {
-        "a": "Conrear la terra",
-        "b": "Sector primari (agricultura)"
       }
     ]
   },
@@ -12680,7 +12676,7 @@ const QUESTIONS = [
     "pregunta": "Per què és important utilitzar fonts d'energia renovables?",
     "opcions": [
       "Perquè contaminen menys i no s'esgoten",
-      "Perquè són més barates de construir que les centrals de carbó",
+      "Perquè es poden fer servir només de dia",
       "Perquè generen més electricitat que qualsevol altra font",
       "Perquè no necessiten manteniment"
     ],
@@ -12903,7 +12899,7 @@ const QUESTIONS = [
     "pregunta": "Per què és útil registrar dades meteorològiques al llarg del temps?",
     "opcions": [
       "Per identificar patrons i canvis del clima",
-      "Per saber si demà plourà o no",
+      "Per saber en quin any va ploure més a Europa",
       "Per decidir la roba que cal portar aquell dia",
       "Per comparar quin país té el clima més bonic"
     ],
@@ -13242,8 +13238,8 @@ const QUESTIONS = [
     "opcions": [
       "Un conjunt de metes globals per millorar el món i el planeta",
       "Un tipus d'impost",
-      "Un esport olímpic",
-      "Un examen escolar"
+      "Un tractat comercial entre grans empreses",
+      "Una llei que només s'aplica als països pobres"
     ],
     "resposta_correcta": "Un conjunt de metes globals per millorar el món i el planeta"
   },
@@ -13515,7 +13511,7 @@ const QUESTIONS = [
     "pregunta": "Quina mesura ajuda a adaptar-nos als efectes del canvi climàtic?",
     "opcions": [
       "Planificar ciutats més resilients a onades de calor o inundacions",
-      "Ignorar el problema",
+      "Construir més cases a prop del mar sense cap protecció",
       "Consumir més combustibles fòssils",
       "Talar més boscos"
     ],
@@ -13548,7 +13544,7 @@ const QUESTIONS = [
     "opcions": [
       "Una unió de països europeus que col·laboren en diversos àmbits",
       "Un únic país molt gran",
-      "Un equip esportiu",
+      "Una competició de futbol entre països europeus",
       "Una empresa privada"
     ],
     "resposta_correcta": "Una unió de països europeus que col·laboren en diversos àmbits"
@@ -13720,7 +13716,7 @@ const QUESTIONS = [
     "opcions": [
       "Més desigualtats socials",
       "Menys desigualtats amb el temps",
-      "Un augment del PIB general del país",
+      "Que tothom tingui els mateixos ingressos",
       "Una disminució de la pobresa extrema"
     ],
     "resposta_correcta": "Més desigualtats socials"
