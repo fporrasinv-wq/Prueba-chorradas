@@ -48,8 +48,17 @@
 - [x] Verificado por script que ninguna lliçó de 5è/6è (fuera de lectura) supera 3 preguntes test ni 2 preguntes seguides del mateix tipus
 - [x] `ordenar` queda muy por debajo del objetivo orientativo (10%): solo 3.9%/2.2% en 5è/6è — el banco de preguntas apenas tiene contenido de tipo proceso/secuencia/ciclo reutilizable sin inventar datos nuevos (los 3-4 casos usados por curso son las fases del mètode científic, els canvis d'estat, les etapes històriques i les fases del procés de disseny, todos derivados de hechos ya presentes en otras preguntas de la misma lliçó)
 
+## Resuelto — Sesión 9, Bloque 6b (correcciones de calidad tras verificar el Bloque 6)
+- [x] `normalizeAnswer()` ahora ignora accentos/diacrítics (NFD), un punt final, i els espais al voltant de comes; manté intactes les respostes que són només "?" o "!"; no interpreta números ni separadors de milers (continua depenent de `respostes_acceptades`)
+- [x] Nou camp opcional `conjunt: true` per a respostes que són una llista sense ordre — la comparació separa per comes, espais o " i ", ordena i compara. Només s'usa a `5è_mat-5-3_q4` (divisors de 10)
+- [x] Revertides a `test` (versió exacta del commit `61b943a`) 7 preguntes convertides al Bloque 6 que no tenien resposta única o eren trivials: `5è_soc-5-5_q2`, `6è_nat-6-3_q5`, `6è_mat-6-1_q6`, `5è_nat-5-3_q5`, `5è_nat-5-5_q6`, `5è_soc-5-2_q1`, `5è_soc-5-5_q1`
+- [x] `6è_mat-6-4_q5` corregida: la resposta era "El cercle" però la propietat (tots els punts a la mateixa distància del centre) descriu la circumferència, no el cercle (que és la superfície interior) — reescrita per demanar "Circumferència"
+- [x] Variants afegides a `respostes_acceptades`: `6è_mat-6-5_q5` (0,5 / 0.5 / 50 %), `6è_mat-6-3_q2` (baix / més barat), punt decimal a `5è_mat-5-1_q5`/`6è_mat-6-1_q2`/`6è_mat-6-1_q4`, "25 %" amb espai a `5è_mat-5-2_q2`/`5è_mat-5-2_q5`
+- [x] Verificat per script: mateixos 752 ids i mateix ordre que el commit `a1a1241`; exactament els 16 ids d'aquesta llista es van modificar i cap més; regressió completa (115 lliçons) sense fallades
+
 ## Pendiente de aplicar la misma auditoría/criterio al resto
 - `explicacio` solo está poblado para las preguntas tipo `veritat_fals` (147/147) y algunas de las convertidas en el Bloque 6; el resto de tipos sigue mayoritariamente con el campo vacío
 - El campo `dificultat` de 1r/4t sigue siendo posicional, no pedagógico (ver más arriba) — no se ha tocado en esta sesión
 - El objetivo de `ordenar` (~10% en 5è/6è) no se alcanzó por falta de contenido de tipo proceso/secuencia en el banco — ver Sesión 8 arriba
+- Al revertir `5è_nat-5-3_q5` a test (Bloque 6b), la lliçó "Classificació d'animals i plantes" (5è nat) quedó con 3 preguntas test seguidas (q4, q5, q6) — viola la regla "no más de 2 seguidas del mismo tipo". No se corrigió porque arreglarlo requeriría tocar `5è_nat-5-3_q4` o `5è_nat-5-3_q6`, fuera de la lista explícita del Bloque 6b; pendiente de decisión del usuario
 

@@ -7426,7 +7426,8 @@ const QUESTIONS = [
     "pregunta": "Escriu en xifres «dotze unitats i tres mil·lèsimes».",
     "resposta_correcta": "12,003",
     "respostes_acceptades": [
-      "12,003"
+      "12,003",
+      "12.003"
     ]
   },
   {
@@ -7481,6 +7482,7 @@ const QUESTIONS = [
     "resposta_correcta": "25%",
     "respostes_acceptades": [
       "25%",
+      "25 %",
       "25"
     ]
   },
@@ -7530,6 +7532,7 @@ const QUESTIONS = [
     "resposta_correcta": "25%",
     "respostes_acceptades": [
       "25%",
+      "25 %",
       "25"
     ]
   },
@@ -7626,6 +7629,7 @@ const QUESTIONS = [
     "explicacio": "10 es pot dividir exactament per 1, 2, 5 i 10.",
     "pregunta": "Quins són tots els divisors de 10?",
     "resposta_correcta": "1, 2, 5, 10",
+    "conjunt": true,
     "respostes_acceptades": [
       "1, 2, 5, 10",
       "1,2,5,10",
@@ -7915,7 +7919,8 @@ const QUESTIONS = [
     "pregunta": "7,2 - 3,45 = ?",
     "resposta_correcta": "3,75",
     "respostes_acceptades": [
-      "3,75"
+      "3,75",
+      "3.75"
     ]
   },
   {
@@ -7950,7 +7955,8 @@ const QUESTIONS = [
     "pregunta": "9,6 ÷ 4 = ?",
     "resposta_correcta": "2,4",
     "respostes_acceptades": [
-      "2,4"
+      "2,4",
+      "2.4"
     ]
   },
   {
@@ -7973,16 +7979,17 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Operacions amb decimals",
     "dificultat": 3,
-    "tipus": "resposta_escrita",
+    "tipus": "test",
     "origen": "curriculum_base",
-    "explicacio": "19,8 es pot arrodonir a 20, i 20 × 5 = 100.",
+    "explicacio": "",
     "pregunta": "Quina és una bona estimació de 19,8 × 5?",
-    "resposta_correcta": "100",
-    "respostes_acceptades": [
-      "100",
+    "opcions": [
       "Aproximadament 100",
-      "al voltant de 100"
-    ]
+      "Aproximadament 50",
+      "Aproximadament 200",
+      "Aproximadament 20"
+    ],
+    "resposta_correcta": "Aproximadament 100"
   },
   {
     "id": "6è_mat-6-2_q1",
@@ -8128,7 +8135,9 @@ const QUESTIONS = [
     "respostes_acceptades": [
       "Més baix",
       "més baix",
-      "Més baix que l'original"
+      "Més baix que l'original",
+      "baix",
+      "més barat"
     ]
   },
   {
@@ -8288,14 +8297,13 @@ const QUESTIONS = [
     "dificultat": 2,
     "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "El cercle és la figura amb tots els punts a la mateixa distància del centre.",
-    "pregunta": "Quina figura té tots els punts a la mateixa distància del centre?",
-    "resposta_correcta": "El cercle",
+    "explicacio": "La circumferència és la línia; el cercle és la circumferència i tot el que hi ha a dins.",
+    "pregunta": "Quina línia té tots els punts a la mateixa distància del centre?",
+    "resposta_correcta": "Circumferència",
     "respostes_acceptades": [
-      "El cercle",
-      "el cercle",
-      "Cercle",
-      "cercle"
+      "Circumferència",
+      "circumferència",
+      "La circumferència"
     ]
   },
   {
@@ -8421,7 +8429,10 @@ const QUESTIONS = [
     "respostes_acceptades": [
       "1 entre 2",
       "1/2",
-      "50%"
+      "50%",
+      "0,5",
+      "0.5",
+      "50 %"
     ]
   },
   {
@@ -12215,20 +12226,17 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "Classificació d'animals i plantes",
     "dificultat": 2,
-    "tipus": "emparellar",
+    "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Relaciona cada terme amb la seva definició.",
-    "parelles": [
-      {
-        "a": "Varietat autòctona",
-        "b": "Raça o varietat originària d'un territori concret"
-      },
-      {
-        "a": "Espècie al·lòctona",
-        "b": "Espècie que ve d'un altre lloc i no és originària del territori"
-      }
-    ]
+    "pregunta": "Què és una varietat autòctona?",
+    "opcions": [
+      "Una raça o varietat originària d'un territori concret",
+      "Una espècie que ve d'un altre continent",
+      "Un animal de zoo",
+      "Un animal extingit"
+    ],
+    "resposta_correcta": "Una raça o varietat originària d'un territori concret"
   },
   {
     "id": "5è_nat-5-3_q6",
@@ -12464,20 +12472,17 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "La matèria: canvis d'estat i mescles",
     "dificultat": 3,
-    "tipus": "emparellar",
+    "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Relaciona cada terme amb la seva definició.",
-    "parelles": [
-      {
-        "a": "Mescla",
-        "b": "Té diversos components units físicament"
-      },
-      {
-        "a": "Substància pura",
-        "b": "Està formada per un sol component"
-      }
-    ]
+    "pregunta": "Quina diferència hi ha entre una mescla i una substància pura?",
+    "opcions": [
+      "La mescla té diversos components i la substància pura només un",
+      "Són exactament el mateix",
+      "Una substància pura sempre és líquida",
+      "Una mescla sempre és sòlida"
+    ],
+    "resposta_correcta": "La mescla té diversos components i la substància pura només un"
   },
   {
     "id": "6è_nat-6-1_q1",
@@ -12795,17 +12800,17 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "Alimentació saludable i benestar",
     "dificultat": 2,
-    "tipus": "resposta_escrita",
+    "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
     "pregunta": "Quantes hores de son es recomanen aproximadament a un infant d'aquesta edat?",
-    "resposta_correcta": "Entre 9 i 11 hores",
-    "respostes_acceptades": [
+    "opcions": [
       "Entre 9 i 11 hores",
-      "9-11 hores",
-      "9 a 11 hores",
-      "entre 9 i 11 hores"
-    ]
+      "Entre 2 i 3 hores",
+      "Entre 15 i 18 hores",
+      "Entre 5 i 6 hores"
+    ],
+    "resposta_correcta": "Entre 9 i 11 hores"
   },
   {
     "id": "6è_nat-6-3_q6",
@@ -13155,20 +13160,17 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "El clima i les dades meteorològiques",
     "dificultat": 2,
-    "tipus": "emparellar",
+    "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Relaciona cada concepte amb la seva definició.",
-    "parelles": [
-      {
-        "a": "Temps atmosfèric",
-        "b": "Com és un dia concret"
-      },
-      {
-        "a": "Clima",
-        "b": "La mitjana de moltes dades al llarg de molts anys"
-      }
-    ]
+    "pregunta": "Quina diferència hi ha entre temps atmosfèric i clima?",
+    "opcions": [
+      "El temps és el que fa un dia concret i el clima és la mitjana de molts anys",
+      "Són exactament el mateix",
+      "El clima canvia cada hora",
+      "El temps només existeix a l'estiu"
+    ],
+    "resposta_correcta": "El temps és el que fa un dia concret i el clima és la mitjana de molts anys"
   },
   {
     "id": "5è_soc-5-2_q2",
@@ -13470,20 +13472,17 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "Institucions i alfabetització cívica",
     "dificultat": 1,
-    "tipus": "emparellar",
+    "tipus": "test",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Relaciona cada institució amb el seu paper.",
-    "parelles": [
-      {
-        "a": "L'ajuntament",
-        "b": "El governen l'alcalde o alcaldessa i els regidors"
-      },
-      {
-        "a": "La Unió Europea",
-        "b": "Reuneix representants de diferents països europeus"
-      }
-    ]
+    "pregunta": "Qui governa un ajuntament?",
+    "opcions": [
+      "L'alcalde o alcaldessa i els regidors",
+      "El rei",
+      "Un mestre",
+      "Un metge"
+    ],
+    "resposta_correcta": "L'alcalde o alcaldessa i els regidors"
   },
   {
     "id": "5è_soc-5-5_q2",
@@ -13492,17 +13491,17 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "Institucions i alfabetització cívica",
     "dificultat": 1,
-    "tipus": "resposta_escrita",
+    "tipus": "test",
     "origen": "curriculum_base",
-    "explicacio": "La policia s'encarrega de fer complir les lleis, incloses les de trànsit.",
+    "explicacio": "",
     "pregunta": "Quina institució s'encarrega de fer complir les lleis de trànsit?",
-    "resposta_correcta": "La policia",
-    "respostes_acceptades": [
+    "opcions": [
       "La policia",
-      "la policia",
-      "Policia",
-      "policia"
-    ]
+      "L'escola",
+      "La biblioteca",
+      "El mercat"
+    ],
+    "resposta_correcta": "La policia"
   },
   {
     "id": "5è_soc-5-5_q3",

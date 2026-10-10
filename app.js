@@ -406,7 +406,28 @@ function subjectStats(subject) {
 }
 
 function normalizeAnswer(str) {
-  return String(str).trim().toLowerCase().replace(/\s+/g, " ");
+  const trimmed = String(str).trim();
+  if (trimmed === "?" || trimmed === "!") return trimmed;
+  let s = trimmed.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  s = s.replace(/\.\s*$/, "");
+  s = s.replace(/\s*,\s*/g, ",");
+  return s.replace(/\s+/g, " ").trim();
+}
+
+function splitAnswerSet(str) {
+  const withCommas = normalizeAnswer(str).replace(/\bi\b/g, ",");
+  return withCommas
+    .split(/[,\s]+/)
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .sort();
+}
+
+function answerSetsMatch(accepted, given) {
+  const sa = splitAnswerSet(accepted);
+  const sb = splitAnswerSet(given);
+  if (sa.length === 0 || sa.length !== sb.length) return false;
+  return sa.every((v, i) => v === sb[i]);
 }
 
 function shuffle(arr) {
@@ -622,7 +643,9 @@ function checkAnswer() {
     const val = (document.getElementById("fill-input") || {}).value || "";
     if (!val.trim()) return;
     session.fillValue = val;
-    correct = q.respostes_acceptades.some((a) => normalizeAnswer(a) === normalizeAnswer(val));
+    correct = q.conjunt
+      ? q.respostes_acceptades.some((a) => answerSetsMatch(a, val))
+      : q.respostes_acceptades.some((a) => normalizeAnswer(a) === normalizeAnswer(val));
   } else if (q.tipus === "ordenar") {
     if (!session.selected || session.selected.length !== q.elements_ordre_correcte.length) return;
     const assembled = session.selected.map((i) => q.orderBank[i].text).join(" ");
