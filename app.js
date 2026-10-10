@@ -192,7 +192,7 @@ function stateKeyFor(profileId) {
 }
 
 function defaultGameState() {
-  return { xp: 0, streak: 0, lastPlayISO: null, lessons: {} };
+  return { xp: 0, streak: 0, lastPlayISO: null, lessons: {}, parentMode: false };
 }
 
 function loadGameState(profileId) {
@@ -220,6 +220,7 @@ let session = null;
 let mascotMsgIndex = Math.floor(Math.random() * MASCOT_MESSAGES.length);
 let newProfileDraft = { name: "", curs: CURSOS[0].id };
 let editingProfileId = null;
+let parentChallenge = null;
 
 function bootProfile() {
   const id = getCurrentProfileId();
@@ -267,7 +268,61 @@ function selectProfile(id) {
 function toggleEditCurs(id) {
   playClick();
   editingProfileId = editingProfileId === id ? null : id;
+  parentChallenge = null;
   render();
+}
+
+function toggleParentChallenge(profileId) {
+  playClick();
+  if (parentChallenge && parentChallenge.profileId === profileId) {
+    parentChallenge = null;
+  } else {
+    parentChallenge = {
+      profileId,
+      a: 6 + Math.floor(Math.random() * 4),
+      b: 6 + Math.floor(Math.random() * 4),
+      input: "",
+      error: false
+    };
+  }
+  editingProfileId = null;
+  render();
+}
+
+function cancelParentChallenge() {
+  playClick();
+  parentChallenge = null;
+  render();
+}
+
+function submitParentChallenge() {
+  if (!parentChallenge) return;
+  const expected = parentChallenge.a * parentChallenge.b;
+  const given = parseInt(parentChallenge.input, 10);
+  if (given === expected) {
+    toggleParentModeForProfile(parentChallenge.profileId);
+    playComplete(false);
+    parentChallenge = null;
+  } else {
+    playWrong();
+    parentChallenge = {
+      profileId: parentChallenge.profileId,
+      a: 6 + Math.floor(Math.random() * 4),
+      b: 6 + Math.floor(Math.random() * 4),
+      input: "",
+      error: true
+    };
+  }
+  render();
+}
+
+function toggleParentModeForProfile(id) {
+  const st = loadGameState(id);
+  st.parentMode = !st.parentMode;
+  localStorage.setItem(stateKeyFor(id), JSON.stringify(st));
+  if (profile && profile.id === id) {
+    state.parentMode = st.parentMode;
+  }
 }
 
 function changeProfileCurs(id, newCurs) {
@@ -338,6 +393,7 @@ function lessonProgress(lessonKey) {
 }
 
 function isLessonUnlocked(subject, idx) {
+  if (state.parentMode) return true;
   if (idx === 0) return true;
   const prev = subject.lessons[idx - 1];
   return lessonProgress(prev.key).stars > 0;
@@ -736,6 +792,8 @@ function renderProfileSelect() {
       const info = cursInfo(p.curs);
       const isCurrent = profile && profile.id === p.id;
       const isEditing = editingProfileId === p.id;
+      const isChallenging = parentChallenge && parentChallenge.profileId === p.id;
+      const parentModeOn = loadGameState(p.id).parentMode;
       const card = el("div", { class: `profile-card ${isCurrent ? "current" : ""}` }, [
         el(
           "button",
@@ -749,9 +807,42 @@ function renderProfileSelect() {
             isCurrent ? el("div", { class: "profile-badge" }, "Actiu") : null
           ]
         ),
-        el("button", { class: "profile-edit-btn", title: "Canvia el curs", onclick: () => toggleEditCurs(p.id) }, "✏️")
+        el("button", { class: "profile-edit-btn", title: "Canvia el curs", onclick: () => toggleEditCurs(p.id) }, "✏️"),
+        el(
+          "button",
+          {
+            class: `profile-edit-btn parent-mode-btn ${parentModeOn ? "active" : ""}`,
+            title: "Mode pares",
+            onclick: () => toggleParentChallenge(p.id)
+          },
+          "👪"
+        )
       ]);
       list.appendChild(card);
+      if (isChallenging) {
+        list.appendChild(
+          el("div", { class: "curs-edit-box parent-challenge-box" }, [
+            el(
+              "div",
+              { class: "curs-edit-label" },
+              `Per ${parentModeOn ? "desactivar" : "activar"} el Mode pares de ${p.name}, resol: ${parentChallenge.a} × ${parentChallenge.b} = ?`
+            ),
+            el("input", {
+              class: "profile-input parent-challenge-input",
+              type: "number",
+              inputmode: "numeric",
+              value: parentChallenge.input,
+              oninput: (e) => { parentChallenge.input = e.target.value; },
+              onkeydown: (e) => { if (e.key === "Enter") submitParentChallenge(); }
+            }),
+            parentChallenge.error ? el("div", { class: "parent-challenge-error" }, "No és correcte. Torna-ho a provar.") : null,
+            el("div", { class: "parent-challenge-actions" }, [
+              el("button", { class: "btn btn-primary", onclick: submitParentChallenge }, "Comprova"),
+              el("button", { class: "reset-link", onclick: cancelParentChallenge }, "Cancel·la")
+            ])
+          ])
+        );
+      }
       if (isEditing) {
         list.appendChild(
           el("div", { class: "curs-edit-box" }, [
@@ -811,6 +902,7 @@ function renderProfileSelect() {
 
 function renderTopStats() {
   return el("div", { class: "stats-row" }, [
+    state.parentMode ? el("div", { class: "stat-pill parent-mode-badge", title: "Mode pares actiu: totes les lliçons desbloquejades" }, "👪 Mode pares") : null,
     el("div", { class: "stat-pill" }, `🔥 ${state.streak}`),
     el("div", { class: "stat-pill" }, `⭐ ${state.xp}`),
     el("button", { class: "stat-pill sound-toggle", onclick: toggleSound, title: "So" }, soundOn ? "🔊" : "🔇")
@@ -884,6 +976,7 @@ function renderPath() {
       el("button", { class: "back-btn", onclick: goHome }, "←"),
       el("div", { class: "path-title" }, `${subject.icon} ${subject.name}`),
       el("div", { style: "flex:1" }),
+      state.parentMode ? el("div", { class: "stat-pill parent-mode-badge", title: "Mode pares actiu: totes les lliçons desbloquejades" }, "👪") : null,
       el("button", { class: "back-btn", onclick: toggleSound, title: "So" }, soundOn ? "🔊" : "🔇")
     ])
   );

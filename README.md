@@ -18,6 +18,12 @@ joc.
   clau de `localStorage` pròpia, de manera que dos perfils no es
   trepitgen. Es pot canviar de perfil en qualsevol moment sense perdre
   res ("Canvia de perfil" a la pantalla d'inici).
+- **Mode pares**: un botó discret ("👪") a cada targeta de la pantalla
+  de perfils demana resoldre una multiplicació a l'atzar; en encertar,
+  activa o desactiva el `parentMode` d'aquell perfil. Amb el mode
+  actiu totes les lliçons del curs queden accessibles (sense marcar
+  estrelles de les anteriors), útil per repassar qualsevol tema sense
+  haver de desbloquejar-lo lliçó a lliçó.
 - Cada matèria té un recorregut de lliçons que es va desbloquejant.
 - Mascota "Robi", un robot que dona ànims, reacciona a les respostes i
   pot llegir els missatges en veu alta (síntesi de veu del navegador).

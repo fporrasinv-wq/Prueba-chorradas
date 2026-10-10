@@ -42,7 +42,14 @@
 - [x] Revisados de nuevo `6è_soc-6-1_q1`, `6è_soc-6-3_q5` y `6è_soc-6-4_q1` (dejados sin cambios en la Sesión 6 por considerarlos "ya plausibles") — con una segunda mirada, varias de sus opciones sí eran poco creíbles (p. ex. "Un esport olímpic", "Un equip esportiu", "Ignorar el problema") y se sustituyeron por errores típicos más concretos
 - [x] 3 distractores de la Sesión 6 considerados discutibles se sustituyeron por otros inequívocamente falsos: `5è_soc-5-2_q5`, `6è_nat-6-5_q4`, `6è_soc-6-5_q5`
 
+## Resuelto — Sesión 8, Bloque 6 (Mode pares + variedad de tipos de pregunta en 5è/6è)
+- [x] Mode pares: en la pantalla de selección de perfiles, cada perfil tiene un botón discreto "👪" que pide resolver una multiplicación al azar (6×6 a 9×9); si se acierta, activa o desactiva `parentMode` en el estado de ESE perfil. Con el modo activo, `isLessonUnlocked` devuelve siempre `true` para ese perfil (todas las lliçons del curso quedan accesibles sin marcar estrellas de las anteriores); hay un indicador "👪 Mode pares" visible en la barra superior de Inici y en la cabecera del recorregut de lliçons. Perfiles antiguos sin el campo `parentMode` siguen funcionando igual (se añadió a `defaultGameState()` con valor `false`)
+- [x] Reducido el peso de `test` en 5è y 6è (67% → 42.8%/45%), convirtiendo 81 preguntas test existentes a `resposta_escrita` (28/180 en 5è, 20/180 en 6è), `ordenar` (7/180, 4/180) y `emparellar` (26/180 en ambos), sin generar contenido nuevo — cada conversión reutiliza el enunciado/opciones/distractores ya existentes de la propia pregunta o de otras preguntas de la misma lliçó. No se tocó ninguna lliçó de comprensió lectora (con campo `text`) ni 1r/4t
+- [x] Verificado por script que ninguna lliçó de 5è/6è (fuera de lectura) supera 3 preguntes test ni 2 preguntes seguides del mateix tipus
+- [x] `ordenar` queda muy por debajo del objetivo orientativo (10%): solo 3.9%/2.2% en 5è/6è — el banco de preguntas apenas tiene contenido de tipo proceso/secuencia/ciclo reutilizable sin inventar datos nuevos (los 3-4 casos usados por curso son las fases del mètode científic, els canvis d'estat, les etapes històriques i les fases del procés de disseny, todos derivados de hechos ya presentes en otras preguntas de la misma lliçó)
+
 ## Pendiente de aplicar la misma auditoría/criterio al resto
-- `explicacio` solo está poblado para las preguntas tipo `veritat_fals` (147/147); el resto de tipos (test, resposta_escrita, ordenar, emparellar) sigue con el campo vacío
+- `explicacio` solo está poblado para las preguntas tipo `veritat_fals` (147/147) y algunas de las convertidas en el Bloque 6; el resto de tipos sigue mayoritariamente con el campo vacío
 - El campo `dificultat` de 1r/4t sigue siendo posicional, no pedagógico (ver más arriba) — no se ha tocado en esta sesión
+- El objetivo de `ordenar` (~10% en 5è/6è) no se alcanzó por falta de contenido de tipo proceso/secuencia en el banco — ver Sesión 8 arriba
 

@@ -7353,17 +7353,16 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Nombres decimals",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "En 4,573 el 5 són dècimes, el 7 centèsimes i el 3 mil·lèsimes.",
     "pregunta": "Quin és el valor de la xifra 7 en el nombre 4,573?",
-    "opcions": [
+    "resposta_correcta": "Centèsimes",
+    "respostes_acceptades": [
       "Centèsimes",
-      "Dècimes",
-      "Unitats",
-      "Mil·lèsimes"
-    ],
-    "resposta_correcta": "Centèsimes"
+      "centèsimes",
+      "centesimes"
+    ]
   },
   {
     "id": "5è_mat-5-1_q2",
@@ -7404,17 +7403,15 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Nombres decimals",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "2,8 té 8 dècimes; 2,08 només té 0 dècimes i 8 centèsimes, que és menys.",
     "pregunta": "Quin nombre és més gran, 2,08 o 2,8?",
-    "opcions": [
+    "resposta_correcta": "2,8",
+    "respostes_acceptades": [
       "2,8",
-      "2,08",
-      "Són iguals",
-      "No es pot saber"
-    ],
-    "resposta_correcta": "2,8"
+      "2.8"
+    ]
   },
   {
     "id": "5è_mat-5-1_q5",
@@ -7477,17 +7474,15 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Fraccions, decimals i percentatges",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "0,25 equival a 25 centèsimes, és a dir, 25%.",
     "pregunta": "0,25 és equivalent a quin percentatge?",
-    "opcions": [
+    "resposta_correcta": "25%",
+    "respostes_acceptades": [
       "25%",
-      "2,5%",
-      "250%",
-      "0,25%"
-    ],
-    "resposta_correcta": "25%"
+      "25"
+    ]
   },
   {
     "id": "5è_mat-5-2_q3",
@@ -7626,17 +7621,16 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Múltiples i divisors",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "10 es pot dividir exactament per 1, 2, 5 i 10.",
     "pregunta": "Quins són tots els divisors de 10?",
-    "opcions": [
+    "resposta_correcta": "1, 2, 5, 10",
+    "respostes_acceptades": [
       "1, 2, 5, 10",
-      "1, 2, 4, 10",
-      "1, 5, 10",
-      "2, 5"
-    ],
-    "resposta_correcta": "1, 2, 5, 10"
+      "1,2,5,10",
+      "1, 2, 5 i 10"
+    ]
   },
   {
     "id": "5è_mat-5-3_q5",
@@ -7680,17 +7674,24 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Perímetres i àrees",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Com es calcula el perímetre d'un rectangle?",
-    "opcions": [
-      "Suma dels quatre costats",
-      "Base per alçada",
-      "Base entre 2",
-      "Costat al cub"
-    ],
-    "resposta_correcta": "Suma dels quatre costats"
+    "pregunta": "Relaciona cada figura amb la seva fórmula.",
+    "parelles": [
+      {
+        "a": "Perímetre d'un rectangle",
+        "b": "Suma dels quatre costats"
+      },
+      {
+        "a": "Àrea d'un rectangle",
+        "b": "Base × alçada"
+      },
+      {
+        "a": "Àrea d'un triangle",
+        "b": "(Base × alçada) ÷ 2"
+      }
+    ]
   },
   {
     "id": "5è_mat-5-4_q2",
@@ -7782,17 +7783,24 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Mitjana i moda",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Com es calcula la mitjana d'un conjunt de dades?",
-    "opcions": [
-      "Sumant-les i dividint pel nombre de dades",
-      "Multiplicant-les totes",
-      "Agafant la dada més repetida",
-      "Agafant la dada més gran"
-    ],
-    "resposta_correcta": "Sumant-les i dividint pel nombre de dades"
+    "pregunta": "Relaciona cada mesura estadística amb la seva definició.",
+    "parelles": [
+      {
+        "a": "Mitjana",
+        "b": "Sumar totes les dades i dividir pel nombre de dades"
+      },
+      {
+        "a": "Moda",
+        "b": "La dada que es repeteix més vegades"
+      },
+      {
+        "a": "Mediana",
+        "b": "La dada que queda al mig quan s'ordenen les dades"
+      }
+    ]
   },
   {
     "id": "5è_mat-5-5_q2",
@@ -7884,17 +7892,15 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Operacions amb decimals",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
     "explicacio": "",
     "pregunta": "3,5 + 2,25 = ?",
-    "opcions": [
+    "resposta_correcta": "5,75",
+    "respostes_acceptades": [
       "5,75",
-      "5,25",
-      "6,75",
-      "5,5"
-    ],
-    "resposta_correcta": "5,75"
+      "5.75"
+    ]
   },
   {
     "id": "6è_mat-6-1_q2",
@@ -7967,17 +7973,16 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Operacions amb decimals",
     "dificultat": 3,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "19,8 es pot arrodonir a 20, i 20 × 5 = 100.",
     "pregunta": "Quina és una bona estimació de 19,8 × 5?",
-    "opcions": [
+    "resposta_correcta": "100",
+    "respostes_acceptades": [
+      "100",
       "Aproximadament 100",
-      "Aproximadament 50",
-      "Aproximadament 200",
-      "Aproximadament 20"
-    ],
-    "resposta_correcta": "Aproximadament 100"
+      "al voltant de 100"
+    ]
   },
   {
     "id": "6è_mat-6-2_q1",
@@ -7986,17 +7991,14 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Percentatges i proporcionalitat",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
     "explicacio": "",
     "pregunta": "Quin és el 10% de 200?",
-    "opcions": [
-      "20",
-      "10",
-      "2",
-      "200"
-    ],
-    "resposta_correcta": "20"
+    "resposta_correcta": "20",
+    "respostes_acceptades": [
+      "20"
+    ]
   },
   {
     "id": "6è_mat-6-2_q2",
@@ -8053,17 +8055,17 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Percentatges i proporcionalitat",
     "dificultat": 3,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "El 25% de 40 € són 10 €; 40 − 10 = 30 €.",
     "pregunta": "Un pantaló costa 40 € i té un 25% de descompte. Quant costa ara?",
-    "opcions": [
+    "resposta_correcta": "30 €",
+    "respostes_acceptades": [
       "30 €",
-      "35 €",
-      "10 €",
-      "20 €"
-    ],
-    "resposta_correcta": "30 €"
+      "30€",
+      "30 euros",
+      "30"
+    ]
   },
   {
     "id": "6è_mat-6-2_q6",
@@ -8088,17 +8090,28 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Educació financera",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quin d'aquests és un impost que paguem en moltes compres?",
-    "opcions": [
-      "L'IVA",
-      "El sou",
-      "L'estalvi",
-      "El descompte"
-    ],
-    "resposta_correcta": "L'IVA"
+    "pregunta": "Relaciona cada terme financer amb la seva definició.",
+    "parelles": [
+      {
+        "a": "L'IVA",
+        "b": "Un impost que paguem en moltes compres"
+      },
+      {
+        "a": "El sou",
+        "b": "Els diners que es reben per treballar"
+      },
+      {
+        "a": "L'estalvi",
+        "b": "Els diners que es guarden sense gastar"
+      },
+      {
+        "a": "El descompte",
+        "b": "Una rebaixa en el preu d'un producte"
+      }
+    ]
   },
   {
     "id": "6è_mat-6-3_q2",
@@ -8107,17 +8120,16 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Educació financera",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Si un producte té una rebaixa, el preu final és...",
-    "opcions": [
-      "Més baix que l'original",
-      "Més alt que l'original",
-      "Igual que l'original",
-      "Impossible de saber"
-    ],
-    "resposta_correcta": "Més baix que l'original"
+    "explicacio": "Una rebaixa redueix el preu respecte a l'original.",
+    "pregunta": "Si un producte té una rebaixa, el preu final és més baix o més alt que l'original?",
+    "resposta_correcta": "Més baix",
+    "respostes_acceptades": [
+      "Més baix",
+      "més baix",
+      "Més baix que l'original"
+    ]
   },
   {
     "id": "6è_mat-6-3_q3",
@@ -8212,17 +8224,28 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Angles i figures geomètriques",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Un angle de 90° s'anomena...",
-    "opcions": [
-      "Angle recte",
-      "Angle agut",
-      "Angle obtús",
-      "Angle pla"
-    ],
-    "resposta_correcta": "Angle recte"
+    "pregunta": "Relaciona cada tipus d'angle amb la seva mesura.",
+    "parelles": [
+      {
+        "a": "Angle recte",
+        "b": "Fa exactament 90°"
+      },
+      {
+        "a": "Angle agut",
+        "b": "Fa menys de 90°"
+      },
+      {
+        "a": "Angle obtús",
+        "b": "Fa entre 90° i 180°"
+      },
+      {
+        "a": "Angle pla",
+        "b": "Fa exactament 180°"
+      }
+    ]
   },
   {
     "id": "6è_mat-6-4_q3",
@@ -8263,17 +8286,17 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Angles i figures geomètriques",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "El cercle és la figura amb tots els punts a la mateixa distància del centre.",
     "pregunta": "Quina figura té tots els punts a la mateixa distància del centre?",
-    "opcions": [
+    "resposta_correcta": "El cercle",
+    "respostes_acceptades": [
       "El cercle",
-      "El quadrat",
-      "El triangle",
-      "El rectangle"
-    ],
-    "resposta_correcta": "El cercle"
+      "el cercle",
+      "Cercle",
+      "cercle"
+    ]
   },
   {
     "id": "6è_mat-6-4_q6",
@@ -8282,17 +8305,28 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Angles i figures geomètriques",
     "dificultat": 3,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Dues figures que tenen la mateixa forma però mida diferent es diuen...",
-    "opcions": [
-      "Semblants",
-      "Simètriques",
-      "Congruents",
-      "Perpendiculars"
-    ],
-    "resposta_correcta": "Semblants"
+    "pregunta": "Relaciona cada terme amb la seva definició.",
+    "parelles": [
+      {
+        "a": "Semblants",
+        "b": "Tenen la mateixa forma però mida diferent"
+      },
+      {
+        "a": "Congruents",
+        "b": "Tenen la mateixa forma i la mateixa mida"
+      },
+      {
+        "a": "Simètriques",
+        "b": "Es poden dividir en parts idèntiques i invertides"
+      },
+      {
+        "a": "Perpendiculars",
+        "b": "Formen un angle de 90° entre elles"
+      }
+    ]
   },
   {
     "id": "6è_mat-6-5_q1",
@@ -8301,17 +8335,28 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Estadística i probabilitat",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Si ordenes un conjunt de dades de més petita a més gran, la dada del mig s'anomena...",
-    "opcions": [
-      "Mediana",
-      "Moda",
-      "Mitjana",
-      "Freqüència"
-    ],
-    "resposta_correcta": "Mediana"
+    "pregunta": "Relaciona cada mesura estadística amb la seva definició.",
+    "parelles": [
+      {
+        "a": "Mediana",
+        "b": "La dada del mig quan s'ordenen les dades de més petita a més gran"
+      },
+      {
+        "a": "Moda",
+        "b": "La dada que es repeteix més vegades"
+      },
+      {
+        "a": "Mitjana",
+        "b": "La suma de totes les dades dividida pel nombre de dades"
+      },
+      {
+        "a": "Freqüència",
+        "b": "El nombre de vegades que apareix una dada"
+      }
+    ]
   },
   {
     "id": "6è_mat-6-5_q2",
@@ -8368,17 +8413,16 @@ const QUESTIONS = [
     "materia": "mat",
     "tema": "Estadística i probabilitat",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Una moneda té dues cares possibles, així que la probabilitat és 1 entre 2.",
     "pregunta": "Si llences una moneda, quina és la probabilitat que surti cara?",
-    "opcions": [
+    "resposta_correcta": "1 entre 2",
+    "respostes_acceptades": [
       "1 entre 2",
-      "1 entre 6",
-      "1 entre 4",
-      "Segur que sortirà"
-    ],
-    "resposta_correcta": "1 entre 2"
+      "1/2",
+      "50%"
+    ]
   },
   {
     "id": "6è_mat-6-5_q6",
@@ -8406,17 +8450,17 @@ const QUESTIONS = [
     "materia": "cat",
     "tema": "Tipus de textos",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "La narració explica fets que passen en un ordre temporal (un abans i un després).",
     "pregunta": "Quin tipus de text explica fets que passen en un ordre temporal?",
-    "opcions": [
+    "resposta_correcta": "La narració",
+    "respostes_acceptades": [
       "La narració",
-      "La descripció",
-      "El diàleg",
-      "L'exposició"
-    ],
-    "resposta_correcta": "La narració"
+      "la narració",
+      "Narració",
+      "narració"
+    ]
   },
   {
     "id": "5è_cat-5-1_q2",
@@ -8425,17 +8469,17 @@ const QUESTIONS = [
     "materia": "cat",
     "tema": "Tipus de textos",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "La descripció explica com és algú o alguna cosa, sense seguir un ordre temporal.",
     "pregunta": "Quin tipus de text explica com és una persona, un lloc o una cosa?",
-    "opcions": [
+    "resposta_correcta": "La descripció",
+    "respostes_acceptades": [
       "La descripció",
-      "La narració",
-      "El diàleg",
-      "L'exposició"
-    ],
-    "resposta_correcta": "La descripció"
+      "la descripció",
+      "Descripció",
+      "descripció"
+    ]
   },
   {
     "id": "5è_cat-5-1_q3",
@@ -8576,17 +8620,28 @@ const QUESTIONS = [
     "materia": "cat",
     "tema": "Gèneres literaris",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Com s'anomena el personatge principal d'una història?",
-    "opcions": [
-      "El protagonista",
-      "L'antagonista",
-      "El narrador",
-      "L'autor"
-    ],
-    "resposta_correcta": "El protagonista"
+    "pregunta": "Relaciona cada paper de la història amb la seva definició.",
+    "parelles": [
+      {
+        "a": "Protagonista",
+        "b": "El personatge principal de la història"
+      },
+      {
+        "a": "Antagonista",
+        "b": "El personatge que s'oposa al protagonista"
+      },
+      {
+        "a": "Narrador",
+        "b": "Qui explica la història"
+      },
+      {
+        "a": "Autor",
+        "b": "Qui ha escrit l'obra"
+      }
+    ]
   },
   {
     "id": "5è_cat-5-2_q5",
@@ -8595,17 +8650,28 @@ const QUESTIONS = [
     "materia": "cat",
     "tema": "Gèneres literaris",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Com s'anomena el lloc i el moment on passa una història?",
-    "opcions": [
-      "L'escenari",
-      "El tema",
-      "La trama",
-      "El desenllaç"
-    ],
-    "resposta_correcta": "L'escenari"
+    "pregunta": "Relaciona cada element de la història amb la seva definició.",
+    "parelles": [
+      {
+        "a": "Escenari",
+        "b": "El lloc i el moment on passa la història"
+      },
+      {
+        "a": "Tema",
+        "b": "De què tracta la història"
+      },
+      {
+        "a": "Trama",
+        "b": "L'encadenament d'esdeveniments de la història"
+      },
+      {
+        "a": "Desenllaç",
+        "b": "Com acaba la història"
+      }
+    ]
   },
   {
     "id": "5è_cat-5-2_q6",
@@ -8633,17 +8699,28 @@ const QUESTIONS = [
     "materia": "cat",
     "tema": "Ortografia i gramàtica bàsiques",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quina categoria gramatical indica una acció?",
-    "opcions": [
-      "El verb",
-      "El nom",
-      "L'adjectiu",
-      "L'article"
-    ],
-    "resposta_correcta": "El verb"
+    "pregunta": "Relaciona cada categoria gramatical amb la seva funció.",
+    "parelles": [
+      {
+        "a": "El verb",
+        "b": "Expressa una acció, un estat o un procés"
+      },
+      {
+        "a": "El nom",
+        "b": "Designa persones, animals, objectes o idees"
+      },
+      {
+        "a": "L'adjectiu",
+        "b": "Expressa una qualitat del nom"
+      },
+      {
+        "a": "L'article",
+        "b": "Acompanya el nom i indica si és conegut o no"
+      }
+    ]
   },
   {
     "id": "5è_cat-5-3_q2",
@@ -8881,17 +8958,24 @@ const QUESTIONS = [
     "materia": "cat",
     "tema": "Comunicació oral",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quin element NO forma part d'una bona exposició oral?",
-    "opcions": [
-      "Parlar molt de pressa sense pauses",
-      "Una veu clara",
-      "Contacte visual amb el públic",
-      "Un guió preparat"
-    ],
-    "resposta_correcta": "Parlar molt de pressa sense pauses"
+    "pregunta": "Relaciona cada element d'una bona exposició oral amb el motiu pel qual ajuda.",
+    "parelles": [
+      {
+        "a": "Una veu clara",
+        "b": "Ajuda que el públic t'entengui bé"
+      },
+      {
+        "a": "Contacte visual amb el públic",
+        "b": "Manté l'atenció de qui escolta"
+      },
+      {
+        "a": "Un guió preparat",
+        "b": "Evita perdre el fil del que vols dir"
+      }
+    ]
   },
   {
     "id": "5è_cat-5-5_q4",
@@ -8951,17 +9035,28 @@ const QUESTIONS = [
     "materia": "cat",
     "tema": "Modalitats oracionals",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quina modalitat té la frase «Tanca la porta, si us plau»?",
-    "opcions": [
-      "Imperativa",
-      "Interrogativa",
-      "Exclamativa",
-      "Declarativa"
-    ],
-    "resposta_correcta": "Imperativa"
+    "pregunta": "Relaciona cada modalitat oracional amb la seva definició.",
+    "parelles": [
+      {
+        "a": "Imperativa",
+        "b": "Dona una ordre o fa una petició"
+      },
+      {
+        "a": "Interrogativa",
+        "b": "Fa una pregunta"
+      },
+      {
+        "a": "Exclamativa",
+        "b": "Expressa una emoció forta"
+      },
+      {
+        "a": "Declarativa",
+        "b": "Informa d'alguna cosa de manera neutra"
+      }
+    ]
   },
   {
     "id": "6è_cat-6-1_q2",
@@ -9021,17 +9116,14 @@ const QUESTIONS = [
     "materia": "cat",
     "tema": "Modalitats oracionals",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quin signe de puntuació acompanya sempre una frase exclamativa?",
-    "opcions": [
-      "El signe d'exclamació (!)",
-      "El punt (.)",
-      "La coma (,)",
-      "Els dos punts (:)"
-    ],
-    "resposta_correcta": "El signe d'exclamació (!)"
+    "pregunta": "Quin signe de puntuació acompanya una frase exclamativa?",
+    "resposta_correcta": "!",
+    "respostes_acceptades": [
+      "!"
+    ]
   },
   {
     "id": "6è_cat-6-1_q6",
@@ -9058,17 +9150,28 @@ const QUESTIONS = [
     "materia": "cat",
     "tema": "Mecanismes de cohesió textual",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quina paraula pot substituir «Anna» per evitar repetir-la?",
-    "opcions": [
-      "Ella",
-      "Aquest",
-      "Allà",
-      "Molt"
-    ],
-    "resposta_correcta": "Ella"
+    "pregunta": "Relaciona cada paraula amb la seva categoria gramatical.",
+    "parelles": [
+      {
+        "a": "Ella",
+        "b": "Un pronom personal"
+      },
+      {
+        "a": "Aquest",
+        "b": "Un determinant demostratiu"
+      },
+      {
+        "a": "Allà",
+        "b": "Un adverbi de lloc"
+      },
+      {
+        "a": "Molt",
+        "b": "Un adverbi de quantitat"
+      }
+    ]
   },
   {
     "id": "6è_cat-6-2_q2",
@@ -9128,17 +9231,28 @@ const QUESTIONS = [
     "materia": "cat",
     "tema": "Mecanismes de cohesió textual",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quina paraula és un sinònim de «content»?",
-    "opcions": [
-      "Alegre",
-      "Trist",
-      "Cansat",
-      "Enfadat"
-    ],
-    "resposta_correcta": "Alegre"
+    "pregunta": "Relaciona cada paraula amb el seu sinònim.",
+    "parelles": [
+      {
+        "a": "Alegre",
+        "b": "Sinònim de content"
+      },
+      {
+        "a": "Trist",
+        "b": "Sinònim de disgustat o afligit"
+      },
+      {
+        "a": "Cansat",
+        "b": "Sinònim d'exhaust o fatigat"
+      },
+      {
+        "a": "Enfadat",
+        "b": "Sinònim d'enutjat o molest"
+      }
+    ]
   },
   {
     "id": "6è_cat-6-2_q6",
@@ -9177,17 +9291,28 @@ const QUESTIONS = [
     "materia": "cat",
     "tema": "Escriptura creativa",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quina figura literària compara dues coses fent servir «com»?",
-    "opcions": [
-      "La comparació",
-      "La metàfora",
-      "La rima",
-      "La hipèrbole"
-    ],
-    "resposta_correcta": "La comparació"
+    "pregunta": "Relaciona cada figura literària amb la seva definició.",
+    "parelles": [
+      {
+        "a": "La comparació",
+        "b": "Compara dues coses fent servir «com»"
+      },
+      {
+        "a": "La metàfora",
+        "b": "Identifica dues coses sense fer servir «com»"
+      },
+      {
+        "a": "La rima",
+        "b": "Repetició d'un mateix so al final dels versos"
+      },
+      {
+        "a": "La hipèrbole",
+        "b": "Exagera molt una idea"
+      }
+    ]
   },
   {
     "id": "6è_cat-6-3_q2",
@@ -9311,17 +9436,24 @@ const QUESTIONS = [
     "materia": "cat",
     "tema": "Cerca i tractament de la informació",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quin d'aquests és un bon primer pas per fer un treball d'investigació?",
-    "opcions": [
-      "Buscar informació en diverses fonts fiables",
-      "Copiar el primer resultat que trobis",
-      "Preguntar-ho directament al professor sense buscar per tu mateix",
-      "Inventar-te les dades"
-    ],
-    "resposta_correcta": "Buscar informació en diverses fonts fiables"
+    "pregunta": "Relaciona cada bona pràctica de recerca amb el motiu pel qual ajuda.",
+    "parelles": [
+      {
+        "a": "Buscar en diverses fonts fiables",
+        "b": "Permet comprovar que la informació és certa"
+      },
+      {
+        "a": "Citar l'autoria",
+        "b": "Dir d'on prové la informació i qui la va escriure"
+      },
+      {
+        "a": "Anar a la biblioteca",
+        "b": "Una font fiable d'informació, a part d'internet"
+      }
+    ]
   },
   {
     "id": "6è_cat-6-4_q4",
@@ -9489,17 +9621,18 @@ const QUESTIONS = [
     "materia": "cas",
     "tema": "Tipos de textos",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "La narración explica hechos que pasan en un orden temporal (un antes y un después).",
     "pregunta": "¿Qué tipo de texto explica hechos en un orden temporal?",
-    "opcions": [
+    "resposta_correcta": "La narración",
+    "respostes_acceptades": [
       "La narración",
-      "La descripción",
-      "El diálogo",
-      "La exposición"
-    ],
-    "resposta_correcta": "La narración"
+      "la narración",
+      "Narracion",
+      "narracion",
+      "La narracion"
+    ]
   },
   {
     "id": "5è_cas-5-1_q2",
@@ -9508,17 +9641,18 @@ const QUESTIONS = [
     "materia": "cas",
     "tema": "Tipos de textos",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "La descripción explica cómo es alguien o algo, sin seguir un orden temporal.",
     "pregunta": "¿Qué tipo de texto explica cómo es una persona, un lugar o una cosa?",
-    "opcions": [
+    "resposta_correcta": "La descripción",
+    "respostes_acceptades": [
       "La descripción",
-      "La narración",
-      "El diálogo",
-      "La exposición"
-    ],
-    "resposta_correcta": "La descripción"
+      "la descripción",
+      "Descripcion",
+      "descripcion",
+      "La descripcion"
+    ]
   },
   {
     "id": "5è_cas-5-1_q3",
@@ -9659,17 +9793,28 @@ const QUESTIONS = [
     "materia": "cas",
     "tema": "Géneros literarios",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "¿Cómo se llama el personaje principal de una historia?",
-    "opcions": [
-      "El protagonista",
-      "El antagonista",
-      "El narrador",
-      "El autor"
-    ],
-    "resposta_correcta": "El protagonista"
+    "pregunta": "Relaciona cada papel de la historia con su definición.",
+    "parelles": [
+      {
+        "a": "Protagonista",
+        "b": "El personaje principal de la historia"
+      },
+      {
+        "a": "Antagonista",
+        "b": "El personaje que se opone al protagonista"
+      },
+      {
+        "a": "Narrador",
+        "b": "Quien cuenta la historia"
+      },
+      {
+        "a": "Autor",
+        "b": "Quien ha escrito la obra"
+      }
+    ]
   },
   {
     "id": "5è_cas-5-2_q5",
@@ -9678,17 +9823,28 @@ const QUESTIONS = [
     "materia": "cas",
     "tema": "Géneros literarios",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "¿Cómo se llama el lugar y el momento donde pasa una historia?",
-    "opcions": [
-      "El escenario",
-      "El tema",
-      "La trama",
-      "El desenlace"
-    ],
-    "resposta_correcta": "El escenario"
+    "pregunta": "Relaciona cada elemento de la historia con su definición.",
+    "parelles": [
+      {
+        "a": "Escenario",
+        "b": "El lugar y el momento donde pasa la historia"
+      },
+      {
+        "a": "Tema",
+        "b": "De qué trata la historia"
+      },
+      {
+        "a": "Trama",
+        "b": "El encadenamiento de sucesos de la historia"
+      },
+      {
+        "a": "Desenlace",
+        "b": "Cómo acaba la historia"
+      }
+    ]
   },
   {
     "id": "5è_cas-5-2_q6",
@@ -9716,17 +9872,28 @@ const QUESTIONS = [
     "materia": "cas",
     "tema": "Ortografía y gramática básicas",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "¿Qué categoría gramatical indica una acción?",
-    "opcions": [
-      "El verbo",
-      "El nombre",
-      "El adjetivo",
-      "El artículo"
-    ],
-    "resposta_correcta": "El verbo"
+    "pregunta": "Relaciona cada categoría gramatical con su función.",
+    "parelles": [
+      {
+        "a": "El verbo",
+        "b": "Expresa una acción, un estado o un proceso"
+      },
+      {
+        "a": "El nombre",
+        "b": "Designa personas, animales, objetos o ideas"
+      },
+      {
+        "a": "El adjetivo",
+        "b": "Expresa una cualidad del nombre"
+      },
+      {
+        "a": "El artículo",
+        "b": "Acompaña al nombre e indica si es conocido o no"
+      }
+    ]
   },
   {
     "id": "5è_cas-5-3_q2",
@@ -9965,17 +10132,24 @@ const QUESTIONS = [
     "materia": "cas",
     "tema": "Comunicación oral",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "¿Qué elemento NO forma parte de una buena exposición oral?",
-    "opcions": [
-      "Hablar muy deprisa sin pausas",
-      "Una voz clara",
-      "Contacto visual con el público",
-      "Un guion preparado"
-    ],
-    "resposta_correcta": "Hablar muy deprisa sin pausas"
+    "pregunta": "Relaciona cada elemento de una buena exposición oral con el motivo por el que ayuda.",
+    "parelles": [
+      {
+        "a": "Una voz clara",
+        "b": "Ayuda a que el público te entienda bien"
+      },
+      {
+        "a": "Contacto visual con el público",
+        "b": "Mantiene la atención de quien escucha"
+      },
+      {
+        "a": "Un guion preparado",
+        "b": "Evita perder el hilo de lo que quieres decir"
+      }
+    ]
   },
   {
     "id": "5è_cas-5-5_q4",
@@ -10035,17 +10209,28 @@ const QUESTIONS = [
     "materia": "cas",
     "tema": "Modalidades oracionales",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "¿Qué modalidad tiene la frase «Cierra la puerta, por favor»?",
-    "opcions": [
-      "Imperativa",
-      "Interrogativa",
-      "Exclamativa",
-      "Declarativa"
-    ],
-    "resposta_correcta": "Imperativa"
+    "pregunta": "Relaciona cada modalidad oracional con su definición.",
+    "parelles": [
+      {
+        "a": "Imperativa",
+        "b": "Da una orden o hace una petición"
+      },
+      {
+        "a": "Interrogativa",
+        "b": "Hace una pregunta"
+      },
+      {
+        "a": "Exclamativa",
+        "b": "Expresa una emoción fuerte"
+      },
+      {
+        "a": "Declarativa",
+        "b": "Informa de algo de manera neutra"
+      }
+    ]
   },
   {
     "id": "6è_cas-6-1_q2",
@@ -10142,17 +10327,28 @@ const QUESTIONS = [
     "materia": "cas",
     "tema": "Mecanismos de cohesión textual",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "¿Qué palabra puede sustituir a «Ana» para no repetirla?",
-    "opcions": [
-      "Ella",
-      "Este",
-      "Allí",
-      "Mucho"
-    ],
-    "resposta_correcta": "Ella"
+    "pregunta": "Relaciona cada palabra con su categoría gramatical.",
+    "parelles": [
+      {
+        "a": "Ella",
+        "b": "Un pronombre personal"
+      },
+      {
+        "a": "Este",
+        "b": "Un determinante demostrativo"
+      },
+      {
+        "a": "Allí",
+        "b": "Un adverbio de lugar"
+      },
+      {
+        "a": "Mucho",
+        "b": "Un adverbio de cantidad"
+      }
+    ]
   },
   {
     "id": "6è_cas-6-2_q2",
@@ -10212,17 +10408,28 @@ const QUESTIONS = [
     "materia": "cas",
     "tema": "Mecanismos de cohesión textual",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "¿Qué palabra es sinónimo de «contento»?",
-    "opcions": [
-      "Alegre",
-      "Triste",
-      "Cansado",
-      "Enfadado"
-    ],
-    "resposta_correcta": "Alegre"
+    "pregunta": "Relaciona cada palabra con su sinónimo.",
+    "parelles": [
+      {
+        "a": "Alegre",
+        "b": "Sinónimo de contento"
+      },
+      {
+        "a": "Triste",
+        "b": "Sinónimo de disgustado o afligido"
+      },
+      {
+        "a": "Cansado",
+        "b": "Sinónimo de exhausto o fatigado"
+      },
+      {
+        "a": "Enfadado",
+        "b": "Sinónimo de enojado o molesto"
+      }
+    ]
   },
   {
     "id": "6è_cas-6-2_q6",
@@ -10261,17 +10468,28 @@ const QUESTIONS = [
     "materia": "cas",
     "tema": "Escritura creativa",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "¿Qué figura literaria compara dos cosas usando «como»?",
-    "opcions": [
-      "La comparación",
-      "La metáfora",
-      "La rima",
-      "La hipérbole"
-    ],
-    "resposta_correcta": "La comparación"
+    "pregunta": "Relaciona cada figura literaria con su definición.",
+    "parelles": [
+      {
+        "a": "La comparación",
+        "b": "Compara dos cosas usando «como»"
+      },
+      {
+        "a": "La metáfora",
+        "b": "Identifica dos cosas sin usar «como»"
+      },
+      {
+        "a": "La rima",
+        "b": "Repetición de un mismo sonido al final de los versos"
+      },
+      {
+        "a": "La hipérbole",
+        "b": "Exagera mucho una idea"
+      }
+    ]
   },
   {
     "id": "6è_cas-6-3_q2",
@@ -10395,17 +10613,24 @@ const QUESTIONS = [
     "materia": "cas",
     "tema": "Búsqueda y tratamiento de la información",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "¿Cuál es un buen primer paso para hacer un trabajo de investigación?",
-    "opcions": [
-      "Buscar información en varias fuentes fiables",
-      "Copiar el primer resultado que encuentres",
-      "Preguntárselo directamente al profesor sin buscar por tu cuenta",
-      "Inventarte los datos"
-    ],
-    "resposta_correcta": "Buscar información en varias fuentes fiables"
+    "pregunta": "Relaciona cada buena práctica de investigación con el motivo por el que ayuda.",
+    "parelles": [
+      {
+        "a": "Buscar en varias fuentes fiables",
+        "b": "Permite comprobar que la información es cierta"
+      },
+      {
+        "a": "Citar la autoría",
+        "b": "Decir de dónde viene la información y quién la escribió"
+      },
+      {
+        "a": "Ir a la biblioteca",
+        "b": "Una fuente fiable de información, además de internet"
+      }
+    ]
   },
   {
     "id": "6è_cas-6-4_q4",
@@ -10592,17 +10817,15 @@ const QUESTIONS = [
     "materia": "eng",
     "tema": "Personal identification & free time",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "After «is» as a hobby, English uses the -ing form: swimming.",
     "pregunta": "Complete: «My favourite hobby is ___.»",
-    "opcions": [
+    "resposta_correcta": "swimming",
+    "respostes_acceptades": [
       "swimming",
-      "swim",
-      "swims",
-      "to swimming"
-    ],
-    "resposta_correcta": "swimming"
+      "Swimming"
+    ]
   },
   {
     "id": "5è_eng-5-1_q3",
@@ -10732,17 +10955,15 @@ const QUESTIONS = [
     "materia": "eng",
     "tema": "Places and everyday life",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "We use «by» with means of transport: by bus, by car, by bike.",
     "pregunta": "Complete: «I usually go to school ___ bus.»",
-    "opcions": [
+    "resposta_correcta": "by",
+    "respostes_acceptades": [
       "by",
-      "on",
-      "at",
-      "in"
-    ],
-    "resposta_correcta": "by"
+      "By"
+    ]
   },
   {
     "id": "5è_eng-5-2_q5",
@@ -10751,17 +10972,15 @@ const QUESTIONS = [
     "materia": "eng",
     "tema": "Places and everyday life",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "We use «at» with clock times: at 7 o'clock.",
     "pregunta": "Complete: «She wakes up ___ 7 o'clock.»",
-    "opcions": [
+    "resposta_correcta": "at",
+    "respostes_acceptades": [
       "at",
-      "on",
-      "in",
-      "by"
-    ],
-    "resposta_correcta": "at"
+      "At"
+    ]
   },
   {
     "id": "5è_eng-5-2_q6",
@@ -10800,17 +11019,15 @@ const QUESTIONS = [
     "materia": "eng",
     "tema": "Present simple",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "In present simple, «she/he/it» verbs end in -s: she goes.",
     "pregunta": "Complete: «She ___ to school every day.»",
-    "opcions": [
+    "resposta_correcta": "goes",
+    "respostes_acceptades": [
       "goes",
-      "go",
-      "going",
-      "gone"
-    ],
-    "resposta_correcta": "goes"
+      "Goes"
+    ]
   },
   {
     "id": "5è_eng-5-3_q2",
@@ -10819,17 +11036,15 @@ const QUESTIONS = [
     "materia": "eng",
     "tema": "Present simple",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "With «they», present simple verbs keep the base form: they play.",
     "pregunta": "Complete: «They ___ football on Saturdays.»",
-    "opcions": [
+    "resposta_correcta": "play",
+    "respostes_acceptades": [
       "play",
-      "plays",
-      "playing",
-      "played"
-    ],
-    "resposta_correcta": "play"
+      "Play"
+    ]
   },
   {
     "id": "5è_eng-5-3_q3",
@@ -11032,17 +11247,14 @@ const QUESTIONS = [
     "materia": "eng",
     "tema": "Basic writing",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "A question mark (?) always ends a question in English.",
     "pregunta": "Which punctuation mark ends a question in English?",
-    "opcions": [
-      "?",
-      ".",
-      ",",
-      "!"
-    ],
-    "resposta_correcta": "?"
+    "resposta_correcta": "?",
+    "respostes_acceptades": [
+      "?"
+    ]
   },
   {
     "id": "5è_eng-5-5_q3",
@@ -11064,17 +11276,15 @@ const QUESTIONS = [
     "materia": "eng",
     "tema": "Basic writing",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "«But» connects two contrasting ideas.",
     "pregunta": "Choose the best connector: «I like apples ___ I don't like bananas.»",
-    "opcions": [
+    "resposta_correcta": "but",
+    "respostes_acceptades": [
       "but",
-      "because",
-      "so",
-      "and"
-    ],
-    "resposta_correcta": "but"
+      "But"
+    ]
   },
   {
     "id": "5è_eng-5-5_q5",
@@ -11191,17 +11401,15 @@ const QUESTIONS = [
     "materia": "eng",
     "tema": "Interpersonal relationships",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
     "explicacio": "",
     "pregunta": "Which word means the opposite of «friendly»?",
-    "opcions": [
+    "resposta_correcta": "Unfriendly",
+    "respostes_acceptades": [
       "Unfriendly",
-      "Kind",
-      "Nice",
-      "Polite"
-    ],
-    "resposta_correcta": "Unfriendly"
+      "unfriendly"
+    ]
   },
   {
     "id": "6è_eng-6-1_q6",
@@ -11259,17 +11467,15 @@ const QUESTIONS = [
     "materia": "eng",
     "tema": "Past simple",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "Regular verbs form the past simple by adding -ed: play → played.",
     "pregunta": "What is the past simple of «play»?",
-    "opcions": [
+    "resposta_correcta": "played",
+    "respostes_acceptades": [
       "played",
-      "plaied",
-      "playd",
-      "plays"
-    ],
-    "resposta_correcta": "played"
+      "Played"
+    ]
   },
   {
     "id": "6è_eng-6-2_q3",
@@ -11396,17 +11602,15 @@ const QUESTIONS = [
     "materia": "eng",
     "tema": "Sociocultural aspects",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
     "explicacio": "",
     "pregunta": "What is a common celebration in the United Kingdom in autumn related to pumpkins?",
-    "opcions": [
+    "resposta_correcta": "Halloween",
+    "respostes_acceptades": [
       "Halloween",
-      "Christmas",
-      "Easter",
-      "Thanksgiving"
-    ],
-    "resposta_correcta": "Halloween"
+      "halloween"
+    ]
   },
   {
     "id": "6è_eng-6-3_q5",
@@ -11555,17 +11759,28 @@ const QUESTIONS = [
     "materia": "eng",
     "tema": "Structured writing",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Which word usually starts a story?",
-    "opcions": [
-      "Once",
-      "The end",
-      "Goodbye",
-      "Finally"
-    ],
-    "resposta_correcta": "Once"
+    "pregunta": "Match each word with when it is used in a story.",
+    "parelles": [
+      {
+        "a": "Once",
+        "b": "Used to start a story"
+      },
+      {
+        "a": "First",
+        "b": "Used to show the first thing that happened"
+      },
+      {
+        "a": "Suddenly",
+        "b": "Used to show something unexpected happens"
+      },
+      {
+        "a": "Finally",
+        "b": "Used to end a story"
+      }
+    ]
   },
   {
     "id": "6è_eng-6-5_q2",
@@ -11574,17 +11789,28 @@ const QUESTIONS = [
     "materia": "eng",
     "tema": "Structured writing",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Which connector is used to add information?",
-    "opcions": [
-      "Also",
-      "But",
-      "Because",
-      "Although"
-    ],
-    "resposta_correcta": "Also"
+    "pregunta": "Match each connector with its function.",
+    "parelles": [
+      {
+        "a": "Also",
+        "b": "Used to add information"
+      },
+      {
+        "a": "But",
+        "b": "Used to show contrast"
+      },
+      {
+        "a": "Because",
+        "b": "Used to explain a reason"
+      },
+      {
+        "a": "Although",
+        "b": "Used to show an unexpected contrast"
+      }
+    ]
   },
   {
     "id": "6è_eng-6-5_q3",
@@ -11666,17 +11892,16 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "El mètode científic",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "ordenar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quin és el primer pas habitual del mètode científic?",
-    "opcions": [
+    "pregunta": "Ordena les fases del mètode científic.",
+    "elements_ordre_correcte": [
       "Observar i fer-se preguntes",
-      "Escriure les conclusions",
-      "Publicar els resultats",
-      "Comprar material"
-    ],
-    "resposta_correcta": "Observar i fer-se preguntes"
+      "Formular una hipòtesi",
+      "Fer l'experiment",
+      "Treure conclusions"
+    ]
   },
   {
     "id": "5è_nat-5-1_q2",
@@ -11787,17 +12012,28 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "Ecosistemes i cadenes alimentàries",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Com s'anomenen els animals que mengen només plantes?",
-    "opcions": [
-      "Herbívors",
-      "Carnívors",
-      "Omnívors",
-      "Descomponedors"
-    ],
-    "resposta_correcta": "Herbívors"
+    "pregunta": "Relaciona cada tipus d'animal amb la seva alimentació.",
+    "parelles": [
+      {
+        "a": "Herbívors",
+        "b": "Mengen només plantes"
+      },
+      {
+        "a": "Carnívors",
+        "b": "Mengen només altres animals"
+      },
+      {
+        "a": "Omnívors",
+        "b": "Mengen tant plantes com animals"
+      },
+      {
+        "a": "Descomponedors",
+        "b": "Transformen la matèria orgànica morta"
+      }
+    ]
   },
   {
     "id": "5è_nat-5-2_q3",
@@ -11887,17 +12123,28 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "Classificació d'animals i plantes",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quina característica permet classificar els animals en vertebrats i invertebrats?",
-    "opcions": [
-      "Si tenen columna vertebral o no",
-      "El color de la pell",
-      "La grandària",
-      "On viuen"
-    ],
-    "resposta_correcta": "Si tenen columna vertebral o no"
+    "pregunta": "Relaciona cada grup d'animals amb la seva característica.",
+    "parelles": [
+      {
+        "a": "Vertebrats",
+        "b": "Tenen columna vertebral"
+      },
+      {
+        "a": "Invertebrats",
+        "b": "No tenen columna vertebral"
+      },
+      {
+        "a": "Mamífers",
+        "b": "Vertebrats que alimenten les cries amb llet"
+      },
+      {
+        "a": "Amfibis",
+        "b": "Vertebrats que viuen part de la vida a l'aigua i part a terra"
+      }
+    ]
   },
   {
     "id": "5è_nat-5-3_q2",
@@ -11906,17 +12153,28 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "Classificació d'animals i plantes",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quines plantes tenen flors i fruits?",
-    "opcions": [
-      "Les angiospermes",
-      "Les molses",
-      "Les falgueres",
-      "Els líquens"
-    ],
-    "resposta_correcta": "Les angiospermes"
+    "pregunta": "Relaciona cada grup de plantes amb la seva característica.",
+    "parelles": [
+      {
+        "a": "Angiospermes",
+        "b": "Plantes amb flors i fruits"
+      },
+      {
+        "a": "Molses",
+        "b": "Plantes sense flors que viuen en llocs humits"
+      },
+      {
+        "a": "Falgueres",
+        "b": "Plantes sense flors amb fulles grans i retallades"
+      },
+      {
+        "a": "Líquens",
+        "b": "Formats per un fong i una alga que viuen junts"
+      }
+    ]
   },
   {
     "id": "5è_nat-5-3_q3",
@@ -11957,17 +12215,20 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "Classificació d'animals i plantes",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Què és una varietat autòctona?",
-    "opcions": [
-      "Una raça o varietat originària d'un territori concret",
-      "Una espècie que ve d'un altre continent",
-      "Un animal de zoo",
-      "Un animal extingit"
-    ],
-    "resposta_correcta": "Una raça o varietat originària d'un territori concret"
+    "pregunta": "Relaciona cada terme amb la seva definició.",
+    "parelles": [
+      {
+        "a": "Varietat autòctona",
+        "b": "Raça o varietat originària d'un territori concret"
+      },
+      {
+        "a": "Espècie al·lòctona",
+        "b": "Espècie que ve d'un altre lloc i no és originària del territori"
+      }
+    ]
   },
   {
     "id": "5è_nat-5-3_q6",
@@ -11995,17 +12256,24 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "El cos humà: funcions vitals",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quines són les tres funcions vitals bàsiques dels éssers vius?",
-    "opcions": [
-      "Nutrició, relació i reproducció",
-      "Nutrició, dormir i créixer",
-      "Relació, jugar i menjar",
-      "Reproducció, córrer i parlar"
-    ],
-    "resposta_correcta": "Nutrició, relació i reproducció"
+    "pregunta": "Relaciona cada funció vital amb la seva definició.",
+    "parelles": [
+      {
+        "a": "Nutrició",
+        "b": "Obtenir i aprofitar l'energia dels aliments"
+      },
+      {
+        "a": "Relació",
+        "b": "Percebre i respondre als estímuls de l'entorn"
+      },
+      {
+        "a": "Reproducció",
+        "b": "Generar nous éssers vius de la mateixa espècie"
+      }
+    ]
   },
   {
     "id": "5è_nat-5-4_q2",
@@ -12014,17 +12282,28 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "El cos humà: funcions vitals",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quin sistema ens permet detectar i respondre als estímuls de l'entorn?",
-    "opcions": [
-      "El sistema nerviós",
-      "L'aparell digestiu",
-      "L'aparell excretor",
-      "L'aparell reproductor"
-    ],
-    "resposta_correcta": "El sistema nerviós"
+    "pregunta": "Relaciona cada sistema del cos amb la seva funció.",
+    "parelles": [
+      {
+        "a": "Sistema nerviós",
+        "b": "Detecta i respon als estímuls de l'entorn"
+      },
+      {
+        "a": "Aparell digestiu",
+        "b": "Transforma els aliments perquè el cos els pugui aprofitar"
+      },
+      {
+        "a": "Aparell excretor",
+        "b": "Elimina les substàncies de rebuig del cos"
+      },
+      {
+        "a": "Aparell reproductor",
+        "b": "Permet tenir fills"
+      }
+    ]
   },
   {
     "id": "5è_nat-5-4_q3",
@@ -12116,17 +12395,17 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "La matèria: canvis d'estat i mescles",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "El pas de sòlid a líquid s'anomena fusió.",
     "pregunta": "Com es diu el canvi de gel a aigua líquida?",
-    "opcions": [
+    "resposta_correcta": "Fusió",
+    "respostes_acceptades": [
       "Fusió",
-      "Solidificació",
-      "Evaporació",
-      "Condensació"
-    ],
-    "resposta_correcta": "Fusió"
+      "fusio",
+      "fusió",
+      "Fusio"
+    ]
   },
   {
     "id": "5è_nat-5-5_q3",
@@ -12148,17 +12427,16 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "La matèria: canvis d'estat i mescles",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "ordenar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quin mètode es fa servir per separar sorra i aigua?",
-    "opcions": [
-      "La filtració",
-      "La imantació",
-      "La destil·lació de metalls",
-      "Cap mètode funciona"
-    ],
-    "resposta_correcta": "La filtració"
+    "pregunta": "Ordena el procés de canvi d'estat quan escalfem gel fins que es converteix en vapor.",
+    "elements_ordre_correcte": [
+      "Gel (sòlid)",
+      "Fusió",
+      "Aigua líquida",
+      "Evaporació"
+    ]
   },
   {
     "id": "5è_nat-5-5_q5",
@@ -12186,17 +12464,20 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "La matèria: canvis d'estat i mescles",
     "dificultat": 3,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quina diferència hi ha entre una mescla i una substància pura?",
-    "opcions": [
-      "La mescla té diversos components i la substància pura només un",
-      "Són exactament el mateix",
-      "Una substància pura sempre és líquida",
-      "Una mescla sempre és sòlida"
-    ],
-    "resposta_correcta": "La mescla té diversos components i la substància pura només un"
+    "pregunta": "Relaciona cada terme amb la seva definició.",
+    "parelles": [
+      {
+        "a": "Mescla",
+        "b": "Té diversos components units físicament"
+      },
+      {
+        "a": "Substància pura",
+        "b": "Està formada per un sol component"
+      }
+    ]
   },
   {
     "id": "6è_nat-6-1_q1",
@@ -12224,17 +12505,28 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "Energia elèctrica i circuits",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quin component d'un circuit produeix llum?",
-    "opcions": [
-      "La bombeta",
-      "La pila",
-      "El cable",
-      "L'interruptor"
-    ],
-    "resposta_correcta": "La bombeta"
+    "pregunta": "Relaciona cada component d'un circuit amb la seva funció.",
+    "parelles": [
+      {
+        "a": "La bombeta",
+        "b": "Produeix llum quan hi passa corrent"
+      },
+      {
+        "a": "La pila",
+        "b": "Proporciona l'energia elèctrica al circuit"
+      },
+      {
+        "a": "El cable",
+        "b": "Permet que el corrent elèctric hi circuli"
+      },
+      {
+        "a": "L'interruptor",
+        "b": "Serveix per obrir o tancar el circuit"
+      }
+    ]
   },
   {
     "id": "6è_nat-6-1_q3",
@@ -12358,17 +12650,28 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "Forces, màquines simples i aerodinàmica",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quina força actua sense necessitat de contacte, com la que fa caure els objectes?",
-    "opcions": [
-      "La gravetat",
-      "L'empenta",
-      "El fregament",
-      "La palanca"
-    ],
-    "resposta_correcta": "La gravetat"
+    "pregunta": "Relaciona cada tipus de força amb la seva definició.",
+    "parelles": [
+      {
+        "a": "La gravetat",
+        "b": "Força que fa caure els objectes sense necessitat de contacte"
+      },
+      {
+        "a": "L'empenta",
+        "b": "Força de contacte que mou un objecte"
+      },
+      {
+        "a": "El fregament",
+        "b": "Força que frena el moviment entre dues superfícies"
+      },
+      {
+        "a": "La palanca",
+        "b": "Màquina simple que facilita aixecar pesos"
+      }
+    ]
   },
   {
     "id": "6è_nat-6-2_q5",
@@ -12377,17 +12680,24 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "Forces, màquines simples i aerodinàmica",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Per a què serveix una politja?",
-    "opcions": [
-      "Per facilitar aixecar o moure objectes pesants",
-      "Per mesurar la temperatura",
-      "Per generar llum",
-      "Per netejar l'aigua"
-    ],
-    "resposta_correcta": "Per facilitar aixecar o moure objectes pesants"
+    "pregunta": "Relaciona cada màquina simple amb la seva funció.",
+    "parelles": [
+      {
+        "a": "La politja",
+        "b": "Facilita aixecar o moure objectes pesants"
+      },
+      {
+        "a": "La palanca",
+        "b": "Facilita moure o aixecar pesos amb un punt de suport"
+      },
+      {
+        "a": "El pla inclinat",
+        "b": "Facilita pujar objectes pesants amb menys força"
+      }
+    ]
   },
   {
     "id": "6è_nat-6-2_q6",
@@ -12485,17 +12795,17 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "Alimentació saludable i benestar",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
     "explicacio": "",
     "pregunta": "Quantes hores de son es recomanen aproximadament a un infant d'aquesta edat?",
-    "opcions": [
+    "resposta_correcta": "Entre 9 i 11 hores",
+    "respostes_acceptades": [
       "Entre 9 i 11 hores",
-      "Entre 2 i 3 hores",
-      "Entre 15 i 18 hores",
-      "Entre 5 i 6 hores"
-    ],
-    "resposta_correcta": "Entre 9 i 11 hores"
+      "9-11 hores",
+      "9 a 11 hores",
+      "entre 9 i 11 hores"
+    ]
   },
   {
     "id": "6è_nat-6-3_q6",
@@ -12568,17 +12878,17 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "Tecnologia i pensament computacional",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "ordenar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quin és el primer pas del procés de disseny (empatitza, defineix, idea, prototipa, avalua)?",
-    "opcions": [
-      "Empatitza (entendre el problema i les persones)",
-      "Avalua",
+    "pregunta": "Ordena les fases del procés de disseny.",
+    "elements_ordre_correcte": [
+      "Empatitza",
+      "Defineix",
+      "Idea",
       "Prototipa",
-      "Idea"
-    ],
-    "resposta_correcta": "Empatitza (entendre el problema i les persones)"
+      "Avalua"
+    ]
   },
   {
     "id": "6è_nat-6-4_q5",
@@ -12638,17 +12948,28 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "Fonts d'energia i sostenibilitat",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quina font d'energia s'obté del vent?",
-    "opcions": [
-      "L'energia eòlica",
-      "L'energia solar",
-      "L'energia hidràulica",
-      "L'energia nuclear"
-    ],
-    "resposta_correcta": "L'energia eòlica"
+    "pregunta": "Relaciona cada font d'energia amb el que l'origina.",
+    "parelles": [
+      {
+        "a": "L'energia eòlica",
+        "b": "S'obté de la força del vent"
+      },
+      {
+        "a": "L'energia solar",
+        "b": "S'obté de la llum i la calor del Sol"
+      },
+      {
+        "a": "L'energia hidràulica",
+        "b": "S'obté de la força de l'aigua"
+      },
+      {
+        "a": "L'energia nuclear",
+        "b": "S'obté de reaccions nuclears controlades"
+      }
+    ]
   },
   {
     "id": "6è_nat-6-5_q3",
@@ -12740,17 +13061,17 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "La Terra com a sistema",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "La meteorologia estudia i registra les dades del temps atmosfèric.",
     "pregunta": "Com s'anomena l'estudi i registre de les dades meteorològiques?",
-    "opcions": [
+    "resposta_correcta": "La meteorologia",
+    "respostes_acceptades": [
       "La meteorologia",
-      "La geografia política",
-      "La cartografia",
-      "L'astronomia"
-    ],
-    "resposta_correcta": "La meteorologia"
+      "la meteorologia",
+      "Meteorologia",
+      "meteorologia"
+    ]
   },
   {
     "id": "5è_soc-5-1_q3",
@@ -12772,17 +13093,28 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "La Terra com a sistema",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quin instrument mesura la quantitat de pluja caiguda?",
-    "opcions": [
-      "El pluviòmetre",
-      "El termòmetre",
-      "El baròmetre",
-      "L'anemòmetre"
-    ],
-    "resposta_correcta": "El pluviòmetre"
+    "pregunta": "Relaciona cada instrument meteorològic amb el que mesura.",
+    "parelles": [
+      {
+        "a": "El pluviòmetre",
+        "b": "Mesura la quantitat de pluja"
+      },
+      {
+        "a": "El termòmetre",
+        "b": "Mesura la temperatura"
+      },
+      {
+        "a": "L'anemòmetre",
+        "b": "Mesura la velocitat del vent"
+      },
+      {
+        "a": "El baròmetre",
+        "b": "Mesura la pressió atmosfèrica"
+      }
+    ]
   },
   {
     "id": "5è_soc-5-1_q5",
@@ -12823,17 +13155,20 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "El clima i les dades meteorològiques",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quina diferència hi ha entre temps atmosfèric i clima?",
-    "opcions": [
-      "El temps és el que fa un dia concret i el clima és la mitjana de molts anys",
-      "Són exactament el mateix",
-      "El clima canvia cada hora",
-      "El temps només existeix a l'estiu"
-    ],
-    "resposta_correcta": "El temps és el que fa un dia concret i el clima és la mitjana de molts anys"
+    "pregunta": "Relaciona cada concepte amb la seva definició.",
+    "parelles": [
+      {
+        "a": "Temps atmosfèric",
+        "b": "Com és un dia concret"
+      },
+      {
+        "a": "Clima",
+        "b": "La mitjana de moltes dades al llarg de molts anys"
+      }
+    ]
   },
   {
     "id": "5è_soc-5-2_q2",
@@ -12925,17 +13260,18 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "L'organització política de l'Estat espanyol",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "La Constitució és el text legal fonamental que organitza l'Estat espanyol.",
     "pregunta": "Com s'anomena el text legal fonamental que organitza l'Estat espanyol?",
-    "opcions": [
+    "resposta_correcta": "La Constitució",
+    "respostes_acceptades": [
       "La Constitució",
-      "El diccionari",
-      "El calendari",
-      "El mapa"
-    ],
-    "resposta_correcta": "La Constitució"
+      "la Constitució",
+      "Constitució",
+      "constitucio",
+      "La Constitucio"
+    ]
   },
   {
     "id": "5è_soc-5-3_q2",
@@ -12944,17 +13280,15 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "L'organització política de l'Estat espanyol",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "L'Estat espanyol es divideix en 17 comunitats autònomes.",
     "pregunta": "Quantes comunitats autònomes formen l'Estat espanyol?",
-    "opcions": [
+    "resposta_correcta": "17",
+    "respostes_acceptades": [
       "17",
-      "5",
-      "50",
-      "100"
-    ],
-    "resposta_correcta": "17"
+      "disset"
+    ]
   },
   {
     "id": "5è_soc-5-3_q3",
@@ -13027,17 +13361,17 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "Grans etapes de la Història",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "ordenar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quina etapa històrica ve just abans de l'edat moderna?",
-    "opcions": [
-      "L'edat mitjana",
-      "L'edat contemporània",
-      "La prehistòria",
-      "L'edat antiga"
-    ],
-    "resposta_correcta": "L'edat mitjana"
+    "pregunta": "Ordena cronològicament aquestes etapes històriques.",
+    "elements_ordre_correcte": [
+      "Prehistòria",
+      "Edat Antiga",
+      "Edat Mitjana",
+      "Edat Moderna",
+      "Edat Contemporània"
+    ]
   },
   {
     "id": "5è_soc-5-4_q2",
@@ -13078,17 +13412,24 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "Grans etapes de la Història",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Quin tipus de font històrica és un document escrit antic?",
-    "opcions": [
-      "Una font escrita",
-      "Una font oral",
-      "Una font patrimonial",
-      "Cap de les anteriors"
-    ],
-    "resposta_correcta": "Una font escrita"
+    "pregunta": "Relaciona cada tipus de font històrica amb un exemple.",
+    "parelles": [
+      {
+        "a": "Font escrita",
+        "b": "Un document escrit, com una carta o un llibre antic"
+      },
+      {
+        "a": "Font oral",
+        "b": "El relat o testimoni d'una persona, com una entrevista"
+      },
+      {
+        "a": "Font patrimonial",
+        "b": "Un objecte, monument o lloc del passat"
+      }
+    ]
   },
   {
     "id": "5è_soc-5-4_q5",
@@ -13129,17 +13470,20 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "Institucions i alfabetització cívica",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Qui governa un ajuntament?",
-    "opcions": [
-      "L'alcalde o alcaldessa i els regidors",
-      "El rei",
-      "Un mestre",
-      "Un metge"
-    ],
-    "resposta_correcta": "L'alcalde o alcaldessa i els regidors"
+    "pregunta": "Relaciona cada institució amb el seu paper.",
+    "parelles": [
+      {
+        "a": "L'ajuntament",
+        "b": "El governen l'alcalde o alcaldessa i els regidors"
+      },
+      {
+        "a": "La Unió Europea",
+        "b": "Reuneix representants de diferents països europeus"
+      }
+    ]
   },
   {
     "id": "5è_soc-5-5_q2",
@@ -13148,17 +13492,17 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "Institucions i alfabetització cívica",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
-    "explicacio": "",
+    "explicacio": "La policia s'encarrega de fer complir les lleis, incloses les de trànsit.",
     "pregunta": "Quina institució s'encarrega de fer complir les lleis de trànsit?",
-    "opcions": [
+    "resposta_correcta": "La policia",
+    "respostes_acceptades": [
       "La policia",
-      "L'escola",
-      "La biblioteca",
-      "El mercat"
-    ],
-    "resposta_correcta": "La policia"
+      "la policia",
+      "Policia",
+      "policia"
+    ]
   },
   {
     "id": "5è_soc-5-5_q3",
@@ -13301,17 +13645,18 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "Objectius de Desenvolupament Sostenible",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
     "explicacio": "",
     "pregunta": "Quina institució internacional va proposar els ODS?",
-    "opcions": [
+    "resposta_correcta": "Les Nacions Unides",
+    "respostes_acceptades": [
       "Les Nacions Unides",
-      "La Unió Europea únicament",
-      "Un club esportiu",
-      "Una empresa privada"
-    ],
-    "resposta_correcta": "Les Nacions Unides"
+      "les Nacions Unides",
+      "Nacions Unides",
+      "ONU",
+      "l'ONU"
+    ]
   },
   {
     "id": "6è_soc-6-1_q6",
@@ -13333,17 +13678,14 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "La democràcia a Espanya",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
     "explicacio": "",
     "pregunta": "Quin any es va aprovar la Constitució espanyola actual?",
-    "opcions": [
-      "1978",
-      "1936",
-      "2000",
-      "1898"
-    ],
-    "resposta_correcta": "1978"
+    "resposta_correcta": "1978",
+    "respostes_acceptades": [
+      "1978"
+    ]
   },
   {
     "id": "6è_soc-6-2_q2",
@@ -13352,17 +13694,28 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "La democràcia a Espanya",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Com s'anomena el sistema polític en què la ciutadania elegeix els seus representants?",
-    "opcions": [
-      "La democràcia",
-      "La dictadura",
-      "La monarquia absoluta",
-      "L'anarquia"
-    ],
-    "resposta_correcta": "La democràcia"
+    "pregunta": "Relaciona cada sistema polític amb la seva definició.",
+    "parelles": [
+      {
+        "a": "La democràcia",
+        "b": "La ciutadania elegeix els seus representants"
+      },
+      {
+        "a": "La dictadura",
+        "b": "El poder el té una sola persona sense eleccions lliures"
+      },
+      {
+        "a": "La monarquia absoluta",
+        "b": "Un rei o reina té tot el poder"
+      },
+      {
+        "a": "L'anarquia",
+        "b": "No hi ha govern ni autoritat establerta"
+      }
+    ]
   },
   {
     "id": "6è_soc-6-2_q3",
@@ -13486,17 +13839,24 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "El canvi climàtic",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Què és la «petjada ecològica»?",
-    "opcions": [
-      "Una mesura de l'impacte ambiental que genera una persona o activitat",
-      "Una empremta física a la sorra",
-      "Un tipus de sabata",
-      "Un tipus de mapa que mostra onades de calor"
-    ],
-    "resposta_correcta": "Una mesura de l'impacte ambiental que genera una persona o activitat"
+    "pregunta": "Relaciona cada concepte amb la seva definició.",
+    "parelles": [
+      {
+        "a": "Efecte hivernacle",
+        "b": "Els gasos atmosfèrics retenen la calor del Sol"
+      },
+      {
+        "a": "Petjada ecològica",
+        "b": "Mesura l'impacte ambiental d'una persona o activitat"
+      },
+      {
+        "a": "Energies renovables",
+        "b": "No s'esgoten i contaminen menys"
+      }
+    ]
   },
   {
     "id": "6è_soc-6-3_q5",
@@ -13556,17 +13916,17 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "La Unió Europea i les institucions",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "resposta_escrita",
     "origen": "curriculum_base",
     "explicacio": "",
     "pregunta": "Quina moneda fan servir molts països de la Unió Europea?",
-    "opcions": [
+    "resposta_correcta": "L'euro",
+    "respostes_acceptades": [
       "L'euro",
-      "El dòlar",
-      "La lliura",
-      "El ien"
-    ],
-    "resposta_correcta": "L'euro"
+      "l'euro",
+      "Euro",
+      "euro"
+    ]
   },
   {
     "id": "6è_soc-6-4_q3",
@@ -13639,17 +13999,24 @@ const QUESTIONS = [
     "materia": "soc",
     "tema": "Consum responsable i impostos",
     "dificultat": 1,
-    "tipus": "test",
+    "tipus": "emparellar",
     "origen": "curriculum_base",
     "explicacio": "",
-    "pregunta": "Què és el consum responsable?",
-    "opcions": [
-      "Comprar tenint en compte l'impacte social i ambiental de les nostres decisions",
-      "Comprar el producte més car pensant que és millor",
-      "Comprar sense pensar-hi",
-      "Triar els productes més barats, sense mirar-ne l'origen"
-    ],
-    "resposta_correcta": "Comprar tenint en compte l'impacte social i ambiental de les nostres decisions"
+    "pregunta": "Relaciona cada concepte econòmic amb la seva definició.",
+    "parelles": [
+      {
+        "a": "Consum responsable",
+        "b": "Comprar tenint en compte l'impacte social i ambiental"
+      },
+      {
+        "a": "Impostos",
+        "b": "Financen serveis públics com escoles o hospitals"
+      },
+      {
+        "a": "Mercat laboral",
+        "b": "Com es genera i es distribueix la feina i els salaris"
+      }
+    ]
   },
   {
     "id": "6è_soc-6-5_q2",
