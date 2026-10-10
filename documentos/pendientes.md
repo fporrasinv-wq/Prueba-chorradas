@@ -56,9 +56,12 @@
 - [x] Variants afegides a `respostes_acceptades`: `6è_mat-6-5_q5` (0,5 / 0.5 / 50 %), `6è_mat-6-3_q2` (baix / més barat), punt decimal a `5è_mat-5-1_q5`/`6è_mat-6-1_q2`/`6è_mat-6-1_q4`, "25 %" amb espai a `5è_mat-5-2_q2`/`5è_mat-5-2_q5`
 - [x] Verificat per script: mateixos 752 ids i mateix ordre que el commit `a1a1241`; exactament els 16 ids d'aquesta llista es van modificar i cap més; regressió completa (115 lliçons) sense fallades
 
+## Resuelto — Sesión 10, Bloque 6c (cierre del punto abierto del Bloque 6b)
+- [x] `5è_nat-5-3_q5` convertida a `veritat_fals` (falsa: "Una varietat autòctona és una espècie que ve d'un altre continent", con `explicacio` aclarando la diferencia autòctona/al·lòctona) — rompe la racha de 3 preguntas test seguidas en "Classificació d'animals i plantes" (5è nat) que había quedado tras el Bloque 6b, sin tocar ningún otro id
+- [x] Verificado por script: mismos 752 ids y mismo orden que el commit `9e693af`; solo ese id cambió; 0 lecciones de 5è/6è con 3 tipos iguales seguidos; V/F de 5è equilibrado en 21/22; regresión completa (115 lliçons) sin fallos
+
 ## Pendiente de aplicar la misma auditoría/criterio al resto
-- `explicacio` solo está poblado para las preguntas tipo `veritat_fals` (147/147) y algunas de las convertidas en el Bloque 6; el resto de tipos sigue mayoritariamente con el campo vacío
+- `explicacio` solo está poblado para las preguntas tipo `veritat_fals` y algunas de las convertidas en el Bloque 6; el resto de tipos sigue mayoritariamente con el campo vacío
 - El campo `dificultat` de 1r/4t sigue siendo posicional, no pedagógico (ver más arriba) — no se ha tocado en esta sesión
 - El objetivo de `ordenar` (~10% en 5è/6è) no se alcanzó por falta de contenido de tipo proceso/secuencia en el banco — ver Sesión 8 arriba
-- Al revertir `5è_nat-5-3_q5` a test (Bloque 6b), la lliçó "Classificació d'animals i plantes" (5è nat) quedó con 3 preguntas test seguidas (q4, q5, q6) — viola la regla "no más de 2 seguidas del mismo tipo". No se corrigió porque arreglarlo requeriría tocar `5è_nat-5-3_q4` o `5è_nat-5-3_q6`, fuera de la lista explícita del Bloque 6b; pendiente de decisión del usuario
 

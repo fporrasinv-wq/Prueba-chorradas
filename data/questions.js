@@ -12226,17 +12226,11 @@ const QUESTIONS = [
     "materia": "nat",
     "tema": "Classificació d'animals i plantes",
     "dificultat": 2,
-    "tipus": "test",
+    "tipus": "veritat_fals",
     "origen": "curriculum_base",
-    "explicacio": "",
-    "pregunta": "Què és una varietat autòctona?",
-    "opcions": [
-      "Una raça o varietat originària d'un territori concret",
-      "Una espècie que ve d'un altre continent",
-      "Un animal de zoo",
-      "Un animal extingit"
-    ],
-    "resposta_correcta": "Una raça o varietat originària d'un territori concret"
+    "explicacio": "Una varietat autòctona és originària del territori; una espècie que ve d'un altre lloc es diu al·lòctona.",
+    "pregunta": "Una varietat autòctona és una espècie que ve d'un altre continent.",
+    "resposta_correcta": false
   },
   {
     "id": "5è_nat-5-3_q6",
