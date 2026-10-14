@@ -145,3 +145,12 @@ Per afegir o editar preguntes, edita `data/questions.js` seguint
 l'esquema d'aquí sobre. Per afegir una lliçó nova cal, a més, afegir
 la seva entrada a `LESSON_META` a `data/meta.js` (icona i ordre). Per
 afegir un curs nou, cal afegir-lo a `CURSOS` a `data/meta.js`.
+
+## Verificar el contingut (`tools/`)
+
+La carpeta `tools/` té uns quants scripts de Node (sense dependències)
+per revisar `data/questions.js` sense IA: un corrector automàtic
+d'errors i avisos, generadors d'exàmens "cecs" per corregir-los contra
+les claus reals, i un sistema per sembrar errors de prova i mesurar si
+es detecten. Cap d'ells modifica `data/questions.js`. Vegeu
+`tools/README.md` per a l'explicació completa de cada script.
