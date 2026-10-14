@@ -60,8 +60,23 @@
 - [x] `5è_nat-5-3_q5` convertida a `veritat_fals` (falsa: "Una varietat autòctona és una espècie que ve d'un altre continent", con `explicacio` aclarando la diferencia autòctona/al·lòctona) — rompe la racha de 3 preguntas test seguidas en "Classificació d'animals i plantes" (5è nat) que había quedado tras el Bloque 6b, sin tocar ningún otro id
 - [x] Verificado por script: mismos 752 ids y mismo orden que el commit `9e693af`; solo ese id cambió; 0 lecciones de 5è/6è con 3 tipos iguales seguidos; V/F de 5è equilibrado en 21/22; regresión completa (115 lliçons) sin fallos
 
+## Resuelto — Sesión 11, Bloque 7 (niveles fácil/normal/difícil + modo Repàs)
+- [x] Campo `nivell` ("facil"/"normal"/"dificil") añadido a las 752 preguntas existentes, todas con valor `"normal"` — verificado por script que es el único cambio por pregunta (mismos 752 ids, mismo orden, nada más tocado)
+- [x] `NIVELLS` definido en `data/meta.js` (id + label) para centralizar el nombre visible de cada nivel
+- [x] Esquema de id para preguntas nuevas (fácil/difícil) documentado en `documentos/esquema-ids-nivells.md`: `<curs>_<lessonId>_<f|d>_q<1..6>`
+- [x] Perfiles con campo `nivell` (por defecto "normal"); selector al crear perfil y editable desde la caja del lápiz ✏️; perfiles antiguos sin el campo se leen como "normal" vía `profileNivell()`
+- [x] `subjectsForCurs(curs, nivell)` filtra preguntas por `curs+materia+tema+nivell`; clave de progreso `lessonKeyFor()` mantiene `${curs}::${materia}::${tema}` para "normal" (sin migrar nada) y añade sufijo `::facil`/`::dificil` para los otros niveles — progreso completamente independiente por nivel
+- [x] `isNivellAvailable(curs, nivell)` exige ≥5 preguntas por lliçó en todas las lliçons del curso; los niveles no disponibles se muestran desactivados con "Aviat". Hoy solo "normal" está disponible en los 4 cursos (verificado)
+- [x] Desbloqueo lineal de lliçons y Mode pares funcionan igual, ahora por nivel (la clave de lliçó ya incorpora el nivel)
+- [x] Sugerencia de subir de nivel en Inici ("Has acabat el nivell X! Vols passar a Y?") cuando todas las lliçons del nivel actual tienen ≥2 estrelles y hay un nivel superior disponible; requiere clic explícito, no cambia solo
+- [x] `state.qstats[id] = {seen, wrong, lastISO}` registrado en cada respuesta (lliçó normal o Repàs); perfiles sin el campo lo reciben vacío vía `defaultGameState()`
+- [x] Modo Repàs: tarjeta "Què vols fer?" en Inici cuando hay ≥3 lliçons completades al nivel actual; sesión de 10 preguntas de lliçons completades de todas las matèries, priorizando más fallos y luego más antiguas/nunca vistas; reutiliza el motor de lliçó entero (vides, pistes, els 5 tipus, barreja d'opcions). Al acabar: suma XP y ratxa pero NO toca estrelles ni timesCompleted; la pantalla de resultats indica "Repàs acabat!"
+- [x] Botón opcional "Repàs d'aquesta matèria" añadido en el recorregut de cada matèria (mismo umbral de 3 lliçons completades, filtrado a esa matèria)
+- [x] Verificado: perfil antiguo sin `nivell`/`qstats`/`parentMode` conserva estrellas/XP/ratxa; regresión completa (115 lliçons, nivel normal) sin fallos; mecánica de niveles probada con contenido sintético solo en memoria de test (sin tocar `data/questions.js`); Repàs probado end-to-end (prioriza fallos, no cambia estrellas, da XP); Mode pares sigue funcionando; aspecto comprobado en móvil (390px) y escritorio
+
 ## Pendiente de aplicar la misma auditoría/criterio al resto
 - `explicacio` solo está poblado para las preguntas tipo `veritat_fals` y algunas de las convertidas en el Bloque 6; el resto de tipos sigue mayoritariamente con el campo vacío
 - El campo `dificultat` de 1r/4t sigue siendo posicional, no pedagógico (ver más arriba) — no se ha tocado en esta sesión
 - El objetivo de `ordenar` (~10% en 5è/6è) no se alcanzó por falta de contenido de tipo proceso/secuencia en el banco — ver Sesión 8 arriba
+- Contenido de nivel "facil" y "dificil" pendiente de generar (Bloque 8) — hasta entonces esos niveles aparecerán como "Aviat" en los 4 cursos
 

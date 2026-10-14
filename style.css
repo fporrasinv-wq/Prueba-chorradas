@@ -148,6 +148,42 @@ button {
 .mascot-box .speak-btn { background: none; border: none; font-size: 1.2rem; flex-shrink: 0; padding: 2px; opacity: .7; }
 .mascot-box .speak-btn:active { opacity: 1; }
 
+/* ---------- Nivells / Repàs ---------- */
+.level-up-box {
+  margin: 10px 20px 0;
+  background: #fff4e6;
+  border: 2px solid #ffd9a8;
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.92rem;
+}
+.level-up-text { font-weight: 700; }
+.level-up-box .btn { align-self: flex-start; }
+
+.whatnext-box {
+  margin: 10px 20px 0;
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.whatnext-title { font-weight: 800; font-size: 0.95rem; }
+.whatnext-actions { display: flex; gap: 10px; }
+.whatnext-actions .btn { padding: 8px 16px; font-size: 0.88rem; }
+
+.subject-repas-box { margin: 10px 20px 20px; }
+
+.nivell-edit-label { margin-top: 12px; }
+.curs-btn.disabled { opacity: .5; }
+
 /* ---------- Perfils ---------- */
 .profile-screen { padding-bottom: 20px; }
 

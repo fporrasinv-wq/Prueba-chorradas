@@ -9,7 +9,12 @@
    CURSOS: cursos disponibles al selector de perfil, amb els paràmetres
    visuals que el motor únic llegeix per adaptar l'aparença segons el
    curs del perfil actiu (majúscules i mida a 1r; aparença estàndard a
-   4t, 5è i 6è). */
+   4t, 5è i 6è).
+
+   NIVELLS: els tres nivells de dificultat de contingut (facil/normal/
+   dificil, camp "nivell" de cada pregunta a data/questions.js) amb
+   l'etiqueta que es mostra a la interfície — canviar el nom d'un
+   nivell només cal fer-ho aquí. */
 
 const SUBJECTS_META = [
   {
@@ -1024,4 +1029,10 @@ const CURSOS = [
       "maxOpcionsPerPregunta": 4
     }
   }
+];
+
+const NIVELLS = [
+  { "id": "facil", "label": "Fàcil" },
+  { "id": "normal", "label": "Normal" },
+  { "id": "dificil", "label": "Difícil" }
 ];

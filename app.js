@@ -124,7 +124,7 @@ function slugify(name) {
     .replace(/(^-|-$)/g, "") || "nen";
 }
 
-function createProfile(name, curs) {
+function createProfile(name, curs, nivell) {
   const profiles = loadProfiles();
   let base = slugify(name) + "-" + curs;
   let id = base;
@@ -133,10 +133,18 @@ function createProfile(name, curs) {
     id = base + "-" + n;
     n++;
   }
-  const profile = { id, name: name.trim(), curs, createdAt: new Date().toISOString() };
+  const profile = { id, name: name.trim(), curs, nivell: nivell || "normal", createdAt: new Date().toISOString() };
   profiles.push(profile);
   saveProfiles(profiles);
   return profile;
+}
+
+function profileNivell(p) {
+  return (p && p.nivell) || "normal";
+}
+
+function nivellInfo(nivellId) {
+  return NIVELLS.find((n) => n.id === nivellId) || NIVELLS.find((n) => n.id === "normal");
 }
 
 function getCurrentProfileId() {
@@ -164,7 +172,13 @@ function cursInfo(cursId) {
 
 /* ---------------- Contingut derivat (data/questions.js + data/meta.js) ---------------- */
 
-function subjectsForCurs(curs) {
+function lessonKeyFor(curs, materiaId, tema, nivell) {
+  const base = `${curs}::${materiaId}::${tema}`;
+  return nivell && nivell !== "normal" ? `${base}::${nivell}` : base;
+}
+
+function subjectsForCurs(curs, nivell) {
+  const lvl = nivell || "normal";
   const lessonsMeta = LESSON_META.filter((l) => l.curs === curs).sort((a, b) => a.ordre - b.ordre);
   const materiaOrder = [];
   lessonsMeta.forEach((l) => {
@@ -176,13 +190,30 @@ function subjectsForCurs(curs) {
     const lessons = lessonsMeta
       .filter((l) => l.materia === materiaId)
       .map((l) => ({
-        key: `${curs}::${materiaId}::${l.tema}`,
+        key: lessonKeyFor(curs, materiaId, l.tema, lvl),
         title: l.tema,
         icon: l.icona,
-        questions: QUESTIONS.filter((q) => q.curs === curs && q.materia === materiaId && q.tema === l.tema)
+        questions: QUESTIONS.filter((q) => q.curs === curs && q.materia === materiaId && q.tema === l.tema && q.nivell === lvl)
       }));
     return { id: materiaId, name: meta.name, icon: meta.icon, color: meta.color, colorDark: meta.colorDark, lessons };
   });
+}
+
+function isNivellAvailable(curs, nivellId) {
+  const lessonsMeta = LESSON_META.filter((l) => l.curs === curs);
+  if (lessonsMeta.length === 0) return false;
+  return lessonsMeta.every(
+    (l) => QUESTIONS.filter((q) => q.curs === curs && q.materia === l.materia && q.tema === l.tema && q.nivell === nivellId).length >= 5
+  );
+}
+
+function nextAvailableNivell(curs, currentNivell) {
+  const order = NIVELLS.map((n) => n.id);
+  const idx = order.indexOf(currentNivell);
+  for (let i = idx + 1; i < order.length; i++) {
+    if (isNivellAvailable(curs, order[i])) return order[i];
+  }
+  return null;
 }
 
 /* ---------------- Estat de joc (per perfil) ---------------- */
@@ -192,7 +223,7 @@ function stateKeyFor(profileId) {
 }
 
 function defaultGameState() {
-  return { xp: 0, streak: 0, lastPlayISO: null, lessons: {}, parentMode: false };
+  return { xp: 0, streak: 0, lastPlayISO: null, lessons: {}, parentMode: false, qstats: {} };
 }
 
 function loadGameState(profileId) {
@@ -218,7 +249,7 @@ let subjects = [];
 let nav = { view: "profile-select" };
 let session = null;
 let mascotMsgIndex = Math.floor(Math.random() * MASCOT_MESSAGES.length);
-let newProfileDraft = { name: "", curs: CURSOS[0].id };
+let newProfileDraft = { name: "", curs: CURSOS[0].id, nivell: "normal" };
 let editingProfileId = null;
 let parentChallenge = null;
 
@@ -236,7 +267,7 @@ function bootProfile() {
 function activateProfile(p, opts) {
   profile = p;
   state = loadGameState(p.id);
-  subjects = subjectsForCurs(p.curs);
+  subjects = subjectsForCurs(p.curs, profileNivell(p));
   setCurrentProfileId(p.id);
   applyCursVisual(p.curs);
   if (!opts || opts.goHomeAfter !== false) {
@@ -333,8 +364,24 @@ function changeProfileCurs(id, newCurs) {
   saveProfiles(profiles);
   if (profile && profile.id === id) {
     profile.curs = newCurs;
-    subjects = subjectsForCurs(newCurs);
+    subjects = subjectsForCurs(newCurs, profileNivell(profile));
     applyCursVisual(newCurs);
+  }
+  editingProfileId = null;
+  playComplete(false);
+  render();
+}
+
+function changeProfileNivell(id, newNivell) {
+  const profiles = loadProfiles();
+  const p = profiles.find((x) => x.id === id);
+  if (!p || profileNivell(p) === newNivell) return;
+  if (!isNivellAvailable(p.curs, newNivell)) return;
+  p.nivell = newNivell;
+  saveProfiles(profiles);
+  if (profile && profile.id === id) {
+    profile.nivell = newNivell;
+    subjects = subjectsForCurs(profile.curs, newNivell);
   }
   editingProfileId = null;
   playComplete(false);
@@ -344,8 +391,8 @@ function changeProfileCurs(id, newCurs) {
 function submitNewProfile() {
   const name = (newProfileDraft.name || "").trim();
   if (!name) return;
-  const p = createProfile(name, newProfileDraft.curs);
-  newProfileDraft = { name: "", curs: CURSOS[0].id };
+  const p = createProfile(name, newProfileDraft.curs, newProfileDraft.nivell);
+  newProfileDraft = { name: "", curs: CURSOS[0].id, nivell: "normal" };
   playComplete(false);
   activateProfile(p);
   render();
@@ -439,6 +486,15 @@ function shuffle(arr) {
   return a;
 }
 
+function recordQuestionStat(id, wasCorrect) {
+  if (!state.qstats) state.qstats = {};
+  const s = state.qstats[id] || { seen: 0, wrong: 0, lastISO: null };
+  s.seen += 1;
+  if (!wasCorrect) s.wrong += 1;
+  s.lastISO = todayISO();
+  state.qstats[id] = s;
+}
+
 function updateStreakOnFinish() {
   const today = todayISO();
   if (state.lastPlayISO === today) return;
@@ -497,7 +553,68 @@ function startLesson(subjectId, lessonKey) {
 }
 
 function retryLesson() {
-  startLesson(session.subjectId, session.lessonKey);
+  if (session.isRepas) startRepas(session.subjectId);
+  else startLesson(session.subjectId, session.lessonKey);
+}
+
+function allLessonsCompletedAtLeast(minStars) {
+  return subjects.length > 0 && subjects.every((s) => s.lessons.length > 0 && s.lessons.every((l) => lessonProgress(l.key).stars >= minStars));
+}
+
+function completedLessons(subjectFilter) {
+  const result = [];
+  subjects.forEach((subject) => {
+    if (subjectFilter && subject.id !== subjectFilter) return;
+    subject.lessons.forEach((lesson) => {
+      if (lessonProgress(lesson.key).stars > 0) result.push({ subject, lesson });
+    });
+  });
+  return result;
+}
+
+function buildRepasQueue(subjectFilter) {
+  const pool = [];
+  completedLessons(subjectFilter).forEach(({ lesson }) => {
+    lesson.questions.forEach((q) => pool.push(q));
+  });
+  const stats = state.qstats || {};
+  const scored = pool.map((q) => {
+    const s = stats[q.id] || { seen: 0, wrong: 0, lastISO: null };
+    return { q, wrong: s.wrong, lastISO: s.lastISO || "" };
+  });
+  scored.sort((a, b) => {
+    if (b.wrong !== a.wrong) return b.wrong - a.wrong;
+    if (a.lastISO !== b.lastISO) return a.lastISO < b.lastISO ? -1 : 1;
+    return 0;
+  });
+  return shuffle(scored.slice(0, 10).map((s) => s.q));
+}
+
+function startRepas(subjectFilter) {
+  const queue = buildRepasQueue(subjectFilter);
+  if (queue.length === 0) return;
+  playClick();
+  session = {
+    subjectId: subjectFilter || null,
+    lessonKey: null,
+    isRepas: true,
+    queue: queue.map(buildQueueItem),
+    idx: 0,
+    hearts: 5,
+    correctCount: 0,
+    mistakes: [],
+    xp: 0,
+    selected: null,
+    answered: false,
+    wasCorrect: null,
+    fillValue: "",
+    hintUsed: false,
+    hintDisabled: [],
+    hintShown: false,
+    matchState: null
+  };
+  nav = { view: "lesson" };
+  render();
 }
 
 function currentQuestion() {
@@ -624,6 +741,7 @@ function checkMatchCompletion(q, ms) {
     } else {
       session.mistakes.push({ question: q.pregunta, correctText: correctAnswerText(q), text: q.text });
     }
+    recordQuestionStat(q.id, session.wasCorrect);
   }
 }
 
@@ -664,6 +782,7 @@ function checkAnswer() {
     session.mistakes.push({ question: q.pregunta, correctText: correctAnswerText(q), text: q.text });
     playWrong();
   }
+  recordQuestionStat(q.id, correct);
   render();
 }
 
@@ -709,23 +828,28 @@ function finishLesson(opts) {
   const outOfHearts = !!(opts && opts.outOfHearts);
   const answeredCount = outOfHearts ? session.idx : session.queue.length;
   const total = session.queue.length;
-  const accuracy = session.correctCount / total;
+  const accuracy = total ? session.correctCount / total : 0;
   let stars = 0;
-  if (accuracy === 1) stars = 3;
-  else if (accuracy >= 0.8) stars = 2;
-  else if (accuracy >= 0.5) stars = 1;
-
   let xpEarned = session.xp;
-  if (stars === 3) xpEarned += 20;
 
-  const prev = lessonProgress(session.lessonKey);
-  state.lessons[session.lessonKey] = {
-    stars: Math.max(prev.stars, stars),
-    bestAccuracy: Math.max(prev.bestAccuracy, accuracy),
-    timesCompleted: prev.timesCompleted + 1
-  };
-  state.xp += xpEarned;
-  updateStreakOnFinish();
+  if (session.isRepas) {
+    state.xp += xpEarned;
+    updateStreakOnFinish();
+  } else {
+    if (accuracy === 1) stars = 3;
+    else if (accuracy >= 0.8) stars = 2;
+    else if (accuracy >= 0.5) stars = 1;
+    if (stars === 3) xpEarned += 20;
+
+    const prev = lessonProgress(session.lessonKey);
+    state.lessons[session.lessonKey] = {
+      stars: Math.max(prev.stars, stars),
+      bestAccuracy: Math.max(prev.bestAccuracy, accuracy),
+      timesCompleted: prev.timesCompleted + 1
+    };
+    state.xp += xpEarned;
+    updateStreakOnFinish();
+  }
   saveGameState();
 
   session.finalStars = stars;
@@ -825,7 +949,7 @@ function renderProfileSelect() {
             el("div", { class: "profile-avatar" }, "🧒"),
             el("div", { class: "profile-info" }, [
               el("div", { class: "profile-name" }, p.name),
-              el("div", { class: "profile-curs" }, `${info.label} · ${info.edat}`)
+              el("div", { class: "profile-curs" }, `${info.label} · ${info.edat} · ${nivellInfo(profileNivell(p)).label}`)
             ]),
             isCurrent ? el("div", { class: "profile-badge" }, "Actiu") : null
           ]
@@ -880,6 +1004,23 @@ function renderProfileSelect() {
                   [el("div", { class: "curs-btn-label" }, c.label), el("div", { class: "curs-btn-sub" }, c.edat)]
                 )
               )
+            ),
+            el("div", { class: "curs-edit-label nivell-edit-label" }, "Quin nivell de dificultat?"),
+            el(
+              "div",
+              { class: "curs-options" },
+              NIVELLS.map((n) => {
+                const available = isNivellAvailable(p.curs, n.id);
+                return el(
+                  "button",
+                  {
+                    class: `curs-btn ${profileNivell(p) === n.id ? "selected" : ""} ${available ? "" : "disabled"}`,
+                    disabled: available ? undefined : "true",
+                    onclick: () => changeProfileNivell(p.id, n.id)
+                  },
+                  [el("div", { class: "curs-btn-label" }, n.label), !available ? el("div", { class: "curs-btn-sub" }, "Aviat") : null]
+                );
+              })
             )
           ])
         );
@@ -913,6 +1054,23 @@ function renderProfileSelect() {
           [el("div", { class: "curs-btn-label" }, c.label), el("div", { class: "curs-btn-sub" }, c.edat)]
         )
       )
+    ),
+    el("div", { class: "curs-edit-label nivell-edit-label" }, "Nivell de dificultat"),
+    el(
+      "div",
+      { class: "curs-options" },
+      NIVELLS.map((n) => {
+        const available = isNivellAvailable(newProfileDraft.curs, n.id);
+        return el(
+          "button",
+          {
+            class: `curs-btn ${newProfileDraft.nivell === n.id ? "selected" : ""} ${available ? "" : "disabled"}`,
+            disabled: available ? undefined : "true",
+            onclick: () => { newProfileDraft.nivell = n.id; render(); }
+          },
+          [el("div", { class: "curs-btn-label" }, n.label), !available ? el("div", { class: "curs-btn-sub" }, "Aviat") : null]
+        );
+      })
     ),
     el("button", { class: "btn btn-primary btn-full", onclick: submitNewProfile }, "Comença a jugar")
   ]);
@@ -956,6 +1114,28 @@ function renderHome() {
         : null
     ])
   );
+
+  const upNivell = nextAvailableNivell(profile.curs, profileNivell(profile));
+  if (upNivell && allLessonsCompletedAtLeast(2)) {
+    wrap.appendChild(
+      el("div", { class: "level-up-box" }, [
+        el("div", { class: "level-up-text" }, `🤖 Has acabat el nivell ${nivellInfo(profileNivell(profile)).label}! Vols passar a ${nivellInfo(upNivell).label}?`),
+        el("button", { class: "btn btn-primary", onclick: () => changeProfileNivell(profile.id, upNivell) }, `Passa a ${nivellInfo(upNivell).label}`)
+      ])
+    );
+  }
+
+  if (completedLessons().length >= 3) {
+    wrap.appendChild(
+      el("div", { class: "whatnext-box" }, [
+        el("div", { class: "whatnext-title" }, "🤖 Què vols fer?"),
+        el("div", { class: "whatnext-actions" }, [
+          el("button", { class: "btn btn-outline", onclick: () => { playClick(); render(); } }, "Continua"),
+          el("button", { class: "btn btn-primary", onclick: () => startRepas() }, "🔁 Repàs")
+        ])
+      ])
+    );
+  }
 
   const grid = el("div", { class: "subject-grid" });
   subjects.forEach((subject) => {
@@ -1036,6 +1216,15 @@ function renderPath() {
   });
 
   wrap.appendChild(path);
+
+  if (completedLessons(subject.id).length >= 3) {
+    wrap.appendChild(
+      el("div", { class: "subject-repas-box" }, [
+        el("button", { class: "btn btn-outline btn-full", onclick: () => startRepas(subject.id) }, `🔁 Repàs de ${subject.name}`)
+      ])
+    );
+  }
+
   return wrap;
 }
 
@@ -1050,14 +1239,14 @@ function renderLesson() {
 
   wrap.appendChild(
     el("div", { class: "lesson-header" }, [
-      el("button", { class: "back-btn", onclick: () => { const subjectId = session.subjectId; session = null; openSubject(subjectId); } }, "✕"),
+      el("button", { class: "back-btn", onclick: () => { const subjectId = session.subjectId; session = null; subjectId ? openSubject(subjectId) : goHome(); } }, "✕"),
       el("div", { class: "bar-track" }, [el("div", { class: "bar-fill", style: `width:${pct}%` })]),
       el("div", { class: "hearts" }, "❤️ ".repeat(session.hearts) || "💔")
     ])
   );
 
   const qArea = el("div", { class: "question-area" });
-  qArea.appendChild(el("div", { class: "q-kicker" }, `Pregunta ${session.idx + 1} de ${total}`));
+  qArea.appendChild(el("div", { class: "q-kicker" }, `${session.isRepas ? "🔁 Repàs — " : ""}Pregunta ${session.idx + 1} de ${total}`));
   if (q.text) qArea.appendChild(el("div", { class: "text-card" }, q.text));
   qArea.appendChild(el("div", { class: "q-text pop" }, q.pregunta));
 
@@ -1220,24 +1409,39 @@ function renderBottomBar() {
 /* ---------------- Pantalla: resultats ---------------- */
 
 function renderResults() {
+  const isRepas = !!session.isRepas;
   const stars = session.finalStars;
   const accuracyPct = Math.round(session.finalAccuracy * 100);
-  const loc = findLessonLocation(session.lessonKey);
+  const loc = isRepas ? null : findLessonLocation(session.lessonKey);
   const outOfHearts = session.outOfHearts;
 
-  const emoji = outOfHearts ? "🤖💔" : stars === 3 ? "🤖🏆" : stars >= 1 ? "🤖🎉" : "🤖💪";
-  const title = outOfHearts ? "T'has quedat sense vides!" : stars === 3 ? "Perfecte!" : stars >= 1 ? "Molt bé!" : "Segueix practicant!";
+  const emoji = outOfHearts ? "🤖💔" : isRepas ? "🤖🔁" : stars === 3 ? "🤖🏆" : stars >= 1 ? "🤖🎉" : "🤖💪";
+  const title = outOfHearts
+    ? "T'has quedat sense vides!"
+    : isRepas
+    ? "Repàs acabat!"
+    : stars === 3
+    ? "Perfecte!"
+    : stars >= 1
+    ? "Molt bé!"
+    : "Segueix practicant!";
 
   const wrap = el("div", { class: "results" });
   wrap.appendChild(el("div", { class: "big-emoji pop" }, emoji));
   wrap.appendChild(el("h2", {}, title));
-  wrap.appendChild(el("div", {}, loc ? loc.lesson.title : ""));
+  wrap.appendChild(el("div", {}, isRepas ? "🔁 Sessió de repàs" : loc ? loc.lesson.title : ""));
   if (outOfHearts) {
     wrap.appendChild(
       el("div", { class: "feedback-sub" }, `🤖 Has respost ${session.answeredCount} de ${session.queue.length} preguntes. Torna-ho a provar quan vulguis!`)
     );
   }
-  wrap.appendChild(el("div", { class: "stars-row" }, "⭐".repeat(stars) + "☆".repeat(3 - stars)));
+  if (isRepas) {
+    wrap.appendChild(
+      el("div", { class: "feedback-sub" }, "Un repàs no canvia les estrelles ni el progrés de cap lliçó, però sí suma XP i manté la ratxa.")
+    );
+  } else {
+    wrap.appendChild(el("div", { class: "stars-row" }, "⭐".repeat(stars) + "☆".repeat(3 - stars)));
+  }
 
   wrap.appendChild(
     el("div", { class: "results-stats" }, [
@@ -1264,10 +1468,17 @@ function renderResults() {
   const actions = el("div", { class: "actions-col" }, [
     el(
       "button",
-      { class: "btn btn-primary btn-full", onclick: () => { const subjectId = loc.subject.id; session = null; openSubject(subjectId); } },
+      {
+        class: "btn btn-primary btn-full",
+        onclick: () => {
+          const subjectId = isRepas ? session.subjectId : loc.subject.id;
+          session = null;
+          subjectId ? openSubject(subjectId) : goHome();
+        }
+      },
       "Continua"
     ),
-    el("button", { class: "btn btn-outline btn-full", onclick: retryLesson }, "Torna-ho a fer")
+    el("button", { class: "btn btn-outline btn-full", onclick: retryLesson }, isRepas ? "Repàs un altre cop" : "Torna-ho a fer")
   ]);
   wrap.appendChild(actions);
 

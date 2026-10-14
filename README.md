@@ -24,6 +24,23 @@ joc.
   actiu totes les lliçons del curs queden accessibles (sense marcar
   estrelles de les anteriors), útil per repassar qualsevol tema sense
   haver de desbloquejar-lo lliçó a lliçó.
+- **Nivells de dificultat**: cada perfil té, a més del curs, un nivell
+  (Fàcil / Normal / Difícil, `data/meta.js` → `NIVELLS`), seleccionable
+  en crear el perfil i editable des de la caixa ✏️. El progrés de cada
+  nivell és independent (claus de `localStorage` separades) i un
+  nivell només apareix disponible si totes les lliçons del curs ja
+  tenen prou preguntes d'aquell nivell; si no, es mostra desactivat amb
+  "Aviat". Quan s'acaben totes les lliçons del nivell actual amb 2+
+  estrelles i hi ha un nivell superior disponible, Inici suggereix
+  pujar-hi (amb un clic explícit, mai automàtic).
+- **Mode Repàs**: quan un perfil ja ha completat 3 o més lliçons del
+  nivell actual, Inici mostra una targeta per començar una sessió de
+  repàs de 10 preguntes triades entre totes les lliçons completades de
+  totes les matèries, prioritzant les que més s'han fallat i després
+  les menys recents. Reutilitza el mateix motor de lliçó (vides,
+  pistes, els 5 tipus d'exercici) però no modifica estrelles ni
+  comptador de la lliçó — només suma XP i manté la ratxa. També hi ha
+  un "Repàs d'aquesta matèria" a cada recorregut.
 - Cada matèria té un recorregut de lliçons que es va desbloquejant.
 - Mascota "Robi", un robot que dona ànims, reacciona a les respostes i
   pot llegir els missatges en veu alta (síntesi de veu del navegador).
@@ -59,8 +76,9 @@ I després visitar `http://localhost:8000`.
 - `data/questions.js` — banc de preguntes unificat (vegeu més avall).
 - `data/meta.js` — metadades de presentació: nom/icona/color de cada
   matèria (`SUBJECTS_META`), icona i ordre de cada lliçó
-  (`LESSON_META`) i els cursos disponibles amb els seus paràmetres
-  visuals (`CURSOS`).
+  (`LESSON_META`), els cursos disponibles amb els seus paràmetres
+  visuals (`CURSOS`) i els nivells de dificultat disponibles
+  (`NIVELLS`).
 
 ## El banc de preguntes (`data/questions.js`)
 
@@ -77,8 +95,14 @@ prou gran com perquè calgui partir-lo per rendiment.
 Cada pregunta té aquests camps comuns:
 
 ```
-id, curs, cicle, materia, tema, dificultat (1-3), tipus, origen, explicacio
+id, curs, cicle, materia, tema, dificultat (1-3), nivell, tipus, origen, explicacio
 ```
+
+El camp `nivell` ("facil" | "normal" | "dificil") permet tenir
+diversos jocs de preguntes per a la mateixa lliçó. Totes les
+preguntes actuals són `"normal"`; vegeu
+`documentos/esquema-ids-nivells.md` per a l'esquema d'id a seguir en
+afegir contingut de nivell fàcil o difícil.
 
 I, segons el `tipus`, aquests camps propis:
 
