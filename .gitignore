@@ -1,0 +1,7 @@
+# Carpetes de treball dels scripts de tools/ (dades generades, no
+# contingut del projecte): es regeneren executant els scripts, no cal
+# versionar-les.
+tools/ciego/
+tools/resultados/
+tools/benchmark/*
+!tools/benchmark/README.md
