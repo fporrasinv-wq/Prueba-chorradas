@@ -10589,7 +10589,7 @@ const QUESTIONS = [
     "tipus": "veritat_fals",
     "origen": "curriculum_base",
     "explicacio": "Según el texto, el libro recomendado tiene muchas fotografías.",
-    "pregunta": "Según el texto, el libro recomendado no tiene ninguna fotografía.",
+    "pregunta": "Según el texto, la bibliotecaria le recomendó un libro sobre dinosaurios.",
     "resposta_correcta": false,
     "text": "Marta fue a la biblioteca del pueblo para buscar un libro sobre volcanes. La bibliotecaria le recomendó un libro con muchas fotografías y le explicó que los volcanes expulsan lava muy caliente."
   },

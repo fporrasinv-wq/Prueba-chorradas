@@ -136,7 +136,8 @@ QUESTIONS.filter((q) => q.tipus === "test" && Array.isArray(q.opcions)).forEach(
   if (!q.opcions.includes(q.resposta_correcta)) err("test-resposta-a-opcions", q, `resposta_correcta ("${q.resposta_correcta}") no és cap de les opcions`);
   const norm = q.opcions.map((o) => normalitzaLiteral(o));
   if (new Set(norm).size !== norm.length) err("test-opcions-duplicades", q, "hi ha opcions duplicades (mateix text normalitzat)");
-  if (q.opcions.length !== 4) err("test-4-opcions", q, `té ${q.opcions.length} opcions, s'esperen 4`);
+  if (q.opcions.length < 3 || q.opcions.length > 5) err("test-opcions-rang", q, `té ${q.opcions.length} opcions, s'esperen entre 3 i 5`);
+  else if (q.opcions.length !== 4) avisa("test-4-opcions", q, `té ${q.opcions.length} opcions: comprova que és intencionat`);
 });
 
 // emparellar: sense duplicats a ni b, mínim 3 parelles
@@ -152,7 +153,7 @@ QUESTIONS.filter((q) => q.tipus === "emparellar" && Array.isArray(q.parelles)).f
 QUESTIONS.filter((q) => q.tipus === "ordenar" && Array.isArray(q.elements_ordre_correcte)).forEach((q) => {
   if (q.elements_ordre_correcte.length < 3) err("ordenar-minim", q, `només ${q.elements_ordre_correcte.length} elements, mínim 3`);
   const norm = q.elements_ordre_correcte.map((e) => normalitzaLiteral(e));
-  if (new Set(norm).size !== norm.length) err("ordenar-duplicats", q, "elements duplicats dins la seqüència");
+  if (new Set(norm).size !== norm.length) avisa("ordenar-duplicats", q, "elements repetits (pot ser correcte si la frase repeteix una paraula)");
 });
 
 // Aritmètica: parser conservador d'expressions "a op b"
@@ -212,19 +213,59 @@ Object.values(grupsText).forEach((qs) => {
 
 /* ============== AVISOS ============== */
 
-// Duplicats exactes i quasi-duplicats, dins el mateix curs (entre nivells inclosos)
+// Duplicats exactes i quasi-duplicats, dins el mateix curs (entre nivells inclosos).
+// No n'hi ha prou que l'enunciat sigui igual: cal que el CONTINGUT també ho sigui
+// (opcions+resposta en un test, elements en un ordenar, parelles en un emparellar,
+// resposta en un veritat_fals/resposta_escrita), perquè moltes preguntes reutilitzen
+// el mateix enunciat genèric ("Ordena les paraules per formar una frase.") amb
+// contingut totalment diferent.
+function signaturaContingut(q) {
+  if (q.tipus === "test" && Array.isArray(q.opcions)) {
+    const opcionsNorm = q.opcions.map((o) => normalitza(o)).sort().join("|");
+    return `test:${opcionsNorm}::${normalitza(q.resposta_correcta)}`;
+  }
+  if (q.tipus === "ordenar" && Array.isArray(q.elements_ordre_correcte)) {
+    return `ordenar:${q.elements_ordre_correcte.map((e) => normalitza(e)).join("|")}`;
+  }
+  if (q.tipus === "emparellar" && Array.isArray(q.parelles)) {
+    const parells = q.parelles.map((p) => `${normalitza(p.a)}=${normalitza(p.b)}`).sort().join("|");
+    return `emparellar:${parells}`;
+  }
+  if (q.tipus === "veritat_fals") return `vf:${String(q.resposta_correcta)}`;
+  if (q.tipus === "resposta_escrita") return `escrita:${normalitza(q.resposta_correcta)}`;
+  return "";
+}
+// Per a ordenar/emparellar, la similitud de "quasi-duplicat" s'ha de mirar sobre el
+// contingut (elements/parelles), no sobre l'enunciat genèric de la instrucció.
+function tokenContingut(q) {
+  if (q.tipus === "ordenar" && Array.isArray(q.elements_ordre_correcte)) {
+    return tokenitza(q.elements_ordre_correcte.join(" "));
+  }
+  if (q.tipus === "emparellar" && Array.isArray(q.parelles)) {
+    return tokenitza(q.parelles.map((p) => `${p.a} ${p.b}`).join(" "));
+  }
+  return null;
+}
 const cursosPresents = [...new Set(QUESTIONS.map((q) => q.curs))];
 cursosPresents.forEach((curs) => {
   const qs = QUESTIONS.filter((q) => q.curs === curs && q.pregunta);
-  const prep = qs.map((q) => ({ q, norm: normalitza(q.pregunta), tok: tokenitza(q.pregunta) }));
+  const prep = qs.map((q) => ({
+    q,
+    norm: normalitza(q.pregunta),
+    tok: tokenitza(q.pregunta),
+    sig: signaturaContingut(q),
+    tokContingut: tokenContingut(q)
+  }));
   for (let i = 0; i < prep.length; i++) {
     for (let j = i + 1; j < prep.length; j++) {
       const A = prep[i];
       const B = prep[j];
-      if (A.norm === B.norm) {
-        avisa("duplicat-exacte", A.q, `mateix enunciat (normalitzat) que ${B.q.id}`);
+      if (A.norm === B.norm && A.sig === B.sig) {
+        avisa("duplicat-exacte", A.q, `mateix enunciat i mateix contingut (normalitzats) que ${B.q.id}`);
       } else {
-        const sim = jaccard(A.tok, B.tok);
+        const mateixTipus = A.q.tipus === B.q.tipus;
+        const usaContingut = mateixTipus && A.tokContingut && B.tokContingut;
+        const sim = usaContingut ? jaccard(A.tokContingut, B.tokContingut) : jaccard(A.tok, B.tok);
         if (sim > 0.8) avisa("quasi-duplicat", A.q, `molt similar a ${B.q.id} (similitud de tokens ${sim.toFixed(2)})`);
       }
     }
@@ -313,7 +354,12 @@ lessonMetaFiltrat.forEach((l) => {
     coberturaPerCursNivell[key].total++;
     if (n >= 5) coberturaPerCursNivell[key].ge5++;
     if (n >= 6) coberturaPerCursNivell[key].ge6++;
-    if (n < 6) {
+    // No llistem cada lliçó amb 0 preguntes a facil/dificil: és l'estat esperat
+    // mentre aquests nivells no estiguin implementats. Només avisem d'una lliçó
+    // concreta quan ja té alguna pregunta però encara li'n falten (1-4), o quan
+    // és el nivell "normal" (que sí hauria de tenir-ne sempre ≥6).
+    const calAvisar = (n >= 1 && n <= 4) || (niv.id === "normal" && n < 6);
+    if (calAvisar) {
       const etiqueta = n < 5 ? "menys de 5 (nivell no disponible a l'app)" : "menys de 6 (objectiu habitual)";
       avisos.push({ regla: "cobertura", id: null, curs: l.curs, materia: l.materia, tema: l.tema, nivell: niv.id, msg: `${n} preguntes — ${etiqueta}` });
     }

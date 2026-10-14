@@ -21,14 +21,24 @@ A sota tens, per a cada script: què fa, com es llança, i què produeix.
 problemes:
 
 - **Errors** (cosa que cal arreglar sí o sí: camps que falten, ids
-  repetits, una resposta que no existeix entre les opcions, una
-  operació matemàtica mal calculada...). Si en troba algun, l'script
-  acaba amb un codi de sortida d'error (útil per aturar un procés
-  automàtic, encara que normalment el llançaràs tu a mà).
+  repetits, una resposta que no existeix entre les opcions, un test
+  amb menys de 3 o més de 5 opcions, una operació matemàtica mal
+  calculada...). Si en troba algun, l'script acaba amb un codi de
+  sortida d'error (útil per aturar un procés automàtic, encara que
+  normalment el llançaràs tu a mà).
 - **Avisos** (coses que no trenquen res però que val la pena que una
-  persona hi doni un cop d'ull: preguntes molt semblants entre si,
-  un veritat/fals massa desequilibrat, una pregunta que conté
-  paraules com "sempre" o "mai" quan la resposta és "fals", etc.).
+  persona hi doni un cop d'ull: preguntes molt semblants entre si —o
+  idèntiques en enunciat i contingut—, un test amb 3 o 5 opcions en
+  lloc de 4, uns elements repetits dins un "ordenar", un veritat/fals
+  massa desequilibrat, una pregunta que conté paraules com "sempre" o
+  "mai" quan la resposta és "fals", etc.).
+
+Els duplicats (exactes o "quasi") es detecten mirant tant l'enunciat
+com el contingut propi de cada tipus (opcions i resposta en un test,
+elements en un ordenar, parelles en un emparellar): dues preguntes amb
+el mateix enunciat genèric però contingut diferent (p. ex. dos
+"Ordena les paraules per formar una frase." amb frases diferents) no
+es marquen com a duplicades.
 
 **Com es llança.**
 

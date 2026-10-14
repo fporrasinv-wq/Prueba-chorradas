@@ -1,16 +1,17 @@
 /* Petites utilitats de text compartides pels scripts de tools/. */
 
-// Normalització "literal": trim + minúscules + espais col·lapsats, SENSE
-// tocar accents ni diacrítics. Cal fer-la servir per detectar duplicats
-// estructurals dins d'una mateixa pregunta (opcions d'un test, parelles
-// d'un emparellar, elements d'un ordenar) perquè en moltes preguntes
-// d'ortografia/accentuació/majúscules l'accent o la lletra exacta SÓN el
-// contingut que es vol distingir (p. ex. "árbol" vs "albol", o "My name
-// is Laura." vs "my name is laura." en una pregunta de majúscules) — si
-// es normalitzessin els accents aquí, aquestes preguntes semblarien
+// Normalització "literal": NOMÉS trim + espais col·lapsats. NO passa a
+// minúscules ni toca accents ni diacrítics. Cal fer-la servir per
+// detectar duplicats estructurals dins d'una mateixa pregunta (opcions
+// d'un test, parelles d'un emparellar, elements d'un ordenar) perquè en
+// moltes preguntes d'ortografia/accentuació/majúscules l'accent, la
+// lletra exacta o la caixa (majúscula/minúscula) SÓN el contingut que
+// es vol distingir (p. ex. "árbol" vs "albol", o "My name is Laura."
+// vs "my name is laura." en una pregunta de majúscules) — si aquesta
+// funció tragués els accents o la caixa, aquestes preguntes semblarien
 // tenir opcions duplicades quan en realitat no ho són.
 function normalitzaLiteral(str) {
-  return String(str || "").trim().toLowerCase().replace(/\s+/g, " ");
+  return String(str || "").trim().replace(/\s+/g, " ");
 }
 
 function normalitza(str) {
