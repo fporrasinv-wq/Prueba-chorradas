@@ -264,8 +264,21 @@ function bootProfile() {
   }
 }
 
+function ensureProfileNivellValid(p) {
+  if (isNivellAvailable(p.curs, profileNivell(p))) return p;
+  p.nivell = "normal";
+  const profiles = loadProfiles();
+  const stored = profiles.find((x) => x.id === p.id);
+  if (stored) {
+    stored.nivell = "normal";
+    saveProfiles(profiles);
+  }
+  return p;
+}
+
 function activateProfile(p, opts) {
   profile = p;
+  ensureProfileNivellValid(profile);
   state = loadGameState(p.id);
   subjects = subjectsForCurs(p.curs, profileNivell(p));
   setCurrentProfileId(p.id);
@@ -361,9 +374,11 @@ function changeProfileCurs(id, newCurs) {
   const p = profiles.find((x) => x.id === id);
   if (!p || p.curs === newCurs) return;
   p.curs = newCurs;
+  if (!isNivellAvailable(newCurs, profileNivell(p))) p.nivell = "normal";
   saveProfiles(profiles);
   if (profile && profile.id === id) {
     profile.curs = newCurs;
+    profile.nivell = p.nivell;
     subjects = subjectsForCurs(newCurs, profileNivell(profile));
     applyCursVisual(newCurs);
   }
@@ -488,9 +503,13 @@ function shuffle(arr) {
 
 function recordQuestionStat(id, wasCorrect) {
   if (!state.qstats) state.qstats = {};
-  const s = state.qstats[id] || { seen: 0, wrong: 0, lastISO: null };
+  const s = state.qstats[id] || { seen: 0, wrong: 0, okStreak: 0, lastISO: null };
   s.seen += 1;
-  if (!wasCorrect) s.wrong += 1;
+  if (wasCorrect) s.okStreak = (s.okStreak || 0) + 1;
+  else {
+    s.wrong += 1;
+    s.okStreak = 0;
+  }
   s.lastISO = todayISO();
   state.qstats[id] = s;
 }
@@ -528,7 +547,8 @@ function buildQueueItem(question) {
 
 function startLesson(subjectId, lessonKey) {
   const subject = getSubject(subjectId);
-  const lesson = subject.lessons.find((l) => l.key === lessonKey);
+  const lesson = subject && subject.lessons.find((l) => l.key === lessonKey);
+  if (!lesson || lesson.questions.length === 0) return;
   playClick();
   session = {
     subjectId,
@@ -578,16 +598,27 @@ function buildRepasQueue(subjectFilter) {
     lesson.questions.forEach((q) => pool.push(q));
   });
   const stats = state.qstats || {};
-  const scored = pool.map((q) => {
-    const s = stats[q.id] || { seen: 0, wrong: 0, lastISO: null };
-    return { q, wrong: s.wrong, lastISO: s.lastISO || "" };
+  // Barregem abans d'ordenar perquè els empats (mateix wrong, mateix
+  // lastISO, o cap estadística) quedin en ordre aleatori i no sempre
+  // surtin les preguntes de les primeres lliçons.
+  const scored = shuffle(pool).map((q) => {
+    const s = stats[q.id] || { seen: 0, wrong: 0, okStreak: 0, lastISO: null };
+    return { q, wrong: s.wrong || 0, okStreak: s.okStreak || 0, lastISO: s.lastISO || "" };
   });
-  scored.sort((a, b) => {
+
+  const notConsolidated = (s) => s.wrong > 0 && s.okStreak < 2;
+  const group0 = scored.filter(notConsolidated);
+  const group1 = scored.filter((s) => !notConsolidated(s));
+
+  group0.sort((a, b) => {
     if (b.wrong !== a.wrong) return b.wrong - a.wrong;
     if (a.lastISO !== b.lastISO) return a.lastISO < b.lastISO ? -1 : 1;
     return 0;
   });
-  return shuffle(scored.slice(0, 10).map((s) => s.q));
+  group1.sort((a, b) => (a.lastISO < b.lastISO ? -1 : a.lastISO > b.lastISO ? 1 : 0));
+
+  const ordered = group0.concat(group1);
+  return shuffle(ordered.slice(0, 10).map((s) => s.q));
 }
 
 function startRepas(subjectFilter) {
@@ -1049,7 +1080,11 @@ function renderProfileSelect() {
           "button",
           {
             class: `curs-btn ${newProfileDraft.curs === c.id ? "selected" : ""}`,
-            onclick: () => { newProfileDraft.curs = c.id; render(); }
+            onclick: () => {
+              newProfileDraft.curs = c.id;
+              if (!isNivellAvailable(c.id, newProfileDraft.nivell)) newProfileDraft.nivell = "normal";
+              render();
+            }
           },
           [el("div", { class: "curs-btn-label" }, c.label), el("div", { class: "curs-btn-sub" }, c.edat)]
         )
@@ -1128,9 +1163,8 @@ function renderHome() {
   if (completedLessons().length >= 3) {
     wrap.appendChild(
       el("div", { class: "whatnext-box" }, [
-        el("div", { class: "whatnext-title" }, "🤖 Què vols fer?"),
+        el("div", { class: "whatnext-title" }, "🤖 Vols repassar el que ja has fet?"),
         el("div", { class: "whatnext-actions" }, [
-          el("button", { class: "btn btn-outline", onclick: () => { playClick(); render(); } }, "Continua"),
           el("button", { class: "btn btn-primary", onclick: () => startRepas() }, "🔁 Repàs")
         ])
       ])

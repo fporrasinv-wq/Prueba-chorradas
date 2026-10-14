@@ -74,9 +74,17 @@
 - [x] Botón opcional "Repàs d'aquesta matèria" añadido en el recorregut de cada matèria (mismo umbral de 3 lliçons completades, filtrado a esa matèria)
 - [x] Verificado: perfil antiguo sin `nivell`/`qstats`/`parentMode` conserva estrellas/XP/ratxa; regresión completa (115 lliçons, nivel normal) sin fallos; mecánica de niveles probada con contenido sintético solo en memoria de test (sin tocar `data/questions.js`); Repàs probado end-to-end (prioriza fallos, no cambia estrellas, da XP); Mode pares sigue funcionando; aspecto comprobado en móvil (390px) y escritorio
 
+## Resuelto — Sesión 12, Bloque 7b (arreglos del Bloque 7)
+- [x] Cambio de curso con un nivel no disponible: `changeProfileCurs` ahora comprueba `isNivellAvailable` para el curso nuevo y si el nivel del perfil no existe ahí, lo pasa a "normal" antes de recalcular `subjects` (el progreso guardado de cada nivel no se toca, solo cambia cuál está activo). Misma defensa al activar un perfil (`ensureProfileNivellValid`, usada en `activateProfile`/arranque) y al cambiar de curso en el formulario de nuevo perfil. `startLesson` ahora no hace nada (sin error) si la lección no existe o no tiene preguntas
+- [x] `qstats[id]` ampliado con `okStreak` (aciertos consecutivos; 0 tras un fallo, +1 tras un acierto); entradas antiguas sin el campo se leen como 0, sin migración
+- [x] `buildRepasQueue` reescrito con dos grupos: primero las preguntas falladas aún no consolidadas (`wrong>0 && okStreak<2`, ordenadas por más fallos y luego más antiguas), después el resto por antigüedad (las nunca vistas primero). El pool se baraja antes de ordenar para que los empates sean aleatorios, no siempre las preguntas de las primeras lliçons. Una pregunta fallada que se acierta 2 veces seguidas deja de tener prioridad
+- [x] Tarjeta de repàs en Inici simplificada: un único botón "🔁 Repàs" (se quitó "Continua", que no hacía nada) y título "Vols repassar el que ja has fet?"
+- [x] Verificado con script: cambio de curso con nivel no disponible cae a normal sin lliçons vacías ni error al abrir una (y se mantiene si el nivel sí está disponible); arranque con nivel no disponible se corrige; repàs prioriza correctamente los fallos no consolidados, dos arranques sin estadísticas dan conjuntos de 10 preguntas distintos, y sigue sin tocar estrelles/timesCompleted mientras suma XP; regresión completa (115 lliçons) y Mode pares sin cambios; capturas en móvil (390px) y escritorio
+
 ## Pendiente de aplicar la misma auditoría/criterio al resto
 - `explicacio` solo está poblado para las preguntas tipo `veritat_fals` y algunas de las convertidas en el Bloque 6; el resto de tipos sigue mayoritariamente con el campo vacío
 - El campo `dificultat` de 1r/4t sigue siendo posicional, no pedagógico (ver más arriba) — no se ha tocado en esta sesión
 - El objetivo de `ordenar` (~10% en 5è/6è) no se alcanzó por falta de contenido de tipo proceso/secuencia en el banco — ver Sesión 8 arriba
 - Contenido de nivel "facil" y "dificil" pendiente de generar (Bloque 8) — hasta entonces esos niveles aparecerán como "Aviat" en los 4 cursos
+- Mejora futura descartada explícitamente por Tico en el Bloque 7b: tope de XP en las sesiones de repàs — de momento el repàs suma XP sin límite
 

@@ -34,12 +34,15 @@ joc.
   estrelles i hi ha un nivell superior disponible, Inici suggereix
   pujar-hi (amb un clic explícit, mai automàtic).
 - **Mode Repàs**: quan un perfil ja ha completat 3 o més lliçons del
-  nivell actual, Inici mostra una targeta per començar una sessió de
-  repàs de 10 preguntes triades entre totes les lliçons completades de
-  totes les matèries, prioritzant les que més s'han fallat i després
-  les menys recents. Reutilitza el mateix motor de lliçó (vides,
-  pistes, els 5 tipus d'exercici) però no modifica estrelles ni
-  comptador de la lliçó — només suma XP i manté la ratxa. També hi ha
+  nivell actual, Inici mostra una targeta "🔁 Repàs" per començar una
+  sessió de 10 preguntes triades entre totes les lliçons completades
+  de totes les matèries. Prioritza primer les preguntes falladas que
+  encara no s'han "consolidat" (menys de 2 encerts seguits des de
+  l'últim error) i, després, la resta per antiguitat — les mai vistes
+  primer. Un error que s'encerta dues vegades seguides deixa de tenir
+  prioritat. Reutilitza el mateix motor de lliçó (vides, pistes, els 5
+  tipus d'exercici) però no modifica estrelles ni comptador de la
+  lliçó — només suma XP i manté la ratxa, sense cap tope. També hi ha
   un "Repàs d'aquesta matèria" a cada recorregut.
 - Cada matèria té un recorregut de lliçons que es va desbloquejant.
 - Mascota "Robi", un robot que dona ànims, reacciona a les respostes i
